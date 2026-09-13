@@ -1,0 +1,218 @@
+# The hand-maintained map from Mux operations to the Dart API, transcribed
+# from muxinc/mux-ts api.md (the namespace and method names are curated
+# upstream and cannot be derived from the specification). Everything else —
+# host, path parameters, request body, query parameters, response shape and
+# the `data` unwrap — is derived from tool/spec/mux-openapi.json.
+#
+# Keys are `VERB /path` exactly as written in the specification. `page` names
+# the pagination shape upstream uses (base | cursor | withTimeframe |
+# withTotal); it is NOT inferable from the response schema (ListIncidents
+# carries total_row_count yet upstream reads only `data`), so it is pinned
+# here. Omitted means the operation is not a list.
+
+spec:
+  muxTsTag: v15.1.0
+
+exclude:
+  - operation: "POST /video/v1/signing-keys"
+    reason: Deprecated; superseded by system.signingKeys.create.
+  - operation: "GET /video/v1/signing-keys"
+    reason: Deprecated; superseded by system.signingKeys.list.
+  - operation: "GET /video/v1/signing-keys/{SIGNING_KEY_ID}"
+    reason: Deprecated; superseded by system.signingKeys.retrieve.
+  - operation: "DELETE /video/v1/signing-keys/{SIGNING_KEY_ID}"
+    reason: Deprecated; superseded by system.signingKeys.delete.
+  - operation: "GET /counts"
+    reason: stats.mux.com viewer counts without an API version; absent from @mux/ts.
+
+operations:
+  # video.assets
+  "POST /video/v1/assets": { namespace: video.assets, method: create }
+  "GET /video/v1/assets": { namespace: video.assets, method: list, page: cursor }
+  "GET /video/v1/assets/{ASSET_ID}": { namespace: video.assets, method: retrieve }
+  "DELETE /video/v1/assets/{ASSET_ID}": { namespace: video.assets, method: delete }
+  "PATCH /video/v1/assets/{ASSET_ID}": { namespace: video.assets, method: update }
+  "GET /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}": { namespace: video.assets, method: retrievePlaybackId }
+  "POST /video/v1/assets/{ASSET_ID}/playback-ids": { namespace: video.assets, method: createPlaybackId }
+  "DELETE /video/v1/assets/{ASSET_ID}/playback-ids/{PLAYBACK_ID}": { namespace: video.assets, method: deletePlaybackId }
+  "POST /video/v1/assets/{ASSET_ID}/tracks": { namespace: video.assets, method: createTrack }
+  "DELETE /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}": { namespace: video.assets, method: deleteTrack }
+  "PATCH /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}": { namespace: video.assets, method: updateTrack }
+  "POST /video/v1/assets/{ASSET_ID}/tracks/{TRACK_ID}/generate-subtitles": { namespace: video.assets, method: generateSubtitles }
+  "GET /video/v1/assets/{ASSET_ID}/input-info": { namespace: video.assets, method: retrieveInputInfo }
+  "PUT /video/v1/assets/{ASSET_ID}/mp4-support": { namespace: video.assets, method: updateMp4Support }
+  "PUT /video/v1/assets/{ASSET_ID}/master-access": { namespace: video.assets, method: updateMasterAccess }
+  "POST /video/v1/assets/{ASSET_ID}/static-renditions": { namespace: video.assets, method: createStaticRendition }
+  "DELETE /video/v1/assets/{ASSET_ID}/static-renditions/{STATIC_RENDITION_ID}": { namespace: video.assets, method: deleteStaticRendition }
+  "GET /video/v1/assets/{ASSET_ID}/shots": { namespace: video.assets, method: retrieveShots }
+  "POST /video/v1/assets/{ASSET_ID}/shots": { namespace: video.assets, method: generateShots }
+  "DELETE /video/v1/assets/{ASSET_ID}/shots": { namespace: video.assets, method: deleteShots }
+  "DELETE /video/v1/assets/{ASSET_ID}/thumbnail-time": { namespace: video.assets, method: deleteThumbnailTime }
+
+  # video.deliveryUsage
+  "GET /video/v1/delivery-usage": { namespace: video.deliveryUsage, method: list, page: withTimeframe }
+
+  # video.liveStreams
+  "POST /video/v1/live-streams": { namespace: video.liveStreams, method: create }
+  "GET /video/v1/live-streams": { namespace: video.liveStreams, method: list, page: base }
+  "GET /video/v1/live-streams/{LIVE_STREAM_ID}": { namespace: video.liveStreams, method: retrieve }
+  "DELETE /video/v1/live-streams/{LIVE_STREAM_ID}": { namespace: video.liveStreams, method: delete }
+  "PATCH /video/v1/live-streams/{LIVE_STREAM_ID}": { namespace: video.liveStreams, method: update }
+  "POST /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids": { namespace: video.liveStreams, method: createPlaybackId }
+  "GET /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}": { namespace: video.liveStreams, method: retrievePlaybackId }
+  "DELETE /video/v1/live-streams/{LIVE_STREAM_ID}/playback-ids/{PLAYBACK_ID}": { namespace: video.liveStreams, method: deletePlaybackId }
+  "POST /video/v1/live-streams/{LIVE_STREAM_ID}/reset-stream-key": { namespace: video.liveStreams, method: resetStreamKey }
+  "PUT /video/v1/live-streams/{LIVE_STREAM_ID}/complete": { namespace: video.liveStreams, method: complete }
+  "PUT /video/v1/live-streams/{LIVE_STREAM_ID}/disable": { namespace: video.liveStreams, method: disable }
+  "PUT /video/v1/live-streams/{LIVE_STREAM_ID}/enable": { namespace: video.liveStreams, method: enable }
+  "PUT /video/v1/live-streams/{LIVE_STREAM_ID}/embedded-subtitles": { namespace: video.liveStreams, method: updateEmbeddedSubtitles }
+  "PUT /video/v1/live-streams/{LIVE_STREAM_ID}/generated-subtitles": { namespace: video.liveStreams, method: updateGeneratedSubtitles }
+  "POST /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets": { namespace: video.liveStreams, method: createSimulcastTarget }
+  "DELETE /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}": { namespace: video.liveStreams, method: deleteSimulcastTarget }
+  "GET /video/v1/live-streams/{LIVE_STREAM_ID}/simulcast-targets/{SIMULCAST_TARGET_ID}": { namespace: video.liveStreams, method: retrieveSimulcastTarget }
+  "PUT /video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions": { namespace: video.liveStreams, method: updateNewAssetSettingsStaticRenditions }
+  "DELETE /video/v1/live-streams/{LIVE_STREAM_ID}/new-asset-settings/static-renditions": { namespace: video.liveStreams, method: deleteNewAssetSettingsStaticRenditions }
+
+  # video.playbackIds
+  "GET /video/v1/playback-ids/{PLAYBACK_ID}": { namespace: video.playbackIds, method: retrieve }
+
+  # video.playbackRestrictions
+  "POST /video/v1/playback-restrictions": { namespace: video.playbackRestrictions, method: create }
+  "GET /video/v1/playback-restrictions": { namespace: video.playbackRestrictions, method: list, page: base }
+  "DELETE /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}": { namespace: video.playbackRestrictions, method: delete }
+  "GET /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}": { namespace: video.playbackRestrictions, method: retrieve }
+  "PUT /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/referrer": { namespace: video.playbackRestrictions, method: updateReferrer }
+  "PUT /video/v1/playback-restrictions/{PLAYBACK_RESTRICTION_ID}/user_agent": { namespace: video.playbackRestrictions, method: updateUserAgent }
+
+  # video.transcriptionVocabularies
+  "GET /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}": { namespace: video.transcriptionVocabularies, method: retrieve }
+  "POST /video/v1/transcription-vocabularies": { namespace: video.transcriptionVocabularies, method: create }
+  "DELETE /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}": { namespace: video.transcriptionVocabularies, method: delete }
+  "PUT /video/v1/transcription-vocabularies/{TRANSCRIPTION_VOCABULARY_ID}": { namespace: video.transcriptionVocabularies, method: update }
+  "GET /video/v1/transcription-vocabularies": { namespace: video.transcriptionVocabularies, method: list, page: base }
+
+  # video.uploads
+  "POST /video/v1/uploads": { namespace: video.uploads, method: create }
+  "GET /video/v1/uploads/{UPLOAD_ID}": { namespace: video.uploads, method: retrieve }
+  "PUT /video/v1/uploads/{UPLOAD_ID}/cancel": { namespace: video.uploads, method: cancel }
+  "GET /video/v1/uploads": { namespace: video.uploads, method: list, page: base }
+
+  # video.drmConfigurations
+  "GET /video/v1/drm-configurations": { namespace: video.drmConfigurations, method: list, page: base }
+  "GET /video/v1/drm-configurations/{DRM_CONFIGURATION_ID}": { namespace: video.drmConfigurations, method: retrieve }
+
+  # video.playback (image.mux.com / stream.mux.com)
+  "GET /{PLAYBACK_ID}/thumbnail.{EXTENSION}": { namespace: video.playback, method: thumbnail }
+  "GET /{PLAYBACK_ID}/animated.{EXTENSION}": { namespace: video.playback, method: animated }
+  "GET /{PLAYBACK_ID}/storyboard.{EXTENSION}": { namespace: video.playback, method: storyboard }
+  "GET /{PLAYBACK_ID}/storyboard.vtt": { namespace: video.playback, method: storyboardVtt }
+  "GET /{PLAYBACK_ID}/storyboard.json": { namespace: video.playback, method: storyboardMeta }
+  "GET /{PLAYBACK_ID}.m3u8": { namespace: video.playback, method: hls }
+  "GET /{PLAYBACK_ID}/{FILENAME}": { namespace: video.playback, method: staticRendition }
+  "GET /{PLAYBACK_ID}/text/{TRACK_ID}.vtt": { namespace: video.playback, method: track }
+  "GET /{PLAYBACK_ID}/text/{TRACK_ID}.txt": { namespace: video.playback, method: transcript }
+
+  # data.dimensions
+  "GET /data/v1/dimensions": { namespace: data.dimensions, method: list }
+  "GET /data/v1/dimensions/{DIMENSION_ID}": { namespace: data.dimensions, method: listValues, page: base }
+  "GET /data/v1/dimensions/{DIMENSION_ID}/elements": { namespace: data.dimensions, method: listTraceElements, page: base }
+
+  # data.monitoring
+  "GET /data/v1/monitoring/dimensions": { namespace: data.monitoring, method: listDimensions }
+  "GET /data/v1/monitoring/metrics": { namespace: data.monitoring.metrics, method: list }
+  "GET /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown": { namespace: data.monitoring.metrics, method: getBreakdown }
+  "GET /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/timeseries": { namespace: data.monitoring.metrics, method: getTimeseries }
+  "GET /data/v1/monitoring/metrics/{MONITORING_METRIC_ID}/breakdown-timeseries": { namespace: data.monitoring.metrics, method: getBreakdownTimeseries }
+  "GET /data/v1/monitoring/metrics/{MONITORING_HISTOGRAM_METRIC_ID}/histogram-timeseries": { namespace: data.monitoring.metrics, method: getHistogramTimeseries }
+
+  # data.errors / data.exports
+  "GET /data/v1/errors": { namespace: data.errors, method: list }
+  "GET /data/v1/exports/views": { namespace: data.exports, method: listVideoViews }
+
+  # data.incidents
+  "GET /data/v1/incidents/{INCIDENT_ID}": { namespace: data.incidents, method: retrieve }
+  "GET /data/v1/incidents/{INCIDENT_ID}/related": { namespace: data.incidents, method: listRelated, page: base }
+  "GET /data/v1/incidents": { namespace: data.incidents, method: list, page: base }
+
+  # data.metrics
+  "GET /data/v1/metrics/comparison": { namespace: data.metrics, method: list }
+  "GET /data/v1/metrics/{METRIC_ID}/breakdown": { namespace: data.metrics, method: listBreakdownValues, page: base }
+  "GET /data/v1/metrics/{METRIC_ID}/overall": { namespace: data.metrics, method: getOverallValues }
+  "GET /data/v1/metrics/{METRIC_ID}/insights": { namespace: data.metrics, method: getInsights }
+  "GET /data/v1/metrics/{METRIC_ID}/timeseries": { namespace: data.metrics, method: getTimeseries }
+
+  # data.realTime (deprecated upstream, still generated)
+  "GET /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/breakdown": { namespace: data.realTime, method: retrieveBreakdown }
+  "GET /data/v1/realtime/metrics/{REALTIME_METRIC_ID}/timeseries": { namespace: data.realTime, method: retrieveTimeseries }
+  "GET /data/v1/realtime/metrics": { namespace: data.realTime, method: listMetrics }
+  "GET /data/v1/realtime/metrics/{REALTIME_HISTOGRAM_METRIC_ID}/histogram-timeseries": { namespace: data.realTime, method: retrieveHistogramTimeseries }
+  "GET /data/v1/realtime/dimensions": { namespace: data.realTime, method: listDimensions }
+
+  # data.videoViews
+  "GET /data/v1/video-views": { namespace: data.videoViews, method: list, page: base }
+  "GET /data/v1/video-views/{VIDEO_VIEW_ID}": { namespace: data.videoViews, method: retrieve }
+
+  # data.annotations
+  "GET /data/v1/annotations": { namespace: data.annotations, method: list, page: base }
+  "GET /data/v1/annotations/{ANNOTATION_ID}": { namespace: data.annotations, method: retrieve }
+  "POST /data/v1/annotations": { namespace: data.annotations, method: create }
+  "DELETE /data/v1/annotations/{ANNOTATION_ID}": { namespace: data.annotations, method: delete }
+  "PATCH /data/v1/annotations/{ANNOTATION_ID}": { namespace: data.annotations, method: update }
+
+  # data.engagement
+  "GET /data/v1/engagement/assets/{ASSET_ID}/heatmap": { namespace: data.engagement.assets, method: heatmap }
+  "GET /data/v1/engagement/assets/{ASSET_ID}/hotspots": { namespace: data.engagement.assets, method: hotspots }
+  "GET /data/v1/engagement/playback-ids/{PLAYBACK_ID}/heatmap": { namespace: data.engagement.playbackIds, method: heatmap }
+  "GET /data/v1/engagement/playback-ids/{PLAYBACK_ID}/hotspots": { namespace: data.engagement.playbackIds, method: hotspots }
+  "GET /data/v1/engagement/videos/{VIDEO_ID}/heatmap": { namespace: data.engagement.videos, method: heatmap }
+  "GET /data/v1/engagement/videos/{VIDEO_ID}/hotspots": { namespace: data.engagement.videos, method: hotspots }
+
+  # robots.jobs
+  "GET /robots/v0/jobs": { namespace: robots.jobs, method: list, page: base }
+  "POST /robots/v0/jobs/{JOB_ID}/cancel": { namespace: robots.jobs, method: cancel }
+  "POST /robots/v0/jobs/ask-questions": { namespace: robots.jobs.askQuestions, method: create }
+  "GET /robots/v0/jobs/ask-questions/{JOB_ID}": { namespace: robots.jobs.askQuestions, method: retrieve }
+  "POST /robots/v0/jobs/generate-chapters": { namespace: robots.jobs.generateChapters, method: create }
+  "GET /robots/v0/jobs/generate-chapters/{JOB_ID}": { namespace: robots.jobs.generateChapters, method: retrieve }
+  "POST /robots/v0/jobs/find-key-moments": { namespace: robots.jobs.findKeyMoments, method: create }
+  "GET /robots/v0/jobs/find-key-moments/{JOB_ID}": { namespace: robots.jobs.findKeyMoments, method: retrieve }
+  "POST /robots/v0/jobs/moderate": { namespace: robots.jobs.moderate, method: create }
+  "GET /robots/v0/jobs/moderate/{JOB_ID}": { namespace: robots.jobs.moderate, method: retrieve }
+  "POST /robots/v0/jobs/summarize": { namespace: robots.jobs.summarize, method: create }
+  "GET /robots/v0/jobs/summarize/{JOB_ID}": { namespace: robots.jobs.summarize, method: retrieve }
+  "POST /robots/v0/jobs/translate-captions": { namespace: robots.jobs.translateCaptions, method: create }
+  "GET /robots/v0/jobs/translate-captions/{JOB_ID}": { namespace: robots.jobs.translateCaptions, method: retrieve }
+  "POST /robots/v0/jobs/edit-captions": { namespace: robots.jobs.editCaptions, method: create }
+  "GET /robots/v0/jobs/edit-captions/{JOB_ID}": { namespace: robots.jobs.editCaptions, method: retrieve }
+  "POST /robots/v0/jobs/find-best-thumbnails": { namespace: robots.jobs.findBestThumbnails, method: create }
+  "GET /robots/v0/jobs/find-best-thumbnails/{JOB_ID}": { namespace: robots.jobs.findBestThumbnails, method: retrieve }
+  "POST /robots/v0/jobs/find-scenes": { namespace: robots.jobs.findScenes, method: create }
+  "GET /robots/v0/jobs/find-scenes/{JOB_ID}": { namespace: robots.jobs.findScenes, method: retrieve }
+  "POST /robots/v0/jobs/generate-engagement-insights": { namespace: robots.jobs.generateEngagementInsights, method: create }
+  "GET /robots/v0/jobs/generate-engagement-insights/{JOB_ID}": { namespace: robots.jobs.generateEngagementInsights, method: retrieve }
+  "POST /robots/v0/jobs/generate-premium-captions": { namespace: robots.jobs.generatePremiumCaptions, method: create }
+  "GET /robots/v0/jobs/generate-premium-captions/{JOB_ID}": { namespace: robots.jobs.generatePremiumCaptions, method: retrieve }
+  "POST /robots/v0/jobs/translate-audio": { namespace: robots.jobs.translateAudio, method: create }
+  "GET /robots/v0/jobs/translate-audio/{JOB_ID}": { namespace: robots.jobs.translateAudio, method: retrieve }
+
+  # robots.directives
+  "POST /robots/v0/directives": { namespace: robots.directives, method: create }
+  "GET /robots/v0/directives": { namespace: robots.directives, method: list, page: base }
+  "GET /robots/v0/directives/{DIRECTIVE_ID}": { namespace: robots.directives, method: retrieve }
+  "DELETE /robots/v0/directives/{DIRECTIVE_ID}": { namespace: robots.directives, method: delete }
+  "POST /robots/v0/directives/{DIRECTIVE_ID}/runs": { namespace: robots.directives.runs, method: create }
+  "GET /robots/v0/directives/{DIRECTIVE_ID}/runs": { namespace: robots.directives.runs, method: list, page: base }
+  "GET /robots/v0/directives/{DIRECTIVE_ID}/runs/{RUN_ID}": { namespace: robots.directives.runs, method: retrieve }
+
+  # system
+  "POST /system/v1/signing-keys": { namespace: system.signingKeys, method: create }
+  "GET /system/v1/signing-keys": { namespace: system.signingKeys, method: list, page: base }
+  "GET /system/v1/signing-keys/{SIGNING_KEY_ID}": { namespace: system.signingKeys, method: retrieve }
+  "DELETE /system/v1/signing-keys/{SIGNING_KEY_ID}": { namespace: system.signingKeys, method: delete }
+  "GET /system/v1/whoami": { namespace: system.utilities, method: whoami }
+  "GET /system/v1/usage/exports": { namespace: system.usageExports, method: list }
+  "POST /system/v1/webhooks": { namespace: system.webhooks, method: create }
+  "GET /system/v1/webhooks": { namespace: system.webhooks, method: list, page: base }
+  "GET /system/v1/webhooks/{WEBHOOK_ID}": { namespace: system.webhooks, method: retrieve }
+  "PATCH /system/v1/webhooks/{WEBHOOK_ID}": { namespace: system.webhooks, method: update }
+  "DELETE /system/v1/webhooks/{WEBHOOK_ID}": { namespace: system.webhooks, method: delete }
