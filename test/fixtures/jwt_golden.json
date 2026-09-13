@@ -1,0 +1,660 @@
+{
+  "capturedFrom": {
+    "package": "@mux/ts",
+    "version": "15.1.0"
+  },
+  "seam": "client.jwt.* with Date.now() pinned to 1800000000000 ms and the committed test key pair",
+  "fixedNowMs": 1800000000000,
+  "cases": [
+    {
+      "name": "playback_default_video_7d",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDYwNDgwMH0.ImP8Fkgb-FvM3_Wy-Wnaaf4nZg1wwNbuSnwv5Dekl7c1DHSiGOkSKrTTFBFK4bUdoLYhDfzRRyQU5wIFWg5bPQKgUG61DHcdDIBP08fXoqN33zLfkLRKvBHO8pnm_NSLlvSSEJrVwZd8-shyVqSvvtAdq2vQyXZVGQq4PkkdvY88o2nPOHPsOO1HfgQW2zBuodrZfvS1dgCC2JUKh_Lhkr9oB-NqmixusAxr4nVBiBiNyX1-U4CM7naJUOfy2HwHVkEL9SWuT_y5DTLijLqMiFP_83rRFB1j1OvYjNcaFd2TyoGxyrBmWAPkdunF9Rn_ngu0SVcvUrJpXwtVNL5h7w",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "playback_thumbnail_with_string_params",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "type": "thumbnail",
+        "params": {
+          "time": "2",
+          "width": "320"
+        }
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lIjoiMiIsIndpZHRoIjoiMzIwIiwia2lkIjoidGVzdC1zaWduaW5nLWtleS1pZCIsInN1YiI6InBsYXliYWNrMSIsImF1ZCI6InQiLCJleHAiOjE4MDA2MDQ4MDB9.SRTV29KvUh1AXoVKUuCp4WOt__Y5OhWigSgMDE2SvaLuPtTsSkGpSrKEizspP-C7KnOoCDKB4M6rHHaFtouPY0BW45FmjKSq3gPIhgc3bP3nn_9w7EYeetnwNWYeJrTjt86HWPIYWu5kUjMJlDEGTlNknnP_mIPlPIBKALPOUz-6qojqnJBameCLh2q_txqh8yUVgiJfbtPl2r43y9vOmTZtElH3SnaXDzGhnOAIoBr25olcif8oXcPUhYI5dFyNjl03etCwrMzud4TBBngCU2P39ZvAZdF3dz18HMENb3j2yS2SijgU6Fsma-_QgCoxVnTX32UikTYnnMx8WOAZGg",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "time": "2",
+          "width": "320",
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "t",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "playback_gif_with_numeric_params",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "type": "gif",
+        "params": {
+          "start": 0,
+          "end": 5,
+          "fps": 15,
+          "width": 480
+        }
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGFydCI6MCwiZW5kIjo1LCJmcHMiOjE1LCJ3aWR0aCI6NDgwLCJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoiZyIsImV4cCI6MTgwMDYwNDgwMH0.n893lhtoLtR9IoSsuEbvKIjoXZDIkJnGaBSvmdo-5Qoz8pPWQ2a33ntYW-sn9HulSLSpGsJBpu-IEIkMpq_6GsQvuEszcI7INcyQJefmbjxf94OfgGcCg-FVvPcJCS4jQK4menEE0Woe5hA8cIe3nO0RfjhZxjNDJRP1f5utarUFTvkiBgMclJoR2qd4Xky32gJz1o2MYjo85eXYkE0pFZHeErN2NVDwenlMDkDxqcSL-Dq9dVK0uHx-bn1F6mvQRZbFlvuDx48y_qO9VL4BwowX90s7Dc3lctOH_aQ0Tw8WQD_N5o_xe0WQ-lrTPGpLN7eIqBxjSaVc8JZTKtfZAA",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "start": 0,
+          "end": 5,
+          "fps": 15,
+          "width": 480,
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "g",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "playback_storyboard",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "type": "storyboard"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoicyIsImV4cCI6MTgwMDYwNDgwMH0.i_OP8uGTStr842auMcskgQFDEucxH_jB2HFSLKAyEU3iIuE9E85zKUqkd6Gtmkq3pHx3BBcrVPX19PKATL5GqqimA5zNXeBBSUmnvFioRy_BxCOriGCe4ZkSwu2YvB4eLiI4IfdwKLjwBP_dxihGFpM1lE_ds7YMddCz22xqx5rF7sN6APZYq_qmkk6XZ4-aJUKi0bgtYb4jqi6dSjPxusgNmvRUeR9LtxvM1chh7E5v87mcZK_Ys9SzaSZlrwI9850Qc1OQa3-WZ1RIoEDgIhHzWUbOjZmiOkVq3AWjnr0Xidp5dXjZR788B1rWz3cIvf077geWmUQbZqcoaJHMmg",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "s",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "playback_stats",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "type": "stats"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoicGxheWJhY2tfaWQiLCJleHAiOjE4MDA2MDQ4MDB9.bSj6i1FvlXVfLS9Q3lRQOeecZWFz512Wca7D_R6mNEMzbEIC-U7iy8RwLwPUDtbSzv9FKbuiPwxJCz6xyXqVvFXaTAsh1QkpO3y8SkvEso-7BMr9QyUhTIKfvP9_uoHljLl-LteC7cxEMYjSAKRvhIF0NEMRTVIx7qKUv7Q-qr9310jicAPrePrC_0ousKHdDSfmU5YGZFMFlcTtJXpWiIyRq6Hd4_WbW6TBAmIvd4-tCdKzFnA5WW-3POyiLM6MweJkBCya6Vb4rJGeDwJFjuHZyNCTLTbOpd0YoE4AC-dS_3iEgktBYXjJ6e56sB2jXR6qFLzsY3_scnxaYTEGXQ",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "playback_id",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "playback_drm_license_type",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "type": "drm_license"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoiZCIsImV4cCI6MTgwMDYwNDgwMH0.bq6xcQsoftqgzepgmHarDH8CecMsD8WktB-eze74dA4CkbrO3scozXE92yrIdMoMYyKJHTLTovS17nwp9_zMlWftZKYPIIOzJ417dBf3K58dvzm0dyud8i36GYLb2ZzKE5XBtUIgvFB-JtdNS1-9IF484LzqmqEzdDwGKpM8DcR29rZE6LnIF2lF06fF8Rfp272IpfFlmqtcaMQWpGJF_xCnkwC6v15dkYGjKAoBBWzTfAQIMfbgZIdAIjLll8FxHvnJI3c3UugDeL9VUbencKU2wPn2m0CFwNO5oktZds-hs96wBQqTTXeYjAM-Gr-LXPJlOzclb7qvqVPOKyljCA",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "d",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "expiration_1h",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "expiration": "1h"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDAwMzYwMH0.UzZMBD1kqAwXMhTkjKUyhyWjyfjY28H01PQ61uxvCVatcypwQljLtDZ1jU9RAArvFxsft_wC-mT00hpXxJzgo8WeJzuY1La7xPXS5r1xzG_5aShoO9tYcrbiSDz48zLOh6lOIKJ7PHS7LuLRSgFMkrb-l5EIEIMcfLTIL43dfv0ismCjoee8uGsmQtuFrWB8hL-cRpSmL966Z8922hpJ55NOJeDoNogbH-5x84IN3YsQ8mvHAxWQyRtQ1zbRLjV_Lp-cR2uy_8ag_WX8kv3o_QWkfFbMBG3K4MfZwhoJ0oRnWNU_sKm03MHnn5h24NIGb3z7nJzeSSRv59OXU0bC9w",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800003600
+        }
+      }
+    },
+    {
+      "name": "expiration_30m",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "expiration": "30m"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDAwMTgwMH0.jxp9eUhT2XMsJly9hN2rTl4DgXEO_LNnjMjJMBjK_7exu6vo4MF-59fFNWPe88Xyrn3pbPYB7nbLwxBlQZGcjE3VMoguHUTlWh5N_y-jrRjW7UzzkovgNJYg7ZiPnNE1Emg12-lW1MB2xgnBnt5auPNb7BA-B4NKk2Jwit3pXyhtPVX7Leo_9QINuxLLII6-xc9MtFtPN37_Y2UR8uxPyEWDqMXaIUNQdMvyvh_3UDOh9i5AC74XeR9HKJyKrpWxwK6l5aMG-gzKFwXUoiZirRxyTYyAyp6pLuknpwIC6brpWEegUfQ7O2Dyhl2sCZFeiLU_CDE3vE_Ur-KTx-h1eQ",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800001800
+        }
+      }
+    },
+    {
+      "name": "expiration_2_days_with_space",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "expiration": "2 days"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDE3MjgwMH0.Oi35Ifao5VsLaQqZSdMOKEjMGNoJ5ENPSsZ56sZZellehxdXr5VsS-MKbqTaomubIYb4t2E2s_WBwpEVDPaoPnNZ9RA1G6GDGhJ2Vu77NM8C-87kd-jI9zvGr9FjXgXWBYcDl7yu-6nNGqSdEomU9APiYQuoeB6Dfsd2mrIr-uQai_sC9H_zlO9R5fplR3A-IAAigtWR4Nq3e8FJCuwlFQiV4jxJHfT7KvxBzx19hGFTEbqB9lBEeHyQC-NjbNUtGIXhq3YshISc6MSiuY-t0riGCqzDd-IvwTadLqPKgKs7zcmqH36FvVT_dDF_ufGiLLq71RFnQ7HBALWZ-9XuJQ",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800172800
+        }
+      }
+    },
+    {
+      "name": "expiration_1w",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "expiration": "1w"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDYwNDgwMH0.ImP8Fkgb-FvM3_Wy-Wnaaf4nZg1wwNbuSnwv5Dekl7c1DHSiGOkSKrTTFBFK4bUdoLYhDfzRRyQU5wIFWg5bPQKgUG61DHcdDIBP08fXoqN33zLfkLRKvBHO8pnm_NSLlvSSEJrVwZd8-shyVqSvvtAdq2vQyXZVGQq4PkkdvY88o2nPOHPsOO1HfgQW2zBuodrZfvS1dgCC2JUKh_Lhkr9oB-NqmixusAxr4nVBiBiNyX1-U4CM7naJUOfy2HwHVkEL9SWuT_y5DTLijLqMiFP_83rRFB1j1OvYjNcaFd2TyoGxyrBmWAPkdunF9Rn_ngu0SVcvUrJpXwtVNL5h7w",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "expiration_1y",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "expiration": "1y"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgzMTUzNjAwMH0.GBTMxAxRbisErXjsU0fRxJiquthOlFxKBW292gcH1aH61eOxWXbomiGm4R-EnfjwQKaOMBTlwwYVCzDwvbhMwjjFTbn-mIf1kAXeFp37jVACelxk8qmcrLlnRms_QUpte262gK8qcMuxiy2ENvBOrpgdtzzvt2KRMldeVBOBTqEdE9h5UtmOq8HrY8yPRF52DNGeayba4ylKsAL-eIaAzQDeHQz8q6WJTPsoMI36aW5E37xr6dG5qnOOavc_UnPDCmrzhn3qsmym7ACeqqFD_PbCKaQQjNONGyT5dPoLL328SLtbmyKVwAD03b_eGdpms5jhIMchjDeli9jZRfkrGg",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1831536000
+        }
+      }
+    },
+    {
+      "name": "expiration_bare_number_string",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "expiration": "3600"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDAwMzYwMH0.UzZMBD1kqAwXMhTkjKUyhyWjyfjY28H01PQ61uxvCVatcypwQljLtDZ1jU9RAArvFxsft_wC-mT00hpXxJzgo8WeJzuY1La7xPXS5r1xzG_5aShoO9tYcrbiSDz48zLOh6lOIKJ7PHS7LuLRSgFMkrb-l5EIEIMcfLTIL43dfv0ismCjoee8uGsmQtuFrWB8hL-cRpSmL966Z8922hpJ55NOJeDoNogbH-5x84IN3YsQ8mvHAxWQyRtQ1zbRLjV_Lp-cR2uy_8ag_WX8kv3o_QWkfFbMBG3K4MfZwhoJ0oRnWNU_sKm03MHnn5h24NIGb3z7nJzeSSRv59OXU0bC9w",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800003600
+        }
+      }
+    },
+    {
+      "name": "expiration_fractional_seconds",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "expiration": "1.5"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDAwMDAwMS41fQ.N8zRZV1E57i5msjQq0bp_8fwco_c0a0pCqBrUk8XCeHb4Y-Fo1S8ofP7Q_Aw01-lveRXuEGVmIzG6Tft0GDFHAhXflY14yvbl7N1TeEvUNGsk3eTx1muYCHOBIUfNAwenY3FGyqhzbxZ0lr2Qqog34OptrsPHR1saEVuvc9YFzdA4fCH7ASwJFzU2pIW5vRFvaeAcR5cKJ6wROfHKJY_a8KuD0TLGYDfqOF0VDOwbScwxOKi_FTWL7b2ogvdVzvKGXwbUqMcYoNUsO4ajVQBiehThoA6HAeUkyGe-JvD1SRehtycnsvAmPFY8Rv7nJsLgYoJwuilex55JHUS3qBdBA",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800000001.5
+        }
+      }
+    },
+    {
+      "name": "expiration_invalid",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "expiration": "soon"
+      },
+      "expected": {
+        "error": {
+          "className": "Error",
+          "message": "Invalid time span: soon"
+        }
+      }
+    },
+    {
+      "name": "params_override_standard_claims_keep_position",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "params": {
+          "sub": "ignored",
+          "custom": "kept"
+        }
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwbGF5YmFjazEiLCJjdXN0b20iOiJrZXB0Iiwia2lkIjoidGVzdC1zaWduaW5nLWtleS1pZCIsImF1ZCI6InYiLCJleHAiOjE4MDA2MDQ4MDB9.MHZiDTJFZxcaLe3GEHRpIEpmwmh4ka5LNqwKUqEfSx_29io7YGe4Kf6Lxyeu9XEJjH5n2rQaB03Ezx6DbG8yHcIaw0g9J6dPCsJnLhAn921cpjWSc5gGJYGzEgzC4wU3hgKMK82DE1sgB7o-jbhVInI_x-hl41h9WkygbUx24QMZ3U5qFibDszQkKoVmL6cggEinIl_JDogHgDOEUAAIrmJUd4AdwiORhGFaAoU7ai3qNIpIYV0PLgj4XPxtYIPQV9IbZ0UNoFpp6bWxDBJbBKWHr8mEEi2s2WsBa8hFe8_2gip-ueU-R6Al3q0axkMyo2xzdCA2iGJiS9ldF_xS1g",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "sub": "playback1",
+          "custom": "kept",
+          "kid": "test-signing-key-id",
+          "aud": "v",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "key_pem_pkcs1",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "pkcs1"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDYwNDgwMH0.ImP8Fkgb-FvM3_Wy-Wnaaf4nZg1wwNbuSnwv5Dekl7c1DHSiGOkSKrTTFBFK4bUdoLYhDfzRRyQU5wIFWg5bPQKgUG61DHcdDIBP08fXoqN33zLfkLRKvBHO8pnm_NSLlvSSEJrVwZd8-shyVqSvvtAdq2vQyXZVGQq4PkkdvY88o2nPOHPsOO1HfgQW2zBuodrZfvS1dgCC2JUKh_Lhkr9oB-NqmixusAxr4nVBiBiNyX1-U4CM7naJUOfy2HwHVkEL9SWuT_y5DTLijLqMiFP_83rRFB1j1OvYjNcaFd2TyoGxyrBmWAPkdunF9Rn_ngu0SVcvUrJpXwtVNL5h7w",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "key_pem_pkcs8",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "pkcs8"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidiIsImV4cCI6MTgwMDYwNDgwMH0.ImP8Fkgb-FvM3_Wy-Wnaaf4nZg1wwNbuSnwv5Dekl7c1DHSiGOkSKrTTFBFK4bUdoLYhDfzRRyQU5wIFWg5bPQKgUG61DHcdDIBP08fXoqN33zLfkLRKvBHO8pnm_NSLlvSSEJrVwZd8-shyVqSvvtAdq2vQyXZVGQq4PkkdvY88o2nPOHPsOO1HfgQW2zBuodrZfvS1dgCC2JUKh_Lhkr9oB-NqmixusAxr4nVBiBiNyX1-U4CM7naJUOfy2HwHVkEL9SWuT_y5DTLijLqMiFP_83rRFB1j1OvYjNcaFd2TyoGxyrBmWAPkdunF9Rn_ngu0SVcvUrJpXwtVNL5h7w",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "key_id_override",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "other-key-id",
+        "privateKey": "base64"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJvdGhlci1rZXktaWQiLCJzdWIiOiJwbGF5YmFjazEiLCJhdWQiOiJ2IiwiZXhwIjoxODAwNjA0ODAwfQ.F1NswjykzbUI0KqUUdR4sTCbfVq2xM8Drhsn99u5j6B7G-vmHzju_S82mygLpsDLWt9aQGBtJkQk2jNZWOuYPMK0FWMoUjcctrwzT32lO99nJgKZgM06vAYIcHYKAvw2ybuRAVia6_xcWVpv807Fp7N4NN1wa2N1KTW7l6Wlo54_cDheH7ubVCibMBqU6BoiTIFFI-4_knUtrDiY4HTKKhJo3lwzfTz04i-0M9zG2JANxKEAivftUSMIVMyL6uhycs0bWFUbGR1lzgIcR-uvIhzvsJafNxjoo6am0E41soXxyBHq6BWAf0ng1w15fkFSkBlql5pTU6hxNV9C3rZprA",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "other-key-id",
+          "sub": "playback1",
+          "aud": "v",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "drm_license",
+      "input": {
+        "method": "signDrmLicense",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoiZCIsImV4cCI6MTgwMDYwNDgwMH0.bq6xcQsoftqgzepgmHarDH8CecMsD8WktB-eze74dA4CkbrO3scozXE92yrIdMoMYyKJHTLTovS17nwp9_zMlWftZKYPIIOzJ417dBf3K58dvzm0dyud8i36GYLb2ZzKE5XBtUIgvFB-JtdNS1-9IF484LzqmqEzdDwGKpM8DcR29rZE6LnIF2lF06fF8Rfp272IpfFlmqtcaMQWpGJF_xCnkwC6v15dkYGjKAoBBWzTfAQIMfbgZIdAIjLll8FxHvnJI3c3UugDeL9VUbencKU2wPn2m0CFwNO5oktZds-hs96wBQqTTXeYjAM-Gr-LXPJlOzclb7qvqVPOKyljCA",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback1",
+          "aud": "d",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "viewer_counts_default_video",
+      "input": {
+        "method": "signViewerCounts",
+        "subject": "video-id-1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoidmlkZW8taWQtMSIsImF1ZCI6InZpZGVvX2lkIiwiZXhwIjoxODAwNjA0ODAwfQ.e7wo4tSLHmYugO6zK5roj2NFUTBzJj_by7ZcMe7YT6Ktljd3ARJS_gKhEpRt2cn5PXt3d10a33mPKaWb9m9RqRMBeCJ0GfHxU8rWYV4zebD_QtVeYrvXAmAIV4ryW3XHJO7mOAibt8tXSzmqFVwnf19dy9RQhSuN4-oL7Fld3NrQ-tdN18i9x4KTLFgKKsyszImuzV5rcIl_1jjRIU4_yrEKVzZBdU1eLIsrSX1rN4py95EnRzmF35liZ--0Yf0qKlc81RxI3gi-k8T047TZdGJ8efrZ8mKJIhsTNqK281Ose-ZjYHMEkIKEMOlQY5teEVjaR59QyINH0yhD3PCOpA",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "video-id-1",
+          "aud": "video_id",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "viewer_counts_asset",
+      "input": {
+        "method": "signViewerCounts",
+        "subject": "asset-id-1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "type": "asset"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoiYXNzZXQtaWQtMSIsImF1ZCI6ImFzc2V0X2lkIiwiZXhwIjoxODAwNjA0ODAwfQ.Rxy92h4Ot4g4XDuZnkFDr0BOS_UevWysc6O620babBR9bqY25WISgEX8qxzOL8ZTNW1N7IIVjkEeRtvSSzw7cQ3sh6DvLgB7tUB8-AexcLZdK5PUceC2EismukoXuSWLISS59Gxe-ljqd6lhxh_5EWMJuNONa9O4DCFPbWFX4CiGQ0ofhBNiKByR1t2DHkrxaVEQxJALs2M_n2_mPybwfkf0i2rkhSVMQv7_1_1xvWhqq7VANwZF4SVWm1lyo8pKJIFJ7OEXylv8EBnnbp1K2aEYhQTcoKEmi44PH9YVYYwHp-4NO107mJtv7tC__v596QsQ72bHqBijwD_Y2VR5Qg",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "asset-id-1",
+          "aud": "asset_id",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "viewer_counts_playback",
+      "input": {
+        "method": "signViewerCounts",
+        "subject": "playback-id-1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "type": "playback"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2staWQtMSIsImF1ZCI6InBsYXliYWNrX2lkIiwiZXhwIjoxODAwNjA0ODAwfQ.PSNgBusouD_RtoeXVVdT4G60dC68sCtDE0st1E2vKHs8gQePxKHNe7aCY8cwudSp-_uC8xzzRgQ_yntoPZX3OtLZNuw6YkhdBE9v4E2cNyufyjXXKa8SRsrnbVQaAs5pCfocVjbT3I19WhiVwWWO3C96XpQtqwZhe2YjED11gPJtb0dlGxsJ4PmwSPW8h_kdnp4EKd0ZYEbw5O-95exEQaWauhPJ_sowdOfgD8woHRw9kHROskDb1_bvVbAYAJ-LkFskTPKHte6kBNyyIFJY22yt3fpcvg778xPPjQi0cBHyqk1y6U3oGgp68cQJcKwn0grNdYZaiJshFwI09BXziA",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "playback-id-1",
+          "aud": "playback_id",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "viewer_counts_live_stream",
+      "input": {
+        "method": "signViewerCounts",
+        "subject": "live-1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "type": "live_stream"
+      },
+      "expected": {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoibGl2ZS0xIiwiYXVkIjoibGl2ZV9zdHJlYW1faWQiLCJleHAiOjE4MDA2MDQ4MDB9.jVR4dsHokIzRM-2stSEpdj-wXyiehrtsvSf0-o7q1Q6jFGR8wMzeLJYDygvACJrFXtphuwSh3NZuCbTi4isHhe_wG2WNKAosIF0HJuC7lUQ7T-OZg8xjWoQaHKJHg4gZALcOFaEcaJC2FXjJLVn0doPKGkV33a5p-h8cGoUbZG-RmTwATJrXXsAIKm1zbD8jJGT1swncWBNALpDbiY80WshQaHQWuOHaLUQ0WlJBkwGuPk_VcUvpVHnHuhFg8z44I7gqrfYxeejuDguMGWEuuFYgrekMEpBnZ41JC4haa43Jr5mPBM_3GccN-KuR73czdLUkZ72byfcH5VAa1YJ5ig",
+        "header": {
+          "alg": "RS256",
+          "typ": "JWT"
+        },
+        "payload": {
+          "kid": "test-signing-key-id",
+          "sub": "live-1",
+          "aud": "live_stream_id",
+          "exp": 1800604800
+        }
+      }
+    },
+    {
+      "name": "multiple_types_with_shared_and_per_type_params",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "base64",
+        "types": [
+          "video",
+          "thumbnail",
+          "gif"
+        ],
+        "paramsByType": {
+          "thumbnail": {
+            "time": "3"
+          }
+        },
+        "params": {
+          "shared": "x"
+        }
+      },
+      "expected": {
+        "tokens": {
+          "playback-token": {
+            "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaGFyZWQiOiJ4Iiwia2lkIjoidGVzdC1zaWduaW5nLWtleS1pZCIsInN1YiI6InBsYXliYWNrMSIsImF1ZCI6InYiLCJleHAiOjE4MDA2MDQ4MDB9.mJszGyTk0SYmTgGyUZSNfQ-cxHXOsuCOFSuJxsDiHudsrn7bu-WsQP2IjHIyxJSf6jLjvlUTqx2ABx4EGbblD8vfqEp55cMWKMESQxeQWUK9V65wVETGiGqlOPk1smD_dPOD8NooSXnv0sIAHoRUnzLQ1GCh6adocF0_jKWrcFdT7rsSwcvhGWxtQKg8WJLyjDFVQs7B_cAMBTa_iz0FZbzffo5PqzP8EStIpFo4_PhazhXPnmJSJK_tW4owKDFbu0XJqYr5EfJTwvm0Z0p5AUwjczcFaZrRxfipRKzCenOxxRBrXYJzlzYUMXBZomjpfvJlPQ1-JOKgo2Yp-kvacw",
+            "header": {
+              "alg": "RS256",
+              "typ": "JWT"
+            },
+            "payload": {
+              "shared": "x",
+              "kid": "test-signing-key-id",
+              "sub": "playback1",
+              "aud": "v",
+              "exp": 1800604800
+            }
+          },
+          "thumbnail-token": {
+            "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaGFyZWQiOiJ4IiwidGltZSI6IjMiLCJraWQiOiJ0ZXN0LXNpZ25pbmcta2V5LWlkIiwic3ViIjoicGxheWJhY2sxIiwiYXVkIjoidCIsImV4cCI6MTgwMDYwNDgwMH0.MZyWuVACE_xZ1QZGJyqin6BXjqx61RFUgzLCTTBK85qOALLpoomsyNLhP2dGlsYlnY0JyPglJ3LiBUpU8sBzwOEkCN5g9VgSHVPtDLHDfeKS6OkFvXb0ecmXRqLDmvmplwWAsSdqITWmNUH8OlGGpLsHL_SWbtCjNnIvmP8Fs9BvYEb-MA7LIbcGPrEbRxy5xVJjRcjTXkXeQJgv6E0F1eCXdGuO7o1m6Syg9CPoWX_oFTEXJsdRVEF7gwDOcSmOScmpL1bO45dfk78lav7EyNTBheoGx-hA6dizSo0YpLw0GPgYRxiZ4GqiyxuwNklD3f4YXOljVJ3CFGnHrq-lkw",
+            "header": {
+              "alg": "RS256",
+              "typ": "JWT"
+            },
+            "payload": {
+              "shared": "x",
+              "time": "3",
+              "kid": "test-signing-key-id",
+              "sub": "playback1",
+              "aud": "t",
+              "exp": 1800604800
+            }
+          },
+          "gif-token": {
+            "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaGFyZWQiOiJ4Iiwia2lkIjoidGVzdC1zaWduaW5nLWtleS1pZCIsInN1YiI6InBsYXliYWNrMSIsImF1ZCI6ImciLCJleHAiOjE4MDA2MDQ4MDB9.J5yPLqtccPOilWy95ly4jxKa8DEoIQeyTQ70lIyANlekXk75qZGiz7FtwTmsIgMpZztLy6xvAjHd5mvTrmwU7j8tbE-5D8uv_ye0oiOnfminWkBUwqe97J8cvZrHzSa6hBrAUYNpm6_zNZFQekfqZ5-VSop_as68N96Co_pLkn-BmprZ_8lhj6105y9NpHjoBC_onYniHdoKH1mQIX8LLrGXR5TL_biyVFyz3PCNYDNbhcMS_lTe8PYeoDq8UteuDqKlkG2u4yuED3ToV3Ey2Is9wKueSjwyZiXF6fa9Uh6IMsvx09MKtKsoR-hgGy8Gez9ujPTmAqGblzf0dk911Q",
+            "header": {
+              "alg": "RS256",
+              "typ": "JWT"
+            },
+            "payload": {
+              "shared": "x",
+              "kid": "test-signing-key-id",
+              "sub": "playback1",
+              "aud": "g",
+              "exp": 1800604800
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "missing_signing_key",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": null,
+        "privateKey": "base64"
+      },
+      "expected": {
+        "error": {
+          "className": "Error",
+          "message": "Signing key required; pass a keyId option to mux.jwt.sign*(), a jwtSigningKey option to new Mux(), or set the MUX_SIGNING_KEY environment variable"
+        }
+      }
+    },
+    {
+      "name": "missing_private_key",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": null
+      },
+      "expected": {
+        "error": {
+          "className": "TypeError",
+          "message": "Private key required; pass a keySecret option to mux.jwt.sign*(), a jwtPrivateKey option to new Mux(), or set the MUX_PRIVATE_KEY environment variable"
+        }
+      }
+    },
+    {
+      "name": "private_key_not_pem_nor_base64",
+      "input": {
+        "method": "signPlaybackId",
+        "subject": "playback1",
+        "keyId": "test-signing-key-id",
+        "privateKey": "garbage"
+      },
+      "expected": {
+        "error": {
+          "className": "TypeError",
+          "message": "Specified signing key must be either a valid PKCS1 or PKCS8 PEM string, a base64 encoded PEM, or an imported key"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "capturedFrom": {
+    "package": "@mux/ts",
+    "version": "15.1.0"
+  },
+  "seam": "client.webhooks.verifySignature / unwrap with Date.now() pinned to 1800000000000 ms",
+  "fixedNowMs": 1800000000000,
+  "validSignature": "38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+  "cases": [
+    {
+      "name": "valid",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": false
+        },
+        "unwrap": {
+          "threw": false,
+          "type": "video.asset.ready",
+          "id": "evt_1"
+        }
+      }
+    },
+    {
+      "name": "valid_second_of_two_signatures",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=0000000000000000000000000000000000000000000000000000000000000000,v1=38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": false
+        },
+        "unwrap": {
+          "threw": false,
+          "type": "video.asset.ready",
+          "id": "evt_1"
+        }
+      }
+    },
+    {
+      "name": "valid_at_exact_tolerance",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1799999700,v1=b5554794355967de4cbe0d0903b84c0a44c2beb9e0b293dadd00669961034106",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": false
+        },
+        "unwrap": {
+          "threw": false,
+          "type": "video.asset.ready",
+          "id": "evt_1"
+        }
+      }
+    },
+    {
+      "name": "valid_timestamp_in_future",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000100,v1=abc078d77e7fea3408e1f77f2dba6b4c441b78dfef294bd9536d7275f8a28d7d",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": false
+        },
+        "unwrap": {
+          "threw": false,
+          "type": "video.asset.ready",
+          "id": "evt_1"
+        }
+      }
+    },
+    {
+      "name": "too_old_by_one_second",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1799999699,v1=8d41e445855fbad49569aa121b6d6363827a7f2ec776d717ae0d7f4e61e7f94b",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "Webhook timestamp is too old"
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "Webhook timestamp is too old"
+        }
+      }
+    },
+    {
+      "name": "wrong_signature",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "No signatures found matching the expected signature for payload."
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "No signatures found matching the expected signature for payload."
+        }
+      }
+    },
+    {
+      "name": "signature_for_other_body",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=727909c118736afb03b7f80f510bc411af9928b9ac13614d1860afe2f01ddfa3",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "No signatures found matching the expected signature for payload."
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "No signatures found matching the expected signature for payload."
+        }
+      }
+    },
+    {
+      "name": "uppercase_hex_rejected",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=38FE7442FF1D798A2806C6C0C31B3D9E9D50C40459C7644880904484D0B2674D",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "No signatures found matching the expected signature for payload."
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "No signatures found matching the expected signature for payload."
+        }
+      }
+    },
+    {
+      "name": "missing_header",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": null,
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "Could not find a mux-signature header"
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "Could not find a mux-signature header"
+        }
+      }
+    },
+    {
+      "name": "empty_header",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "Could not find a mux-signature header"
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "Could not find a mux-signature header"
+        }
+      }
+    },
+    {
+      "name": "header_without_timestamp",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "v1=38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "Unable to extract timestamp and signatures from header"
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "Unable to extract timestamp and signatures from header"
+        }
+      }
+    },
+    {
+      "name": "header_without_v1",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v0=38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "No v1 signatures found"
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "No v1 signatures found"
+        }
+      }
+    },
+    {
+      "name": "unknown_scheme_ignored",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v0=deadbeef,v1=38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+        "secret": null,
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": false
+        },
+        "unwrap": {
+          "threw": false,
+          "type": "video.asset.ready",
+          "id": "evt_1"
+        }
+      }
+    },
+    {
+      "name": "missing_secret",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+        "secret": null,
+        "clientSecret": null
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "The webhook secret must either be set using the env var, MUX_WEBHOOK_SECRET, on the client class, Mux({ webhookSecret: '123' }), or passed to this function"
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "The webhook secret must either be set using the env var, MUX_WEBHOOK_SECRET, on the client class, Mux({ webhookSecret: '123' }), or passed to this function"
+        }
+      }
+    },
+    {
+      "name": "empty_secret",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+        "secret": null,
+        "clientSecret": ""
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "The webhook secret must either be set using the env var, MUX_WEBHOOK_SECRET, on the client class, Mux({ webhookSecret: '123' }), or passed to this function"
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "The webhook secret must either be set using the env var, MUX_WEBHOOK_SECRET, on the client class, Mux({ webhookSecret: '123' }), or passed to this function"
+        }
+      }
+    },
+    {
+      "name": "secret_argument_overrides_client",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=98d286f3c2d1882e89b0f2f9fc77b8e1932a82cfd8b4b730304ac74ff25ff43b",
+        "secret": "other",
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": false
+        },
+        "unwrap": {
+          "threw": false,
+          "type": "video.asset.ready",
+          "id": "evt_1"
+        }
+      }
+    },
+    {
+      "name": "secret_argument_wrong",
+      "input": {
+        "body": "{\"type\":\"video.asset.ready\",\"id\":\"evt_1\",\"created_at\":\"2027-01-15T08:00:00.000000Z\",\"object\":{\"type\":\"asset\",\"id\":\"asset_1\"},\"environment\":{\"name\":\"Production\",\"id\":\"env_1\"},\"data\":{\"id\":\"asset_1\",\"status\":\"ready\",\"playback_ids\":[{\"id\":\"pb_1\",\"policy\":\"signed\"}]},\"attempts\":[]}",
+        "header": "t=1800000000,v1=38fe7442ff1d798a2806c6c0c31b3d9e9d50c40459c7644880904484d0b2674d",
+        "secret": "other",
+        "clientSecret": "whsec_test_secret"
+      },
+      "expected": {
+        "verify": {
+          "threw": true,
+          "message": "No signatures found matching the expected signature for payload."
+        },
+        "unwrap": {
+          "threw": true,
+          "message": "No signatures found matching the expected signature for payload."
+        }
+      }
+    }
+  ]
+}

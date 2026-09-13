@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 
+import '../jwt/mux_jwt.dart';
+import '../webhooks/mux_webhooks.dart';
 import 'transport.dart';
 
 /// A client for the Mux API.
@@ -65,6 +67,17 @@ final class MuxClient {
   final String? jwtPrivateKey;
 
   final MuxTransport _transport;
+
+  /// Signs playback, DRM-licence and viewer-count tokens with
+  /// [jwtSigningKeyId] / [jwtPrivateKey] unless a call overrides them.
+  late final MuxJwt jwt = MuxJwt(
+    defaultKeyId: jwtSigningKeyId,
+    defaultPrivateKey: jwtPrivateKey,
+  );
+
+  /// Verifies and decodes webhook deliveries with [webhookSecret] unless a
+  /// call overrides it.
+  late final MuxWebhooks webhooks = MuxWebhooks(defaultSecret: webhookSecret);
 
   /// Sends a JSON request and returns the decoded body, envelope included.
   ///
