@@ -40,6 +40,11 @@ export 'src/core/page.dart'
         MuxPageWithTimeframe,
         MuxPageWithTotal;
 export 'src/core/transport.dart' show MuxHost;
+export 'src/resources/asset_options.dart'
+    show AssetOptions, MasterAccess, PlaybackPolicy, VideoQuality;
+export 'src/resources/video.dart' show MuxVideo;
+export 'src/resources/video_uploads.dart'
+    show Upload, UploadCreateParams, UploadError, UploadStatus, VideoUploads;
 export 'src/jwt/mux_jwt.dart'
     show
         MuxJwt,

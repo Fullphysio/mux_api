@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 
 import '../jwt/mux_jwt.dart';
+import '../resources/video.dart';
 import '../webhooks/mux_webhooks.dart';
 import 'transport.dart';
 
@@ -67,6 +68,9 @@ final class MuxClient {
   final String? jwtPrivateKey;
 
   final MuxTransport _transport;
+
+  /// Mux Video resources: `client.video.uploads`, …
+  late final MuxVideo video = MuxVideo(this);
 
   /// Signs playback, DRM-licence and viewer-count tokens with
   /// [jwtSigningKeyId] / [jwtPrivateKey] unless a call overrides them.
