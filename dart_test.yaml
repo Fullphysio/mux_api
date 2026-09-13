@@ -1,0 +1,5 @@
+tags:
+  mock:
+    skip: "Needs a local Mux mock server. Run with: MUX_MOCK_HOST=127.0.0.1:4010 dart test --tags mock --run-skipped"
+  integration:
+    skip: "Hits the live Mux API. Run with: dart test --tags integration --run-skipped"

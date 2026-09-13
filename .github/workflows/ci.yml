@@ -1,0 +1,131 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Weekly, to catch breakage from new SDK or dependency releases.
+    - cron: '0 6 * * 1'
+
+env:
+  PUB_ENVIRONMENT: bot.github
+
+jobs:
+  analyze:
+    name: Format & analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d
+        with:
+          sdk: stable
+      - id: install
+        run: dart pub get
+      - name: Check formatting
+        if: always() && steps.install.outcome == 'success'
+        run: dart format --output=none --set-exit-if-changed .
+      - name: Analyze
+        if: always() && steps.install.outcome == 'success'
+        run: dart analyze --fatal-infos
+      # Validation only. Publishing happens from publish.yml on a v* tag.
+      - name: Validate package layout
+        if: always() && steps.install.outcome == 'success'
+        run: dart pub publish --dry-run
+
+  test:
+    name: Test (Dart ${{ matrix.sdk }})
+    needs: analyze
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The floor declared in pubspec.yaml, plus current stable.
+        sdk: ['3.6', stable]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d
+        with:
+          sdk: ${{ matrix.sdk }}
+      - id: install
+        run: dart pub get
+      - name: Run tests
+        if: always() && steps.install.outcome == 'success'
+        run: dart test --test-randomize-ordering-seed=random
+
+  coverage:
+    name: Coverage
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d
+        with:
+          sdk: stable
+      - run: dart pub get
+      - run: dart pub global activate coverage
+      - name: Collect coverage
+        run: dart test --coverage=coverage
+      # --report-on=lib measures only what consumers actually get; the
+      # generator under tool/ is a build-time input and is not shipped.
+      # Generated code is exercised by the mock and decode tiers, not counted
+      # here, so the gate measures the hand-written runtime only.
+      - name: Format to lcov
+        run: >-
+          dart pub global run coverage:format_coverage
+          --lcov --in=coverage --out=coverage/lcov.info
+          --report-on=lib --ignore-files='lib/src/generated/**' --check-ignore
+      # Enforced inline rather than via a third-party action: one fewer
+      # supply-chain dependency, and the threshold is readable right here.
+      - name: Enforce minimum line coverage
+        env:
+          MIN_COVERAGE: '90'
+        run: |
+          python3 - <<'PY'
+          import os, sys, collections
+          hit = total = 0
+          per = collections.defaultdict(lambda: [0, 0])
+          current = None
+          with open('coverage/lcov.info') as handle:
+              for line in handle:
+                  line = line.strip()
+                  if line.startswith('SF:'):
+                      current = line[3:]
+                  elif line.startswith('DA:'):
+                      _, count = line[3:].split(',')
+                      per[current][1] += 1
+                      total += 1
+                      if int(count) > 0:
+                          per[current][0] += 1
+                          hit += 1
+          if total == 0:
+              sys.exit('No coverage data was produced.')
+          pct = 100.0 * hit / total
+          for path, (file_hit, file_total) in sorted(per.items()):
+              print(f'{100.0 * file_hit / file_total:6.1f}%  {path}')
+          minimum = float(os.environ['MIN_COVERAGE'])
+          print(f'\nTotal line coverage: {pct:.1f}% (minimum {minimum:.0f}%)')
+          if pct < minimum:
+              sys.exit(f'Coverage {pct:.1f}% is below the {minimum:.0f}% minimum.')
+          PY
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: lcov
+          path: coverage/lcov.info
+
+  score:
+    name: pub.dev score
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      # pana evaluates Flutter platform support, so it needs the Flutter SDK
+      # to reproduce the score pub.dev will compute.
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2
+        with:
+          channel: stable
+      - run: dart pub global activate pana
+      - name: Score must stay at maximum
+        run: dart pub global run pana --no-warning --exit-code-threshold 0 .

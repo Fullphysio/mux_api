@@ -1,0 +1,27 @@
+name: mux_api
+description: >-
+  Pure Dart client for the Mux API: video, data and system resources, JWT
+  playback-token signing, and webhook verification. Runs on Dart servers,
+  CLIs and Flutter apps.
+version: 0.1.0
+repository: https://github.com/Fullphysio/mux_api
+issue_tracker: https://github.com/Fullphysio/mux_api/issues
+
+topics:
+  - mux
+  - video
+  - api
+  - client
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  crypto: ^3.0.6
+  http: ^1.6.0
+  http_parser: ^4.0.2
+  meta: ^1.16.0
+
+dev_dependencies:
+  lints: ">=5.1.1 <7.0.0"
+  test: ^1.25.0
