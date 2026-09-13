@@ -83,17 +83,34 @@ quirks. Before "fixing" something that looks wrong, check the reference — if
 the TypeScript does it, we do it, and the reason belongs in a test name, not a
 code comment.
 
-- Query arrays use `qs` bracket format: `filters[]=a&filters[]=b`.
+- Query arrays use `qs` bracket format with keys encoded too:
+  `filters%5B%5D=a&filters%5B%5D=b`. The RFC 3986 unreserved set is the only
+  thing left unescaped — `!*'()` and `:` are percent-encoded.
 - Every single-object response is wrapped in `{"data": …}`; several `data.*`
   endpoints keep the whole envelope. `tool/spec/resources.yaml` is the record.
+- The `Accept` header is per operation: `application/json` for JSON, `*/*`
+  for a void `DELETE`, `application/binary` for thumbnails,
+  `application/vnd.apple.mpegurl` for HLS, `text/vtt` for storyboards.
 - Retries: `x-should-retry` header first, then 408, 409, 429 and 5xx.
-  `Retry-After` may be an HTTP-date. There are **no idempotency keys** — Mux
-  defines none, so a retried POST is exactly as eager as upstream.
-- The exception subtype is chosen by status code alone; `error.type` is
-  informational.
+  `retry-after-ms` beats `Retry-After`; `Retry-After` is read with
+  `parseFloat` semantics (a leading number wins, so an ISO date is its year in
+  seconds), then as an HTTP-date; an unparsable or past date retries
+  immediately, not after backoff, and there is no upper bound. There are **no
+  idempotency keys** — Mux defines none, so a retried POST is exactly as eager
+  as upstream.
+- The error message is `"<status> <JSON body>"` (or the raw text, or
+  `status code (no body)`); the exception subtype is chosen by status code
+  alone and `error.type` is informational. Deliberate divergence: `raw` keeps
+  the text of a non-JSON body where upstream exposes `null`.
+- Path segments: `.` and `..` are rejected like upstream; an empty segment is
+  rejected too (upstream would send a trailing slash and hit the collection).
 - JWT: `kid` is a **payload** claim, not a header field, and there is no
-  `iat`. Claim order is `params…, kid, sub, aud, exp`.
-- Webhook tolerance is a hard 300 s. Nothing disables the timestamp check.
+  `iat`. Claim order is `params…, kid, sub, aud, exp`; a param named like a
+  standard claim keeps its position but loses its value. `exp` may be
+  fractional (`expiration: '1.5'`), as upstream.
+- Webhook tolerance is a hard 300 s, `age > tolerance` — a delivery exactly
+  300 s old passes. Nothing disables the timestamp check. Hex signatures are
+  compared case-sensitively.
 - `created_at` is a *string* of unix seconds on Asset, LiveStream, SigningKey,
   PlaybackRestriction and TranscriptionVocabulary; an integer on Robots jobs;
   ISO-8601 on webhooks. The wire type is kept; a derived getter converts.
