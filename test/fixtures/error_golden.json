@@ -1,0 +1,456 @@
+{
+  "capturedFrom": {
+    "package": "@mux/ts",
+    "version": "15.1.0"
+  },
+  "seam": "video.assets.retrieve through the `fetch` client option with maxRetries: 0",
+  "cases": [
+    {
+      "name": "bad_request_400",
+      "input": {
+        "statusCode": 400,
+        "body": {
+          "error": {
+            "type": "invalid_parameters",
+            "messages": [
+              "Bad request"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "BadRequestError",
+        "message": "400 {\"error\":{\"type\":\"invalid_parameters\",\"messages\":[\"Bad request\"]}}",
+        "status": 400,
+        "error": {
+          "error": {
+            "type": "invalid_parameters",
+            "messages": [
+              "Bad request"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "unauthorized_401",
+      "input": {
+        "statusCode": 401,
+        "body": {
+          "error": {
+            "type": "unauthorized",
+            "messages": [
+              "Unauthorized"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "AuthenticationError",
+        "message": "401 {\"error\":{\"type\":\"unauthorized\",\"messages\":[\"Unauthorized\"]}}",
+        "status": 401,
+        "error": {
+          "error": {
+            "type": "unauthorized",
+            "messages": [
+              "Unauthorized"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "forbidden_403",
+      "input": {
+        "statusCode": 403,
+        "body": {
+          "error": {
+            "type": "forbidden",
+            "messages": [
+              "Forbidden"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "PermissionDeniedError",
+        "message": "403 {\"error\":{\"type\":\"forbidden\",\"messages\":[\"Forbidden\"]}}",
+        "status": 403,
+        "error": {
+          "error": {
+            "type": "forbidden",
+            "messages": [
+              "Forbidden"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "not_found_404",
+      "input": {
+        "statusCode": 404,
+        "body": {
+          "error": {
+            "type": "not_found",
+            "messages": [
+              "Asset not found"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "NotFoundError",
+        "message": "404 {\"error\":{\"type\":\"not_found\",\"messages\":[\"Asset not found\"]}}",
+        "status": 404,
+        "error": {
+          "error": {
+            "type": "not_found",
+            "messages": [
+              "Asset not found"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "conflict_409",
+      "input": {
+        "statusCode": 409,
+        "body": {
+          "error": {
+            "type": "conflict",
+            "messages": [
+              "Conflict"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "ConflictError",
+        "message": "409 {\"error\":{\"type\":\"conflict\",\"messages\":[\"Conflict\"]}}",
+        "status": 409,
+        "error": {
+          "error": {
+            "type": "conflict",
+            "messages": [
+              "Conflict"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "unprocessable_422",
+      "input": {
+        "statusCode": 422,
+        "body": {
+          "error": {
+            "type": "invalid_parameters",
+            "messages": [
+              "a",
+              "b"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "UnprocessableEntityError",
+        "message": "422 {\"error\":{\"type\":\"invalid_parameters\",\"messages\":[\"a\",\"b\"]}}",
+        "status": 422,
+        "error": {
+          "error": {
+            "type": "invalid_parameters",
+            "messages": [
+              "a",
+              "b"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "rate_limited_429",
+      "input": {
+        "statusCode": 429,
+        "body": {
+          "error": {
+            "type": "rate_limited",
+            "messages": [
+              "Too many requests"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "RateLimitError",
+        "message": "429 {\"error\":{\"type\":\"rate_limited\",\"messages\":[\"Too many requests\"]}}",
+        "status": 429,
+        "error": {
+          "error": {
+            "type": "rate_limited",
+            "messages": [
+              "Too many requests"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "internal_500",
+      "input": {
+        "statusCode": 500,
+        "body": {
+          "error": {
+            "type": "internal_error",
+            "messages": [
+              "Oops"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "InternalServerError",
+        "message": "500 {\"error\":{\"type\":\"internal_error\",\"messages\":[\"Oops\"]}}",
+        "status": 500,
+        "error": {
+          "error": {
+            "type": "internal_error",
+            "messages": [
+              "Oops"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "bad_gateway_502_html",
+      "input": {
+        "statusCode": 502,
+        "body": "<html><body>Bad Gateway</body></html>",
+        "headers": {
+          "content-type": "text/html"
+        }
+      },
+      "expected": {
+        "threw": true,
+        "className": "InternalServerError",
+        "message": "502 <html><body>Bad Gateway</body></html>",
+        "status": 502,
+        "error": null
+      }
+    },
+    {
+      "name": "teapot_418_unmapped",
+      "input": {
+        "statusCode": 418,
+        "body": {
+          "error": {
+            "type": "teapot",
+            "messages": [
+              "short and stout"
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "APIError",
+        "message": "418 {\"error\":{\"type\":\"teapot\",\"messages\":[\"short and stout\"]}}",
+        "status": 418,
+        "error": {
+          "error": {
+            "type": "teapot",
+            "messages": [
+              "short and stout"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "payment_required_402_unmapped",
+      "input": {
+        "statusCode": 402,
+        "body": {
+          "error": {
+            "type": "payment_required",
+            "messages": []
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "APIError",
+        "message": "402 {\"error\":{\"type\":\"payment_required\",\"messages\":[]}}",
+        "status": 402,
+        "error": {
+          "error": {
+            "type": "payment_required",
+            "messages": []
+          }
+        }
+      }
+    },
+    {
+      "name": "empty_body_500",
+      "input": {
+        "statusCode": 500,
+        "body": "",
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "InternalServerError",
+        "message": "500 status code (no body)",
+        "status": 500,
+        "error": null
+      }
+    },
+    {
+      "name": "top_level_string_message",
+      "input": {
+        "statusCode": 400,
+        "body": {
+          "message": "Top-level message wins"
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "BadRequestError",
+        "message": "400 Top-level message wins",
+        "status": 400,
+        "error": {
+          "message": "Top-level message wins"
+        }
+      }
+    },
+    {
+      "name": "top_level_object_message",
+      "input": {
+        "statusCode": 400,
+        "body": {
+          "message": {
+            "detail": "nested"
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "BadRequestError",
+        "message": "400 {\"detail\":\"nested\"}",
+        "status": 400,
+        "error": {
+          "message": {
+            "detail": "nested"
+          }
+        }
+      }
+    },
+    {
+      "name": "json_array_body",
+      "input": {
+        "statusCode": 400,
+        "body": [
+          "not",
+          "an",
+          "object"
+        ],
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "BadRequestError",
+        "message": "400 [\"not\",\"an\",\"object\"]",
+        "status": 400,
+        "error": [
+          "not",
+          "an",
+          "object"
+        ]
+      }
+    },
+    {
+      "name": "error_without_messages",
+      "input": {
+        "statusCode": 400,
+        "body": {
+          "error": {
+            "type": "weird"
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "BadRequestError",
+        "message": "400 {\"error\":{\"type\":\"weird\"}}",
+        "status": 400,
+        "error": {
+          "error": {
+            "type": "weird"
+          }
+        }
+      }
+    },
+    {
+      "name": "non_string_messages",
+      "input": {
+        "statusCode": 400,
+        "body": {
+          "error": {
+            "type": "t",
+            "messages": [
+              "a",
+              1,
+              null,
+              {
+                "k": "v"
+              }
+            ]
+          }
+        },
+        "headers": {}
+      },
+      "expected": {
+        "threw": true,
+        "className": "BadRequestError",
+        "message": "400 {\"error\":{\"type\":\"t\",\"messages\":[\"a\",1,null,{\"k\":\"v\"}]}}",
+        "status": 400,
+        "error": {
+          "error": {
+            "type": "t",
+            "messages": [
+              "a",
+              1,
+              null,
+              {
+                "k": "v"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

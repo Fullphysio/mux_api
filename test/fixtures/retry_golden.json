@@ -1,0 +1,396 @@
+{
+  "capturedFrom": {
+    "package": "@mux/ts",
+    "version": "15.1.0"
+  },
+  "seam": "video.assets.retrieve through the `fetch` client option; maxRetries: 2 unless stated",
+  "cases": [
+    {
+      "name": "500_then_success",
+      "responses": [
+        {
+          "status": 500,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 15,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "500_exhausts_two_retries",
+      "responses": [
+        {
+          "status": 500,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 500,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 500,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        }
+      ],
+      "attempts": 3,
+      "elapsedMs": 3,
+      "expected": {
+        "threw": true,
+        "className": "InternalServerError",
+        "message": "500 {\"error\":{\"type\":\"t\",\"messages\":[\"m\"]}}"
+      }
+    },
+    {
+      "name": "408_retried",
+      "responses": [
+        {
+          "status": 408,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 1,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "409_retried",
+      "responses": [
+        {
+          "status": 409,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 2,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "429_retried",
+      "responses": [
+        {
+          "status": 429,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 2,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "400_not_retried",
+      "responses": [
+        {
+          "status": 400,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 1,
+      "elapsedMs": 0,
+      "expected": {
+        "threw": true,
+        "className": "BadRequestError",
+        "message": "400 {\"error\":{\"type\":\"t\",\"messages\":[\"m\"]}}"
+      }
+    },
+    {
+      "name": "404_not_retried",
+      "responses": [
+        {
+          "status": 404,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 1,
+      "elapsedMs": 0,
+      "expected": {
+        "threw": true,
+        "className": "NotFoundError",
+        "message": "404 {\"error\":{\"type\":\"t\",\"messages\":[\"m\"]}}"
+      }
+    },
+    {
+      "name": "500_with_x_should_retry_false",
+      "responses": [
+        {
+          "status": 500,
+          "headers": {
+            "x-should-retry": "false",
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 1,
+      "elapsedMs": 0,
+      "expected": {
+        "threw": true,
+        "className": "InternalServerError",
+        "message": "500 {\"error\":{\"type\":\"t\",\"messages\":[\"m\"]}}"
+      }
+    },
+    {
+      "name": "400_with_x_should_retry_true",
+      "responses": [
+        {
+          "status": 400,
+          "headers": {
+            "x-should-retry": "true",
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 2,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "connection_error_then_success",
+      "responses": [
+        {
+          "status": null,
+          "headers": {},
+          "throws": true
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 441,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "connection_error_exhausts_retries",
+      "responses": [
+        {
+          "status": null,
+          "headers": {},
+          "throws": true
+        },
+        {
+          "status": null,
+          "headers": {},
+          "throws": true
+        },
+        {
+          "status": null,
+          "headers": {},
+          "throws": true
+        }
+      ],
+      "attempts": 3,
+      "elapsedMs": 1326,
+      "expected": {
+        "threw": true,
+        "className": "APIConnectionError",
+        "message": "Connection error."
+      }
+    },
+    {
+      "name": "retry_after_seconds_honoured",
+      "responses": [
+        {
+          "status": 503,
+          "headers": {
+            "retry-after": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 1003,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "retry_after_ms_beats_retry_after",
+      "responses": [
+        {
+          "status": 503,
+          "headers": {
+            "retry-after-ms": "50",
+            "retry-after": "3"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 52,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "retry_after_http_date_in_past",
+      "responses": [
+        {
+          "status": 503,
+          "headers": {
+            "retry-after": "Wed, 21 Oct 2015 07:28:00 GMT"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 4,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "retry_after_unparsable_retries_immediately",
+      "responses": [
+        {
+          "status": 503,
+          "headers": {
+            "retry-after": "soon"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 2,
+      "elapsedMs": 2,
+      "expected": {
+        "threw": false,
+        "resultId": "asset1"
+      }
+    },
+    {
+      "name": "max_retries_zero",
+      "responses": [
+        {
+          "status": 500,
+          "headers": {
+            "retry-after-ms": "1"
+          },
+          "throws": false
+        },
+        {
+          "status": 200,
+          "headers": {},
+          "throws": false
+        }
+      ],
+      "attempts": 1,
+      "elapsedMs": 0,
+      "expected": {
+        "threw": true,
+        "className": "InternalServerError",
+        "message": "500 {\"error\":{\"type\":\"t\",\"messages\":[\"m\"]}}"
+      }
+    }
+  ]
+}

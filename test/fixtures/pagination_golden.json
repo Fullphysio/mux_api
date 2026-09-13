@@ -1,0 +1,339 @@
+{
+  "capturedFrom": {
+    "package": "@mux/ts",
+    "version": "15.1.0"
+  },
+  "seam": "list() through the `fetch` client option, then `for await` over the page",
+  "cases": [
+    {
+      "name": "base_page_uploads_stops_on_empty_page",
+      "page": "base",
+      "input": {
+        "path": "/video/v1/uploads",
+        "query": {
+          "limit": 2
+        }
+      },
+      "responses": [
+        {
+          "data": [
+            {
+              "id": "u1"
+            },
+            {
+              "id": "u2"
+            }
+          ]
+        },
+        {
+          "data": [
+            {
+              "id": "u3"
+            }
+          ]
+        },
+        {
+          "data": []
+        }
+      ],
+      "firstPage": {
+        "hasNextPage": true,
+        "dataIds": [
+          "u1",
+          "u2"
+        ],
+        "nextCursor": null,
+        "totalRowCount": null,
+        "timeframe": null,
+        "pageNumber": null,
+        "limit": null
+      },
+      "autoPagedIds": [
+        "u1",
+        "u2",
+        "u3"
+      ],
+      "requests": [
+        "https://api.mux.com/video/v1/uploads?limit=2",
+        "https://api.mux.com/video/v1/uploads?limit=2&page=2",
+        "https://api.mux.com/video/v1/uploads?limit=2&page=3"
+      ]
+    },
+    {
+      "name": "base_page_explicit_page_param",
+      "page": "base",
+      "input": {
+        "path": "/video/v1/uploads",
+        "query": {
+          "page": 3,
+          "limit": 1
+        }
+      },
+      "responses": [
+        {
+          "data": [
+            {
+              "id": "u5"
+            }
+          ]
+        },
+        {
+          "data": []
+        }
+      ],
+      "firstPage": {
+        "hasNextPage": true,
+        "dataIds": [
+          "u5"
+        ],
+        "nextCursor": null,
+        "totalRowCount": null,
+        "timeframe": null,
+        "pageNumber": null,
+        "limit": null
+      },
+      "autoPagedIds": [
+        "u5"
+      ],
+      "requests": [
+        "https://api.mux.com/video/v1/uploads?page=3&limit=1",
+        "https://api.mux.com/video/v1/uploads?page=4&limit=1"
+      ]
+    },
+    {
+      "name": "base_page_empty_first_page",
+      "page": "base",
+      "input": {
+        "path": "/video/v1/uploads",
+        "query": {}
+      },
+      "responses": [
+        {
+          "data": []
+        }
+      ],
+      "firstPage": {
+        "hasNextPage": false,
+        "dataIds": [],
+        "nextCursor": null,
+        "totalRowCount": null,
+        "timeframe": null,
+        "pageNumber": null,
+        "limit": null
+      },
+      "autoPagedIds": [],
+      "requests": [
+        "https://api.mux.com/video/v1/uploads"
+      ]
+    },
+    {
+      "name": "cursor_page_assets",
+      "page": "cursor",
+      "input": {
+        "path": "/video/v1/assets",
+        "query": {
+          "limit": 2
+        }
+      },
+      "responses": [
+        {
+          "data": [
+            {
+              "id": "a1"
+            },
+            {
+              "id": "a2"
+            }
+          ],
+          "next_cursor": "cursor-2"
+        },
+        {
+          "data": [
+            {
+              "id": "a3"
+            }
+          ],
+          "next_cursor": ""
+        }
+      ],
+      "firstPage": {
+        "hasNextPage": true,
+        "dataIds": [
+          "a1",
+          "a2"
+        ],
+        "nextCursor": "cursor-2",
+        "totalRowCount": null,
+        "timeframe": null,
+        "pageNumber": null,
+        "limit": null
+      },
+      "autoPagedIds": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "requests": [
+        "https://api.mux.com/video/v1/assets?limit=2",
+        "https://api.mux.com/video/v1/assets?limit=2&cursor=cursor-2"
+      ]
+    },
+    {
+      "name": "cursor_page_missing_next_cursor",
+      "page": "cursor",
+      "input": {
+        "path": "/video/v1/assets",
+        "query": {}
+      },
+      "responses": [
+        {
+          "data": [
+            {
+              "id": "a1"
+            }
+          ]
+        }
+      ],
+      "firstPage": {
+        "hasNextPage": false,
+        "dataIds": [
+          "a1"
+        ],
+        "nextCursor": "",
+        "totalRowCount": null,
+        "timeframe": null,
+        "pageNumber": null,
+        "limit": null
+      },
+      "autoPagedIds": [
+        "a1"
+      ],
+      "requests": [
+        "https://api.mux.com/video/v1/assets"
+      ]
+    },
+    {
+      "name": "timeframe_page_delivery_usage_uses_server_page_number",
+      "page": "withTimeframe",
+      "input": {
+        "path": "/video/v1/delivery-usage",
+        "query": {
+          "timeframe": [
+            "1",
+            "2"
+          ]
+        }
+      },
+      "responses": [
+        {
+          "data": [
+            {
+              "id": "d1"
+            }
+          ],
+          "timeframe": [
+            1,
+            2
+          ],
+          "page": 1,
+          "limit": 100
+        },
+        {
+          "data": [
+            {
+              "id": "d2"
+            }
+          ],
+          "timeframe": [
+            1,
+            2
+          ],
+          "page": 2,
+          "limit": 100
+        },
+        {
+          "data": [],
+          "timeframe": [
+            1,
+            2
+          ],
+          "page": 3,
+          "limit": 100
+        }
+      ],
+      "firstPage": {
+        "hasNextPage": true,
+        "dataIds": [
+          "d1"
+        ],
+        "nextCursor": null,
+        "totalRowCount": null,
+        "timeframe": [
+          1,
+          2
+        ],
+        "pageNumber": 1,
+        "limit": 100
+      },
+      "autoPagedIds": [
+        "d1",
+        "d2"
+      ],
+      "requests": [
+        "https://api.mux.com/video/v1/delivery-usage?timeframe%5B%5D=1&timeframe%5B%5D=2",
+        "https://api.mux.com/video/v1/delivery-usage?timeframe%5B%5D=1&timeframe%5B%5D=2&page=2",
+        "https://api.mux.com/video/v1/delivery-usage?timeframe%5B%5D=1&timeframe%5B%5D=2&page=3"
+      ]
+    },
+    {
+      "name": "base_page_incidents_ignores_total_row_count",
+      "page": "base",
+      "input": {
+        "path": "/data/v1/incidents",
+        "query": {
+          "limit": 1
+        }
+      },
+      "responses": [
+        {
+          "data": [
+            {
+              "id": "i1"
+            }
+          ],
+          "total_row_count": 1,
+          "timeframe": [
+            1,
+            2
+          ]
+        },
+        {
+          "data": [],
+          "total_row_count": 1,
+          "timeframe": [
+            1,
+            2
+          ]
+        }
+      ],
+      "firstPage": {
+        "hasNextPage": true,
+        "dataIds": [
+          "i1"
+        ],
+        "nextCursor": null,
+        "totalRowCount": null,
+        "timeframe": null,
+        "pageNumber": null,
+        "limit": null
+      },
+      "autoPagedIds": [
+        "i1"
+      ],
+      "requests": [
+        "https://api.mux.com/data/v1/incidents?limit=1",
+        "https://api.mux.com/data/v1/incidents?limit=1&page=2"
+      ]
+    }
+  ]
+}

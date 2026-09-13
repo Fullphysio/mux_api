@@ -1,0 +1,322 @@
+{
+  "capturedFrom": {
+    "package": "@mux/ts",
+    "version": "15.1.0"
+  },
+  "seam": "the `fetch` client option, recording every request before answering it",
+  "cases": [
+    {
+      "name": "metrics_timeseries_bracket_arrays",
+      "input": {
+        "method": "GET",
+        "host": "api",
+        "path": "/data/v1/metrics/video_startup_time/timeseries",
+        "query": {
+          "filters": [
+            "operating_system:windows",
+            "country:US"
+          ],
+          "metric_filters": [
+            "aggregate_startup_time>=1000"
+          ],
+          "timeframe": [
+            "7:days"
+          ],
+          "measurement": "95th",
+          "group_by": "hour"
+        },
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/data/v1/metrics/video_startup_time/timeseries?filters%5B%5D=operating_system%3Awindows&filters%5B%5D=country%3AUS&metric_filters%5B%5D=aggregate_startup_time%3E%3D1000&timeframe%5B%5D=7%3Adays&measurement=95th&group_by=hour",
+        "method": "GET",
+        "contentType": null,
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "assets_list_cursor_and_limit",
+      "input": {
+        "method": "GET",
+        "host": "api",
+        "path": "/video/v1/assets",
+        "query": {
+          "limit": 10,
+          "cursor": "abc def/ü+x"
+        },
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/video/v1/assets?limit=10&cursor=abc%20def%2F%C3%BC%2Bx",
+        "method": "GET",
+        "contentType": null,
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "uploads_list_page_limit",
+      "input": {
+        "method": "GET",
+        "host": "api",
+        "path": "/video/v1/uploads",
+        "query": {
+          "page": 2,
+          "limit": 5
+        },
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/video/v1/uploads?page=2&limit=5",
+        "method": "GET",
+        "contentType": null,
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "video_views_reserved_characters",
+      "input": {
+        "method": "GET",
+        "host": "api",
+        "path": "/data/v1/video-views",
+        "query": {
+          "filters": [
+            "a b",
+            "c&d=e",
+            "!*'()",
+            "x[y]",
+            "100%",
+            "é/ü"
+          ],
+          "viewer_id": "viewer 1",
+          "order_direction": "asc"
+        },
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/data/v1/video-views?filters%5B%5D=a%20b&filters%5B%5D=c%26d%3De&filters%5B%5D=%21%2A%27%28%29&filters%5B%5D=x%5By%5D&filters%5B%5D=100%25&filters%5B%5D=%C3%A9%2F%C3%BC&viewer_id=viewer%201&order_direction=asc",
+        "method": "GET",
+        "contentType": null,
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "delivery_usage_timeframe",
+      "input": {
+        "method": "GET",
+        "host": "api",
+        "path": "/video/v1/delivery-usage",
+        "query": {
+          "timeframe": [
+            "1600000000",
+            "1600100000"
+          ],
+          "asset_id": "asset1",
+          "page": 1,
+          "limit": 50
+        },
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/video/v1/delivery-usage?timeframe%5B%5D=1600000000&timeframe%5B%5D=1600100000&asset_id=asset1&page=1&limit=50",
+        "method": "GET",
+        "contentType": null,
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "thumbnail_image_host_numbers_and_token",
+      "input": {
+        "method": "GET",
+        "host": "image",
+        "path": "/pid123/thumbnail.png",
+        "query": {
+          "width": 320,
+          "height": 180,
+          "time": 2.5,
+          "fit_mode": "crop",
+          "token": "tok.en"
+        },
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://image.mux.com/pid123/thumbnail.png?width=320&height=180&time=2.5&fit_mode=crop&token=tok.en",
+        "method": "GET",
+        "contentType": null,
+        "accept": "application/binary",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "hls_stream_host",
+      "input": {
+        "method": "GET",
+        "host": "stream",
+        "path": "/pid123.m3u8",
+        "query": {
+          "token": "t",
+          "max_resolution": "1080p",
+          "redundant_streams": true
+        },
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://stream.mux.com/pid123.m3u8?token=t&max_resolution=1080p&redundant_streams=true",
+        "method": "GET",
+        "contentType": null,
+        "accept": "application/vnd.apple.mpegurl",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "storyboard_vtt_text",
+      "input": {
+        "method": "GET",
+        "host": "image",
+        "path": "/pid123/storyboard.vtt",
+        "query": {},
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://image.mux.com/pid123/storyboard.vtt",
+        "method": "GET",
+        "contentType": null,
+        "accept": "text/vtt",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "upload_create_json_body",
+      "input": {
+        "method": "POST",
+        "host": "api",
+        "path": "/video/v1/uploads",
+        "query": null,
+        "body": {
+          "cors_origin": "https://example.com",
+          "new_asset_settings": {
+            "playback_policies": [
+              "signed"
+            ],
+            "video_quality": "plus"
+          },
+          "timeout": 3600
+        }
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/video/v1/uploads",
+        "method": "POST",
+        "contentType": "application/json",
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": "{\"cors_origin\":\"https://example.com\",\"new_asset_settings\":{\"playback_policies\":[\"signed\"],\"video_quality\":\"plus\"},\"timeout\":3600}"
+      }
+    },
+    {
+      "name": "asset_update_master_access_put",
+      "input": {
+        "method": "PUT",
+        "host": "api",
+        "path": "/video/v1/assets/asset1/master-access",
+        "query": null,
+        "body": {
+          "master_access": "temporary"
+        }
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/video/v1/assets/asset1/master-access",
+        "method": "PUT",
+        "contentType": "application/json",
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": "{\"master_access\":\"temporary\"}"
+      }
+    },
+    {
+      "name": "asset_delete_no_body",
+      "input": {
+        "method": "DELETE",
+        "host": "api",
+        "path": "/video/v1/assets/asset1",
+        "query": null,
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/video/v1/assets/asset1",
+        "method": "DELETE",
+        "contentType": null,
+        "accept": "*/*",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "upload_cancel_put_no_body",
+      "input": {
+        "method": "PUT",
+        "host": "api",
+        "path": "/video/v1/uploads/upload1/cancel",
+        "query": null,
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/video/v1/uploads/upload1/cancel",
+        "method": "PUT",
+        "contentType": null,
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    },
+    {
+      "name": "annotations_list_timeframe_and_order",
+      "input": {
+        "method": "GET",
+        "host": "api",
+        "path": "/data/v1/annotations",
+        "query": {
+          "timeframe": [
+            "1700000000",
+            "1700100000"
+          ],
+          "order_direction": "desc",
+          "limit": 3
+        },
+        "body": null
+      },
+      "error": null,
+      "request": {
+        "url": "https://api.mux.com/data/v1/annotations?timeframe%5B%5D=1700000000&timeframe%5B%5D=1700100000&order_direction=desc&limit=3",
+        "method": "GET",
+        "contentType": null,
+        "accept": "application/json",
+        "authorization": "Basic Y2FwdHVyZS10b2tlbi1pZDpjYXB0dXJlLXRva2VuLXNlY3JldA==",
+        "body": null
+      }
+    }
+  ]
+}

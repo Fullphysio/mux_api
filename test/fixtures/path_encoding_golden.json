@@ -1,0 +1,75 @@
+{
+  "capturedFrom": {
+    "package": "@mux/ts",
+    "version": "15.1.0"
+  },
+  "seam": "video.assets.retrieve(value) through the `fetch` client option",
+  "cases": [
+    {
+      "value": "plainAssetId123",
+      "url": "https://api.mux.com/video/v1/assets/plainAssetId123",
+      "error": null
+    },
+    {
+      "value": "a b",
+      "url": "https://api.mux.com/video/v1/assets/a%20b",
+      "error": null
+    },
+    {
+      "value": "a/b",
+      "url": "https://api.mux.com/video/v1/assets/a%2Fb",
+      "error": null
+    },
+    {
+      "value": "a?b",
+      "url": "https://api.mux.com/video/v1/assets/a%3Fb",
+      "error": null
+    },
+    {
+      "value": "a#b",
+      "url": "https://api.mux.com/video/v1/assets/a%23b",
+      "error": null
+    },
+    {
+      "value": "100%",
+      "url": "https://api.mux.com/video/v1/assets/100%25",
+      "error": null
+    },
+    {
+      "value": "é ü 日本",
+      "url": "https://api.mux.com/video/v1/assets/%C3%A9%20%C3%BC%20%E6%97%A5%E6%9C%AC",
+      "error": null
+    },
+    {
+      "value": "!$&'()*+,;=:@",
+      "url": "https://api.mux.com/video/v1/assets/!$&'()*+,;=:@",
+      "error": null
+    },
+    {
+      "value": "-._~",
+      "url": "https://api.mux.com/video/v1/assets/-._~",
+      "error": null
+    },
+    {
+      "value": ".",
+      "url": null,
+      "error": {
+        "className": "MuxError",
+        "message": "Path parameters result in path with invalid segments:\nValue \".\" can't be safely passed as a path parameter\n/video/v1/assets/.\n                 ^"
+      }
+    },
+    {
+      "value": "..",
+      "url": null,
+      "error": {
+        "className": "MuxError",
+        "message": "Path parameters result in path with invalid segments:\nValue \"..\" can't be safely passed as a path parameter\n/video/v1/assets/..\n                 ^^"
+      }
+    },
+    {
+      "value": "",
+      "url": "https://api.mux.com/video/v1/assets/",
+      "error": null
+    }
+  ]
+}
