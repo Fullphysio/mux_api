@@ -13,6 +13,11 @@ topics:
   - api
   - client
 
+# A throwaway RSA key pair generated for the JWT golden tests. It has never
+# signed anything outside this repository's test suite.
+false_secrets:
+  - /test/fixtures/test_keys/**
+
 environment:
   sdk: ^3.6.0
 
