@@ -1,4 +1,5 @@
 import '../core/json_reading.dart';
+import '../generated/generated.dart';
 
 part '../generated/webhook_events.g.dart';
 

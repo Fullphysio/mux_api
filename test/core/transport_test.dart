@@ -49,6 +49,14 @@ final class _TrackingClient extends http.BaseClient {
   }
 }
 
+final class _LateClient extends http.BaseClient {
+  _LateClient(this._response);
+  final Future<http.StreamedResponse> _response;
+
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) => _response;
+}
+
 void main() {
   group('retry behaviour matches @mux/ts 15.1.0', () {
     for (final testCase in casesOf(loadFixture('retry_golden'))) {
@@ -145,6 +153,27 @@ void main() {
         transport.requestJson(method: 'GET', path: '/video/v1/assets'),
         throwsA(isA<MuxTimeoutException>()),
       );
+    });
+
+    test('a response arriving after the timeout is drained, not leaked',
+        () async {
+      final late = Completer<http.StreamedResponse>();
+      final drained = Completer<void>();
+      final body = StreamController<List<int>>(
+        onListen: () => drained.complete(),
+      );
+      final client = _LateClient(late.future);
+      final transport =
+          _transport(client, timeout: const Duration(milliseconds: 20));
+
+      await expectLater(
+        transport.requestJson(method: 'GET', path: '/video/v1/assets'),
+        throwsA(isA<MuxTimeoutException>()),
+      );
+      late.complete(http.StreamedResponse(body.stream, 200));
+      await body.close();
+
+      await expectLater(drained.future, completes);
     });
   });
 

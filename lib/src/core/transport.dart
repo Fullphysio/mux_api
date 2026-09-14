@@ -240,8 +240,26 @@ final class MuxTransport {
         ..bodyBytes = bodyBytes
         ..headers['Content-Type'] = 'application/json';
     }
-    final streamed = await _httpClient.send(request).timeout(timeout);
+    final pending = _httpClient.send(request);
+    final http.StreamedResponse streamed;
+    try {
+      streamed = await pending.timeout(timeout);
+    } on TimeoutException {
+      _drainLate(pending);
+      rethrow;
+    }
     return http.Response.fromStream(streamed);
+  }
+
+  /// `Future.timeout` abandons the request but cannot cancel it; when the
+  /// response does arrive, its body is read to completion so the pooled
+  /// connection is released instead of staying pinned by an unread stream.
+  void _drainLate(Future<http.StreamedResponse> pending) {
+    unawaited(
+      pending
+          .then((late) => late.stream.drain<void>())
+          .catchError((Object _) {}),
+    );
   }
 
   Uri _buildUri(MuxHost host, String path, Map<String, Object?>? query) {

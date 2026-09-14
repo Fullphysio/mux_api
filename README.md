@@ -1,5 +1,8 @@
 # mux_api
 
+[![CI](https://github.com/Fullphysio/mux_api/actions/workflows/ci.yml/badge.svg)](https://github.com/Fullphysio/mux_api/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/Fullphysio/mux_api/badge.svg?branch=main)](https://coveralls.io/github/Fullphysio/mux_api?branch=main)
+
 A pure Dart client for the [Mux](https://www.mux.com) API. Runs on Dart
 servers, CLIs and Flutter apps — there is no Flutter dependency, and no code
 generation step for you.
@@ -102,13 +105,17 @@ real `@mux/ts`, not written by hand; the JWT fixtures match byte for byte.
 
 ## Scope
 
-**Covered.** The runtime above, `video.uploads`, and JWT signing and webhook
-verification. Every enum tolerates values Mux adds later.
+**Covered.** Every endpoint `@mux/ts` 15.1.0 exposes — 149 operations under
+`client.video`, `client.data`, `client.system` and `client.robots`, with typed
+parameters, models, open enums and discriminated unions generated from Mux's
+OpenAPI specification — plus a typed class for each of the 117 webhook event
+types, JWT signing and webhook verification. Every enum tolerates values Mux
+adds later, and every model keeps its `raw` payload.
 
-**Not covered yet.** The rest of `video.*`, `data.*`, `system.*` and
-`robots.*`, and typed webhook event classes — these come from the generator
-in the next releases. Until then `MuxClient.requestJson` reaches any endpoint
-with the same authentication, retries and error mapping.
+**Not covered.** The four deprecated `/video/v1/signing-keys` routes (use
+`client.system.signingKeys`) and `GET /counts` on `stats.mux.com`, which
+`@mux/ts` leaves out too. `MuxClient.requestJson` reaches them with the same
+authentication, retries and error mapping.
 
 Never covered: reading credentials from environment variables (pass them
 in), request cancellation, and playback URL builders (`stream.mux.com` and

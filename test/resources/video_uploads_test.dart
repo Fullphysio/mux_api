@@ -42,11 +42,11 @@ void main() {
       }));
 
       final upload = await client.video.uploads.create(
-        UploadCreateParams(
+        const UploadCreateParams(
           corsOrigin: 'https://example.com',
-          newAssetSettings: const AssetOptions(
+          newAssetSettings: AssetOptions(
             playbackPolicies: [PlaybackPolicy.signed],
-            videoQuality: VideoQuality.plus,
+            videoQuality: AssetVideoQuality.plus,
           ),
           timeout: 3600,
         ),
@@ -93,8 +93,8 @@ void main() {
       expect(upload.error?.message, 'Bad file');
       expect(
           upload.newAssetSettings?.playbackPolicies, [PlaybackPolicy.signed]);
-      expect(upload.newAssetSettings?.videoQuality, VideoQuality.plus);
-      expect(upload.newAssetSettings?.extra, {'future_setting': true});
+      expect(upload.newAssetSettings?.videoQuality, AssetVideoQuality.plus);
+      expect(upload.newAssetSettings?.raw['future_setting'], isTrue);
       expect(upload.raw['status'], 'a_new_status');
     });
 
@@ -186,7 +186,7 @@ void main() {
   });
 
   group('AssetOptions', () {
-    test('round-trips unknown settings through extra', () {
+    test('round-trips known settings and keeps unknown ones in raw', () {
       final options = AssetOptions.fromJson(const {
         'playback_policies': ['public', 'holographic'],
         'master_access': 'temporary',
@@ -199,12 +199,12 @@ void main() {
         PlaybackPolicy.unknown('holographic'),
       ]);
       expect(options.masterAccess, MasterAccess.temporary);
+      expect(options.raw['new_thing'], {'a': 1});
       expect(options.toJson(), {
         'playback_policies': ['public', 'holographic'],
         'master_access': 'temporary',
         'normalize_audio': true,
         'passthrough': 'p',
-        'new_thing': {'a': 1},
       });
     });
   });

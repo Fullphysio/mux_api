@@ -20,10 +20,18 @@ no-comments or 120-column rules.
   changes it.
 - `lib/src/jwt/`, `lib/src/webhooks/` — hand-written, permanent.
 - `lib/src/generated/` — **generated, committed**. Never edit by hand; change
-  the generator or `tool/spec/resources.yaml` and regenerate.
-  `webhook_events.g.dart` is a `part` of `lib/src/webhooks/mux_webhook_event.dart`.
-- `tool/` — the generator, the vendored OpenAPI spec and the fixture-capture
-  scripts. Not shipped (see `.pubignore`).
+  the generator or `tool/spec/*.yaml` and regenerate. `models/`, `params/`,
+  `enums/`, `unions/`, `resources/`, plus `webhook_events.g.dart`, a `part` of
+  `lib/src/webhooks/mux_webhook_event.dart`. `test/generated/` is generated too.
+- `tool/spec/` — the vendored spec, `resources.yaml` (operation → namespace,
+  method, page shape) and `union_names.yaml` (names for inline unions).
+- `tool/ir/` — spec loading, naming rules and the resolver that classifies
+  every reachable shape into a closed IR. An unmappable shape is a generation
+  failure, never an `Object?` fallback.
+- `tool/emit/` — the emitters. `tool/capture_fixtures/` — Node scripts that
+  drive the real `@mux/ts` to produce `test/fixtures/*.json`. `tool/mock/` —
+  the Steady mock-server launcher. Nothing under `tool/` ships (see
+  `.pubignore`).
 
 ## Codegen
 
@@ -39,9 +47,10 @@ Bump the spec with `dart run tool/spec/update_spec.dart --tag vX.Y.Z`, where
 the tag is a release of `muxinc/mux-ts` — the spec is embedded in that repo's
 `scripts/mock`, it is not published anywhere else. Do not track `main`.
 
-A regenerate is not reviewable as a text diff. The generator emits a semantic
-`CHANGELOG_SPEC.md` fragment (added/removed operations, schemas, enum values,
-required fields); **that** is the reviewed artifact.
+A regenerate is not reviewable as a text diff. `update_spec.dart` diffs the
+previous vendored spec against the new one and writes
+`tool/spec/CHANGELOG_SPEC.md` (added/removed operations, schemas, webhooks,
+enum values, required fields); **that** is the reviewed artifact of a bump.
 
 ## Tests
 
@@ -55,26 +64,25 @@ Three tiers:
   `THIRD_PARTY_NOTICES` and the README if you move to a newer upstream.
 - **Mock server** (`--tags mock`) — Steady, the spec-validating mock server
   Stainless itself tests against, started by `tool/mock/run_steady.sh`. Real
-  sockets, no account and no network, so it runs on every PR. Self-skips when
-  `MUX_MOCK_HOST` is unset or empty.
+  sockets, no account and no network, so it runs on every PR. The generated
+  `test/generated/operations_mock_test.dart` calls every operation once with
+  the spec-required fields only. Skipped by tag unless `MUX_MOCK_HOST` is set;
+  `--run-skipped` with it empty fails loudly instead of dialling nowhere.
 - **Integration** (`test/integration/`, `--tags integration`) — hits the live
-  Mux API. Self-skips when `MUX_TEST_TOKEN_ID` / `MUX_TEST_TOKEN_SECRET` are
-  unset or empty, so a fresh checkout passes. Never runs on pull requests.
+  Mux API, read-mostly: lists and retrieves what exists, creates one direct
+  upload and cancels it, signs tokens for an existing signed asset and checks
+  Mux accepts them. Needs `MUX_TEST_TOKEN_ID` / `MUX_TEST_TOKEN_SECRET`
+  (`MUX_TEST_SIGNING_KEY_ID` / `MUX_TEST_SIGNING_PRIVATE_KEY` for the JWT
+  test). Runs from `integration.yml` on `main`, nightly and on dispatch —
+  never on pull requests — and that workflow skips its run step while the
+  secret is empty.
 
-Assertions are structural. Never assert on how many assets an environment
-holds, or the suite rots. GitHub Actions substitutes an empty string for an
-undefined variable, so every self-skip checks `isNotEmpty`, not `!= null`.
-
-## CI jobs that are deliberately not here yet
-
-Each of these fails if added before its prerequisite exists (`dart test`
-exits 79 when no test carries the tag), so each lands with the thing it checks.
-
-| Job | Blocked on |
-|---|---|
-| `codegen` (`tool/generate.dart --check`) | the generator |
-| `mock` (`--tags mock`) | generated mock tests |
-| `integration.yml` | `test/integration/` |
+Both tagged tiers are skipped in a plain `dart test`; running one with
+`--run-skipped` and its variables empty fails loudly rather than dialling
+nowhere. GitHub Actions substitutes an empty string for an undefined
+variable, so every emptiness check is `isEmpty`, not `== null`. Assertions
+are structural: never assert on how many assets an environment holds, or the
+suite rots.
 
 ## Conformance with @mux/ts
 
@@ -117,6 +125,14 @@ code comment.
 - Page kind is not inferable from the response shape (`ListIncidentsResponse`
   carries `total_row_count` but upstream reads only `data`); it is pinned per
   operation in `tool/spec/resources.yaml`.
+- Inline enums are shared across schemas when property name and value set
+  match, and named after the shortest owner (`Asset.status`,
+  `AssetMaster.status` and `WebhookAsset.status` are all `AssetStatus`). A
+  property whose value set matches a named or titled enum aliases to it
+  (`PlaybackPolicy`, `WorkflowName`). Generic single words (`Status`, `Type`,
+  `Name`…) are never enum names on their own.
+- The spec says `openapi: 3.1.0` but writes `nullable: true` at 243 sites and
+  `type: [X, "null"]` at 8; the resolver accepts both.
 
 ## Releasing
 

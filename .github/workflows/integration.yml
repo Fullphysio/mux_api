@@ -1,0 +1,37 @@
+name: Integration
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Nightly, against the live Mux API.
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+env:
+  PUB_ENVIRONMENT: bot.github
+
+jobs:
+  live:
+    name: Live Mux API
+    runs-on: ubuntu-latest
+    # Real credentials belong in repository secrets, never in variables.
+    # Secrets are not readable from a job-level `if`, so they are mapped into
+    # the environment here and the run step checks for an empty value.
+    env:
+      MUX_TEST_TOKEN_ID: ${{ secrets.MUX_TEST_TOKEN_ID }}
+      MUX_TEST_TOKEN_SECRET: ${{ secrets.MUX_TEST_TOKEN_SECRET }}
+      MUX_TEST_SIGNING_KEY_ID: ${{ secrets.MUX_TEST_SIGNING_KEY_ID }}
+      MUX_TEST_SIGNING_PRIVATE_KEY: ${{ secrets.MUX_TEST_SIGNING_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: Run integration tests
+        if: env.MUX_TEST_TOKEN_ID != ''
+        run: dart test --tags integration --run-skipped
+      - name: Explain the skip
+        if: env.MUX_TEST_TOKEN_ID == ''
+        run: echo 'MUX_TEST_TOKEN_ID is not configured; the live tier did not run.'
