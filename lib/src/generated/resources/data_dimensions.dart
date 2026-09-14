@@ -88,9 +88,9 @@ final class DataDimensions {
       _listTraceElements(dimensionId, <String, Object?>{
         if (limit != null) 'limit': limit,
         if (page != null) 'page': page,
-        if (filters != null) 'filters[]': filters,
-        if (metricFilters != null) 'metric_filters[]': metricFilters,
-        if (timeframe != null) 'timeframe[]': timeframe,
+        if (filters != null) 'filters': filters,
+        if (metricFilters != null) 'metric_filters': metricFilters,
+        if (timeframe != null) 'timeframe': timeframe,
         if (orderBy != null) 'order_by': orderBy,
         if (orderDirection != null) 'order_direction': orderDirection
       });
@@ -162,9 +162,9 @@ final class DataDimensions {
       _listValues(dimensionId, <String, Object?>{
         if (limit != null) 'limit': limit,
         if (page != null) 'page': page,
-        if (filters != null) 'filters[]': filters,
-        if (metricFilters != null) 'metric_filters[]': metricFilters,
-        if (timeframe != null) 'timeframe[]': timeframe
+        if (filters != null) 'filters': filters,
+        if (metricFilters != null) 'metric_filters': metricFilters,
+        if (timeframe != null) 'timeframe': timeframe
       });
 
   Future<MuxBasePage<DimensionValue>> _listValues(

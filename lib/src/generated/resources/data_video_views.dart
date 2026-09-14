@@ -75,9 +75,9 @@ final class DataVideoViews {
         if (viewerId != null) 'viewer_id': viewerId,
         if (errorId != null) 'error_id': errorId,
         if (orderDirection != null) 'order_direction': orderDirection,
-        if (filters != null) 'filters[]': filters,
-        if (metricFilters != null) 'metric_filters[]': metricFilters,
-        if (timeframe != null) 'timeframe[]': timeframe
+        if (filters != null) 'filters': filters,
+        if (metricFilters != null) 'metric_filters': metricFilters,
+        if (timeframe != null) 'timeframe': timeframe
       });
 
   Future<MuxBasePage<AbridgedVideoView>> _list(

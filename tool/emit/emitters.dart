@@ -454,7 +454,7 @@ final class Emitter {
     final pathExpression = _pathExpression(op);
     final queryLiteral = op.queryParams.isEmpty
         ? null
-        : '<String, Object?>{${op.queryParams.map((q) => 'if (${q.dartName} != null) ${dartStringLiteral(q.wireName)}: ${q.dartName}').join(', ')}}';
+        : '<String, Object?>{${op.queryParams.map((q) => 'if (${q.dartName} != null) ${dartStringLiteral(_queryKey(q))}: ${q.dartName}').join(', ')}}';
     final host = 'MuxHost.${op.host}';
     final accept = dartStringLiteral(op.accept);
 
@@ -854,7 +854,7 @@ final class Emitter {
                         bodyClass
                       }, specRequired: true)})',
                 for (final q in op.queryParams)
-                  if (q.required) '${q.dartName}: ${_paramStub(q)}',
+                  '${q.dartName}: ${_paramStub(q)}',
               ];
               w.block("test(${dartStringLiteral(op.methodName)}, () async {",
                   () {
@@ -876,13 +876,18 @@ final class Emitter {
     return w.toString();
   }
 
+  String _queryKey(ParamIr param) =>
+      param.type is IrList && param.wireName.endsWith('[]')
+          ? param.wireName.substring(0, param.wireName.length - 2)
+          : param.wireName;
+
   String _paramStub(ParamIr param) {
     final enumValues = param.enumValues;
     return switch (param.type) {
       IrString() => dartStringLiteral(
           enumValues == null || enumValues.isEmpty ? 'x' : enumValues.first),
-      IrInt() => '1',
-      IrDouble() => '1.0',
+      IrInt() => enumValues?.first ?? '1',
+      IrDouble() => enumValues?.first ?? '1.0',
       IrBool() => 'true',
       IrList(element: IrString()) => "['x']",
       IrList(element: IrInt()) => '[1]',

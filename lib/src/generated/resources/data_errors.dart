@@ -55,9 +55,9 @@ final class DataErrors {
         method: 'GET',
         path: '/data/v1/errors',
         query: <String, Object?>{
-          if (filters != null) 'filters[]': filters,
-          if (metricFilters != null) 'metric_filters[]': metricFilters,
-          if (timeframe != null) 'timeframe[]': timeframe
+          if (filters != null) 'filters': filters,
+          if (metricFilters != null) 'metric_filters': metricFilters,
+          if (timeframe != null) 'timeframe': timeframe
         },
         host: MuxHost.api,
         accept: 'application/json');

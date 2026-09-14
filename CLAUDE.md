@@ -69,11 +69,12 @@ Three tiers:
   the spec-required fields only. Skipped by tag unless `MUX_MOCK_HOST` is set;
   `--run-skipped` with it empty fails loudly instead of dialling nowhere.
 - **Integration** (`test/integration/`, `--tags integration`) — hits the live
-  Mux API, read-mostly: lists and retrieves what exists, creates one direct
-  upload and cancels it, signs tokens for an existing signed asset and checks
-  Mux accepts them. Needs `MUX_TEST_TOKEN_ID` / `MUX_TEST_TOKEN_SECRET`
-  (`MUX_TEST_SIGNING_KEY_ID` / `MUX_TEST_SIGNING_PRIVATE_KEY` for the JWT
-  test). Runs from `integration.yml` on `main`, nightly and on dispatch —
+  Mux API, read-only: lists and retrieves what exists, signs tokens for an
+  existing signed asset and checks Mux accepts them. Its one write — create a
+  direct upload, then cancel it — runs only with `MUX_TEST_ALLOW_WRITES=true`,
+  because Fullphysio's test tokens point at the production environment. Needs
+  `MUX_TEST_TOKEN_ID` / `MUX_TEST_TOKEN_SECRET` (`MUX_TEST_SIGNING_KEY_ID` /
+  `MUX_TEST_SIGNING_PRIVATE_KEY` for the JWT test). Runs from `integration.yml` on `main`, nightly and on dispatch —
   never on pull requests — and that workflow skips its run step while the
   secret is empty.
 
@@ -93,7 +94,13 @@ code comment.
 
 - Query arrays use `qs` bracket format with keys encoded too:
   `filters%5B%5D=a&filters%5B%5D=b`. The RFC 3986 unreserved set is the only
-  thing left unescaped — `!*'()` and `:` are percent-encoded.
+  thing left unescaped — `!*'()` and `:` are percent-encoded. Deliberate
+  divergence: the spec names Data API array parameters `timeframe[]` and
+  upstream feeds that name straight into `qs`, producing `timeframe[][]=`,
+  which Mux rejects (400 for `timeframe`, 500 for `filters`, verified live on
+  2026-09-14). The emitter strips the trailing `[]` from list parameters so
+  the encoder adds exactly one pair; `test/resources/data_video_views_test.dart`
+  pins it.
 - Every single-object response is wrapped in `{"data": …}`; several `data.*`
   endpoints keep the whole envelope. `tool/spec/resources.yaml` is the record.
 - The `Accept` header is per operation: `application/json` for JSON, `*/*`

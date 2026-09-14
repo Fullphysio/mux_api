@@ -53,7 +53,7 @@ final class DataMonitoringMetrics {
         query: <String, Object?>{
           if (dimension != null) 'dimension': dimension,
           if (timestamp != null) 'timestamp': timestamp,
-          if (filters != null) 'filters[]': filters,
+          if (filters != null) 'filters': filters,
           if (orderBy != null) 'order_by': orderBy,
           if (orderDirection != null) 'order_direction': orderDirection
         },
@@ -106,8 +106,8 @@ final class DataMonitoringMetrics {
             '/data/v1/monitoring/metrics/${muxPathSegment(monitoringMetricId)}/breakdown-timeseries',
         query: <String, Object?>{
           if (dimension != null) 'dimension': dimension,
-          if (timeframe != null) 'timeframe[]': timeframe,
-          if (filters != null) 'filters[]': filters,
+          if (timeframe != null) 'timeframe': timeframe,
+          if (filters != null) 'filters': filters,
           if (limit != null) 'limit': limit,
           if (orderBy != null) 'order_by': orderBy,
           if (orderDirection != null) 'order_direction': orderDirection
@@ -140,7 +140,7 @@ final class DataMonitoringMetrics {
         method: 'GET',
         path:
             '/data/v1/monitoring/metrics/${muxPathSegment(monitoringHistogramMetricId)}/histogram-timeseries',
-        query: <String, Object?>{if (filters != null) 'filters[]': filters},
+        query: <String, Object?>{if (filters != null) 'filters': filters},
         host: MuxHost.api,
         accept: 'application/json');
     return GetMonitoringHistogramTimeseriesResponse.fromJson(
@@ -173,7 +173,7 @@ final class DataMonitoringMetrics {
         path:
             '/data/v1/monitoring/metrics/${muxPathSegment(monitoringMetricId)}/timeseries',
         query: <String, Object?>{
-          if (filters != null) 'filters[]': filters,
+          if (filters != null) 'filters': filters,
           if (timestamp != null) 'timestamp': timestamp
         },
         host: MuxHost.api,

@@ -23,6 +23,7 @@ jobs:
       MUX_TEST_TOKEN_SECRET: ${{ secrets.MUX_TEST_TOKEN_SECRET }}
       MUX_TEST_SIGNING_KEY_ID: ${{ secrets.MUX_TEST_SIGNING_KEY_ID }}
       MUX_TEST_SIGNING_PRIVATE_KEY: ${{ secrets.MUX_TEST_SIGNING_PRIVATE_KEY }}
+      MUX_TEST_ALLOW_WRITES: ${{ vars.MUX_TEST_ALLOW_WRITES }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d

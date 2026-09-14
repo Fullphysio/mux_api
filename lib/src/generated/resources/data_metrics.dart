@@ -74,9 +74,9 @@ final class DataMetrics {
         query: <String, Object?>{
           if (measurement != null) 'measurement': measurement,
           if (orderDirection != null) 'order_direction': orderDirection,
-          if (timeframe != null) 'timeframe[]': timeframe,
-          if (filters != null) 'filters[]': filters,
-          if (metricFilters != null) 'metric_filters[]': metricFilters
+          if (timeframe != null) 'timeframe': timeframe,
+          if (filters != null) 'filters': filters,
+          if (metricFilters != null) 'metric_filters': metricFilters
         },
         host: MuxHost.api,
         accept: 'application/json');
@@ -135,9 +135,9 @@ final class DataMetrics {
         method: 'GET',
         path: '/data/v1/metrics/${muxPathSegment(metricId)}/overall',
         query: <String, Object?>{
-          if (timeframe != null) 'timeframe[]': timeframe,
-          if (filters != null) 'filters[]': filters,
-          if (metricFilters != null) 'metric_filters[]': metricFilters,
+          if (timeframe != null) 'timeframe': timeframe,
+          if (filters != null) 'filters': filters,
+          if (metricFilters != null) 'metric_filters': metricFilters,
           if (measurement != null) 'measurement': measurement
         },
         host: MuxHost.api,
@@ -210,9 +210,9 @@ final class DataMetrics {
         method: 'GET',
         path: '/data/v1/metrics/${muxPathSegment(metricId)}/timeseries',
         query: <String, Object?>{
-          if (timeframe != null) 'timeframe[]': timeframe,
-          if (filters != null) 'filters[]': filters,
-          if (metricFilters != null) 'metric_filters[]': metricFilters,
+          if (timeframe != null) 'timeframe': timeframe,
+          if (filters != null) 'filters': filters,
+          if (metricFilters != null) 'metric_filters': metricFilters,
           if (measurement != null) 'measurement': measurement,
           if (orderDirection != null) 'order_direction': orderDirection,
           if (groupBy != null) 'group_by': groupBy
@@ -272,9 +272,9 @@ final class DataMetrics {
         method: 'GET',
         path: '/data/v1/metrics/comparison',
         query: <String, Object?>{
-          if (timeframe != null) 'timeframe[]': timeframe,
-          if (filters != null) 'filters[]': filters,
-          if (metricFilters != null) 'metric_filters[]': metricFilters,
+          if (timeframe != null) 'timeframe': timeframe,
+          if (filters != null) 'filters': filters,
+          if (metricFilters != null) 'metric_filters': metricFilters,
           if (dimension != null) 'dimension': dimension,
           if (valueValue != null) 'value': valueValue
         },
@@ -349,13 +349,13 @@ final class DataMetrics {
       _listBreakdownValues(metricId, <String, Object?>{
         if (groupBy != null) 'group_by': groupBy,
         if (measurement != null) 'measurement': measurement,
-        if (filters != null) 'filters[]': filters,
-        if (metricFilters != null) 'metric_filters[]': metricFilters,
+        if (filters != null) 'filters': filters,
+        if (metricFilters != null) 'metric_filters': metricFilters,
         if (limit != null) 'limit': limit,
         if (page != null) 'page': page,
         if (orderBy != null) 'order_by': orderBy,
         if (orderDirection != null) 'order_direction': orderDirection,
-        if (timeframe != null) 'timeframe[]': timeframe
+        if (timeframe != null) 'timeframe': timeframe
       });
 
   Future<MuxBasePage<BreakdownValue>> _listBreakdownValues(
