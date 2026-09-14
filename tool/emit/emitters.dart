@@ -66,6 +66,8 @@ final class Emitter {
     files.add(GeneratedFile('lib/src/generated/generated.dart', _emitBarrel()));
     files.add(GeneratedFile(
         'test/generated/models_decode_test.dart', _emitDecodeTest()));
+    files.add(GeneratedFile(
+        'test/generated/operations_mock_test.dart', _emitMockTest()));
     files.add(
         GeneratedFile('test/generated/model_examples.json', _emitExamples()));
     files.sort((a, b) => a.path.compareTo(b.path));
@@ -750,33 +752,144 @@ final class Emitter {
     return w.toString();
   }
 
-  String _minimalLiteral(ClassIr c, Set<String> visiting) {
-    final entries = <String>[
-      for (final field in c.fields)
-        if (field.required)
-          '${dartStringLiteral(field.wireName)}: ${_stubValue(field.type, visiting)}',
-    ];
+  String _minimalLiteral(ClassIr c, Set<String> visiting,
+      {bool specRequired = false}) {
+    final entries = _minimalEntries(c, visiting, specRequired: specRequired);
     return entries.isEmpty
         ? '<String, Object?>{}'
         : '<String, Object?>{${entries.join(', ')}}';
   }
 
-  String _stubValue(IrType type, Set<String> visiting) => switch (type) {
+  List<String> _minimalEntries(ClassIr c, Set<String> visiting,
+          {required bool specRequired, String? skipWire}) =>
+      [
+        for (final field in c.fields)
+          if (field.wireName != skipWire &&
+              (field.required || (specRequired && field.requiredInSpec)))
+            '${dartStringLiteral(field.wireName)}: ${_stubValue(field.type, visiting, specRequired: specRequired)}',
+      ];
+
+  String _unionStub(UnionIr u, Set<String> visiting) =>
+      '<String, Object?>{${_unionEntries(u, visiting).join(', ')}}';
+
+  List<String> _unionEntries(UnionIr u, Set<String> visiting) {
+    final variants = u.variants.toList()
+      ..sort((a, b) => a.wireValue.compareTo(b.wireValue));
+    final variant = variants.first;
+    final nestedUnion = ir.unions[variant.className];
+    final variantClass = ir.classes[variant.className];
+    return [
+      '${dartStringLiteral(u.discriminator)}: ${dartStringLiteral(variant.wireValue)}',
+      if (nestedUnion != null)
+        ..._unionEntries(nestedUnion, visiting)
+      else if (variantClass != null && !visiting.contains(variant.className))
+        ..._minimalEntries(variantClass, {...visiting, variant.className},
+            specRequired: true, skipWire: u.discriminator),
+    ];
+  }
+
+  String _stubValue(IrType type, Set<String> visiting,
+          {bool specRequired = false}) =>
+      switch (type) {
         IrString() => "'x'",
         IrInt() => '0',
         IrDouble() => '0.0',
         IrBool() => 'false',
-        IrJson() => 'null',
+        IrJson() => specRequired ? "'x'" : 'null',
         IrStringMap() => '<String, String>{}',
         IrJsonMap() => '<String, Object?>{}',
-        IrList() => '<Object?>[]',
+        IrList(:final element) => specRequired
+            ? '<Object?>[${_stubValue(element, visiting, specRequired: true)}]'
+            : '<Object?>[]',
         IrEnumRef(:final enumName) =>
           dartStringLiteral(ir.enums[enumName]!.values.first.wire),
-        IrUnionRef() => '<String, Object?>{}',
+        IrUnionRef(:final unionName) => specRequired
+            ? _unionStub(ir.unions[unionName]!, visiting)
+            : '<String, Object?>{}',
         IrRef(:final className) => visiting.contains(className)
             ? '<String, Object?>{}'
-            : _minimalLiteral(ir.classes[className]!, {...visiting, className}),
+            : _minimalLiteral(ir.classes[className]!, {...visiting, className},
+                specRequired: specRequired),
       };
+
+  String _emitMockTest() {
+    final w = DartWriter();
+    w.line(_header);
+    w.line("@Tags(['mock'])");
+    w.line('library;');
+    w.line();
+    w.line("import 'dart:io';");
+    w.line();
+    w.line("import 'package:mux_api/mux_api.dart';");
+    w.line("import 'package:test/test.dart';");
+    w.line();
+    w.block('void main() {', () {
+      w.line("final host = Platform.environment['MUX_MOCK_HOST'] ?? '';");
+      w.block('final client = MuxClient(', () {
+        w.line("tokenId: 'mock',");
+        w.line("tokenSecret: 'mock',");
+        w.line("baseUrl: Uri.parse('http://\$host'),");
+        w.line('maxRetries: 0,');
+      }, close: ');');
+      w.block('setUpAll(() {', () {
+        w.block('if (host.isEmpty) {', () {
+          w.line(
+              "fail('MUX_MOCK_HOST is empty; start tool/mock/run_steady.sh and set MUX_MOCK_HOST=127.0.0.1:4010.');");
+        });
+      }, close: '});');
+      w.line('tearDownAll(client.close);');
+      void walk(NamespaceIr namespace) {
+        if (namespace.operations.isNotEmpty) {
+          final dotted = namespace.path.join('.');
+          w.line();
+          w.block("group(${dartStringLiteral(dotted)}, () {", () {
+            final operations = namespace.operations.toList()
+              ..sort((a, b) => a.methodName.compareTo(b.methodName));
+            for (final op in operations) {
+              final bodyClass = op.bodyClass;
+              final args = <String>[
+                for (final p in op.pathParams) _paramStub(p),
+                if (bodyClass != null)
+                  '$bodyClass.fromJson(${_minimalLiteral(ir.classes[bodyClass]!, {
+                        bodyClass
+                      }, specRequired: true)})',
+                for (final q in op.queryParams)
+                  if (q.required) '${q.dartName}: ${_paramStub(q)}',
+              ];
+              w.block("test(${dartStringLiteral(op.methodName)}, () async {",
+                  () {
+                w.line(
+                    'await client.$dotted.${op.methodName}(${args.join(', ')});');
+              }, close: '});');
+            }
+          }, close: '});');
+        }
+        final children = namespace.children.values.toList()
+          ..sort((a, b) => a.path.last.compareTo(b.path.last));
+        children.forEach(walk);
+      }
+
+      final roots = ir.namespaces.values.toList()
+        ..sort((a, b) => a.path.first.compareTo(b.path.first));
+      roots.forEach(walk);
+    });
+    return w.toString();
+  }
+
+  String _paramStub(ParamIr param) {
+    final enumValues = param.enumValues;
+    return switch (param.type) {
+      IrString() => dartStringLiteral(
+          enumValues == null || enumValues.isEmpty ? 'x' : enumValues.first),
+      IrInt() => '1',
+      IrDouble() => '1.0',
+      IrBool() => 'true',
+      IrList(element: IrString()) => "['x']",
+      IrList(element: IrInt()) => '[1]',
+      _ => throw StateError(
+          'unsupported parameter type for a mock stub: ${dartType(param.type)}'),
+    };
+  }
 
   String _emitExamples() {
     final filtered = <String, Object?>{

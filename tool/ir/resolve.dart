@@ -696,6 +696,7 @@ final class Resolver {
             property['x-stainless-deprecation-message'] as String?,
         dateKind: _dateKind(property),
         isId: isId,
+        requiredInSpec: !noRequired && required.contains(wire),
       ));
     }
     return ir;
@@ -768,6 +769,7 @@ final class Resolver {
         type: type,
         required: param['required'] == true || param['in'] == 'path',
         docs: _docOf(param),
+        enumValues: _paramEnumValues(schema),
       );
       (param['in'] == 'path' ? pathParams : queryParams).add(ir);
     }
@@ -862,6 +864,22 @@ final class Resolver {
       deprecationMessage:
           operation['x-stainless-deprecation-message'] as String?,
     ));
+  }
+
+  List<String>? _paramEnumValues(JsonMap schema) {
+    if (schema.containsKey('allOf')) {
+      final parts = (schema['allOf'] as List)
+          .cast<JsonMap>()
+          .where(_isSubstantive)
+          .toList();
+      return parts.length == 1
+          ? _paramEnumValues(spec.deref(parts.single))
+          : null;
+    }
+    final values = schema['enum'];
+    if (values is! List) return null;
+    final strings = values.whereType<String>().toList();
+    return strings.isEmpty ? null : strings;
   }
 
   IrType _paramType(JsonMap schema, String owner, String name) {

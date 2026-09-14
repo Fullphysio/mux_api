@@ -65,6 +65,7 @@ final class FieldIr {
     this.deprecationMessage,
     this.dateKind = DateKind.none,
     this.isId = false,
+    this.requiredInSpec = false,
   });
 
   final String wireName;
@@ -76,6 +77,7 @@ final class FieldIr {
   final String? deprecationMessage;
   final DateKind dateKind;
   final bool isId;
+  final bool requiredInSpec;
 }
 
 final class ClassIr {
@@ -166,17 +168,20 @@ final class BytesResponse extends ResponseIr {
 }
 
 final class ParamIr {
-  const ParamIr(
-      {required this.wireName,
-      required this.dartName,
-      required this.type,
-      required this.required,
-      this.docs});
+  const ParamIr({
+    required this.wireName,
+    required this.dartName,
+    required this.type,
+    required this.required,
+    this.docs,
+    this.enumValues,
+  });
   final String wireName;
   final String dartName;
   final IrType type;
   final bool required;
   final String? docs;
+  final List<String>? enumValues;
 }
 
 final class OperationIr {
