@@ -73,7 +73,7 @@ final class DataAnnotations {
         if (limit != null) 'limit': limit,
         if (page != null) 'page': page,
         if (orderDirection != null) 'order_direction': orderDirection,
-        if (timeframe != null) 'timeframe[]': timeframe
+        if (timeframe != null) 'timeframe': timeframe
       });
 
   Future<MuxBasePage<Annotation>> _list(Map<String, Object?> query) async {

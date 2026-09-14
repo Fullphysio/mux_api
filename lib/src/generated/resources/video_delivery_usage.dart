@@ -39,7 +39,7 @@ final class VideoDeliveryUsage {
         if (limit != null) 'limit': limit,
         if (assetId != null) 'asset_id': assetId,
         if (liveStreamId != null) 'live_stream_id': liveStreamId,
-        if (timeframe != null) 'timeframe[]': timeframe
+        if (timeframe != null) 'timeframe': timeframe
       });
 
   Future<MuxPageWithTimeframe<DeliveryReport>> _list(

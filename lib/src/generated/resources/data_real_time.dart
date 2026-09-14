@@ -87,7 +87,7 @@ final class DataRealTime {
         query: <String, Object?>{
           if (dimension != null) 'dimension': dimension,
           if (timestamp != null) 'timestamp': timestamp,
-          if (filters != null) 'filters[]': filters,
+          if (filters != null) 'filters': filters,
           if (orderBy != null) 'order_by': orderBy,
           if (orderDirection != null) 'order_direction': orderDirection
         },
@@ -120,7 +120,7 @@ final class DataRealTime {
         method: 'GET',
         path:
             '/data/v1/realtime/metrics/${muxPathSegment(realtimeHistogramMetricId)}/histogram-timeseries',
-        query: <String, Object?>{if (filters != null) 'filters[]': filters},
+        query: <String, Object?>{if (filters != null) 'filters': filters},
         host: MuxHost.api,
         accept: 'application/json');
     return GetRealTimeHistogramTimeseriesResponse.fromJson(
@@ -154,7 +154,7 @@ final class DataRealTime {
         path:
             '/data/v1/realtime/metrics/${muxPathSegment(realtimeMetricId)}/timeseries',
         query: <String, Object?>{
-          if (filters != null) 'filters[]': filters,
+          if (filters != null) 'filters': filters,
           if (timestamp != null) 'timestamp': timestamp
         },
         host: MuxHost.api,

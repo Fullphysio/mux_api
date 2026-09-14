@@ -32,9 +32,7 @@ final class DataEngagementPlaybackIds {
         method: 'GET',
         path:
             '/data/v1/engagement/playback-ids/${muxPathSegment(playbackId)}/heatmap',
-        query: <String, Object?>{
-          if (timeframe != null) 'timeframe[]': timeframe
-        },
+        query: <String, Object?>{if (timeframe != null) 'timeframe': timeframe},
         host: MuxHost.api,
         accept: 'application/json');
     return GetEngagementHeatmapResponse.fromJson(
@@ -64,7 +62,7 @@ final class DataEngagementPlaybackIds {
         path:
             '/data/v1/engagement/playback-ids/${muxPathSegment(playbackId)}/hotspots',
         query: <String, Object?>{
-          if (timeframe != null) 'timeframe[]': timeframe,
+          if (timeframe != null) 'timeframe': timeframe,
           if (limit != null) 'limit': limit,
           if (orderDirection != null) 'order_direction': orderDirection
         },

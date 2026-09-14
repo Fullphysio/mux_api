@@ -8,13 +8,14 @@ import 'package:http/http.dart' as http;
 import 'package:mux_api/mux_api.dart';
 import 'package:test/test.dart';
 
-/// Read-mostly smoke test against the live Mux API.
+/// Read-only smoke test against the live Mux API.
 ///
-/// Everything here is safe to run against any environment: it lists and
-/// retrieves what already exists, creates one direct upload and cancels it
-/// before anything is uploaded, and signs playback tokens for an existing
-/// signed asset. Assertions are structural — nothing depends on how many
-/// assets the environment holds.
+/// It lists and retrieves what already exists and signs playback tokens for
+/// an existing signed asset, so it is safe against a production environment.
+/// The single write — creating a direct upload and cancelling it before
+/// anything is uploaded — runs only when `MUX_TEST_ALLOW_WRITES` is `true`.
+/// Assertions are structural — nothing depends on how many assets the
+/// environment holds.
 void main() {
   final env = Platform.environment;
   final tokenId = env['MUX_TEST_TOKEN_ID'] ?? '';
@@ -22,6 +23,7 @@ void main() {
   final signingKeyId = env['MUX_TEST_SIGNING_KEY_ID'] ?? '';
   final signingPrivateKey = env['MUX_TEST_SIGNING_PRIVATE_KEY'] ?? '';
   final canSign = signingKeyId.isNotEmpty && signingPrivateKey.isNotEmpty;
+  final allowWrites = env['MUX_TEST_ALLOW_WRITES'] == 'true';
 
   late MuxClient mux;
   late http.Client web;
@@ -85,14 +87,14 @@ void main() {
       expect(asset.createdAtDate, isNotNull);
     });
 
-    test('maps a 404 to MuxNotFoundException carrying the Mux error payload',
+    test('maps a malformed id to MuxBadRequestException with the Mux error',
         () async {
       await expectLater(
         mux.video.assets.retrieve('does-not-exist-00000000'),
         throwsA(
-          isA<MuxNotFoundException>()
-              .having((e) => e.statusCode, 'statusCode', 404)
-              .having((e) => e.errorType, 'errorType', isNotNull)
+          isA<MuxBadRequestException>()
+              .having((e) => e.statusCode, 'statusCode', 400)
+              .having((e) => e.errorType, 'errorType', 'invalid_parameters')
               .having((e) => e.messages, 'messages', isNotEmpty),
         ),
       );
@@ -119,6 +121,13 @@ void main() {
 
   group('video.uploads', () {
     test('creates, retrieves and cancels a direct upload', () async {
+      if (!allowWrites) {
+        markTestSkipped(
+          'MUX_TEST_ALLOW_WRITES is not "true"; this is the only test that '
+          'writes to the environment.',
+        );
+        return;
+      }
       final upload = await mux.video.uploads.create(
         const UploadCreateParams(
           corsOrigin: 'https://example.com',

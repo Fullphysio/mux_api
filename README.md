@@ -97,7 +97,10 @@ details that are easy to get subtly wrong:
   jitter. Mux defines no idempotency keys, so a retried `POST` is exactly as
   eager as upstream.
 - Query arrays use bracket notation, `filters[]=a&filters[]=b`, percent-encoded
-  with the RFC 3986 unreserved set.
+  with the RFC 3986 unreserved set. One deliberate divergence: `@mux/ts` 15.1.0
+  sends Data API array parameters as `timeframe[][]=7:days`, which Mux answers
+  with a 400 or 500 (checked live); this client sends the single `[]` Mux
+  accepts.
 - JWT claims are `params…, kid, sub, aud, exp` — `kid` in the payload, no `iat`.
 
 Conformance is enforced by golden tests whose fixtures were captured from the

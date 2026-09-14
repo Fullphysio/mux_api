@@ -878,8 +878,11 @@ final class Resolver {
     }
     final values = schema['enum'];
     if (values is! List) return null;
-    final strings = values.whereType<String>().toList();
-    return strings.isEmpty ? null : strings;
+    final literals = values
+        .where((value) => value is String || value is num)
+        .map((value) => value.toString())
+        .toList();
+    return literals.isEmpty ? null : literals;
   }
 
   IrType _paramType(JsonMap schema, String owner, String name) {

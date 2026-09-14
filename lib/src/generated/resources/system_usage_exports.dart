@@ -41,7 +41,7 @@ final class SystemUsageExports {
         query: <String, Object?>{
           if (limit != null) 'limit': limit,
           if (page != null) 'page': page,
-          if (timeframe != null) 'timeframe[]': timeframe,
+          if (timeframe != null) 'timeframe': timeframe,
           if (downloadUrlTtl != null) 'download_url_ttl': downloadUrlTtl
         },
         host: MuxHost.api,

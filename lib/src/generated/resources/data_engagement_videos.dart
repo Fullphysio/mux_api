@@ -31,9 +31,7 @@ final class DataEngagementVideos {
     final body = await _client.requestJson(
         method: 'GET',
         path: '/data/v1/engagement/videos/${muxPathSegment(videoId)}/heatmap',
-        query: <String, Object?>{
-          if (timeframe != null) 'timeframe[]': timeframe
-        },
+        query: <String, Object?>{if (timeframe != null) 'timeframe': timeframe},
         host: MuxHost.api,
         accept: 'application/json');
     return GetEngagementHeatmapResponse.fromJson(
@@ -62,7 +60,7 @@ final class DataEngagementVideos {
         method: 'GET',
         path: '/data/v1/engagement/videos/${muxPathSegment(videoId)}/hotspots',
         query: <String, Object?>{
-          if (timeframe != null) 'timeframe[]': timeframe,
+          if (timeframe != null) 'timeframe': timeframe,
           if (limit != null) 'limit': limit,
           if (orderDirection != null) 'order_direction': orderDirection
         },

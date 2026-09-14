@@ -33,7 +33,8 @@ void main() {
       await client.data.annotations.delete('x');
     });
     test('list', () async {
-      await client.data.annotations.list();
+      await client.data.annotations
+          .list(limit: 1, page: 1, orderDirection: 'asc', timeframe: ['x']);
     });
     test('retrieve', () async {
       await client.data.annotations.retrieve('x');
@@ -51,43 +52,59 @@ void main() {
       await client.data.dimensions.list();
     });
     test('listTraceElements', () async {
-      await client.data.dimensions.listTraceElements('x');
+      await client.data.dimensions.listTraceElements('x',
+          limit: 1,
+          page: 1,
+          filters: ['x'],
+          metricFilters: ['x'],
+          timeframe: ['x'],
+          orderBy: 'negative_impact',
+          orderDirection: 'asc');
     });
     test('listValues', () async {
-      await client.data.dimensions.listValues('x');
+      await client.data.dimensions.listValues('x',
+          limit: 1,
+          page: 1,
+          filters: ['x'],
+          metricFilters: ['x'],
+          timeframe: ['x']);
     });
   });
 
   group('data.engagement.assets', () {
     test('heatmap', () async {
-      await client.data.engagement.assets.heatmap('x');
+      await client.data.engagement.assets.heatmap('x', timeframe: ['x']);
     });
     test('hotspots', () async {
-      await client.data.engagement.assets.hotspots('x');
+      await client.data.engagement.assets
+          .hotspots('x', timeframe: ['x'], limit: 1, orderDirection: 'asc');
     });
   });
 
   group('data.engagement.playbackIds', () {
     test('heatmap', () async {
-      await client.data.engagement.playbackIds.heatmap('x');
+      await client.data.engagement.playbackIds.heatmap('x', timeframe: ['x']);
     });
     test('hotspots', () async {
-      await client.data.engagement.playbackIds.hotspots('x');
+      await client.data.engagement.playbackIds
+          .hotspots('x', timeframe: ['x'], limit: 1, orderDirection: 'asc');
     });
   });
 
   group('data.engagement.videos', () {
     test('heatmap', () async {
-      await client.data.engagement.videos.heatmap('x');
+      await client.data.engagement.videos.heatmap('x', timeframe: ['x']);
     });
     test('hotspots', () async {
-      await client.data.engagement.videos.hotspots('x');
+      await client.data.engagement.videos
+          .hotspots('x', timeframe: ['x'], limit: 1, orderDirection: 'asc');
     });
   });
 
   group('data.errors', () {
     test('list', () async {
-      await client.data.errors.list();
+      await client.data.errors
+          .list(filters: ['x'], metricFilters: ['x'], timeframe: ['x']);
     });
   });
 
@@ -99,10 +116,17 @@ void main() {
 
   group('data.incidents', () {
     test('list', () async {
-      await client.data.incidents.list();
+      await client.data.incidents.list(
+          limit: 1,
+          page: 1,
+          orderBy: 'negative_impact',
+          orderDirection: 'asc',
+          status: 'open',
+          severity: 'warning');
     });
     test('listRelated', () async {
-      await client.data.incidents.listRelated('x');
+      await client.data.incidents.listRelated('x',
+          limit: 1, page: 1, orderBy: 'negative_impact', orderDirection: 'asc');
     });
     test('retrieve', () async {
       await client.data.incidents.retrieve('x');
@@ -111,19 +135,48 @@ void main() {
 
   group('data.metrics', () {
     test('getInsights', () async {
-      await client.data.metrics.getInsights('aggregate_startup_time');
+      await client.data.metrics.getInsights('aggregate_startup_time',
+          measurement: '95th',
+          orderDirection: 'asc',
+          timeframe: ['x'],
+          filters: ['x'],
+          metricFilters: ['x']);
     });
     test('getOverallValues', () async {
-      await client.data.metrics.getOverallValues('aggregate_startup_time');
+      await client.data.metrics.getOverallValues('aggregate_startup_time',
+          timeframe: ['x'],
+          filters: ['x'],
+          metricFilters: ['x'],
+          measurement: '95th');
     });
     test('getTimeseries', () async {
-      await client.data.metrics.getTimeseries('aggregate_startup_time');
+      await client.data.metrics.getTimeseries('aggregate_startup_time',
+          timeframe: ['x'],
+          filters: ['x'],
+          metricFilters: ['x'],
+          measurement: '95th',
+          orderDirection: 'asc',
+          groupBy: 'minute');
     });
     test('list', () async {
-      await client.data.metrics.list();
+      await client.data.metrics.list(
+          timeframe: ['x'],
+          filters: ['x'],
+          metricFilters: ['x'],
+          dimension: 'asn',
+          valueValue: 'x');
     });
     test('listBreakdownValues', () async {
-      await client.data.metrics.listBreakdownValues('aggregate_startup_time');
+      await client.data.metrics.listBreakdownValues('aggregate_startup_time',
+          groupBy: 'asn',
+          measurement: '95th',
+          filters: ['x'],
+          metricFilters: ['x'],
+          limit: 1,
+          page: 1,
+          orderBy: 'negative_impact',
+          orderDirection: 'asc',
+          timeframe: ['x']);
     });
   });
 
@@ -135,20 +188,33 @@ void main() {
 
   group('data.monitoring.metrics', () {
     test('getBreakdown', () async {
-      await client.data.monitoring.metrics
-          .getBreakdown('current-concurrent-viewers');
+      await client.data.monitoring.metrics.getBreakdown(
+          'current-concurrent-viewers',
+          dimension: 'asn',
+          timestamp: 1,
+          filters: ['x'],
+          orderBy: 'negative_impact',
+          orderDirection: 'asc');
     });
     test('getBreakdownTimeseries', () async {
-      await client.data.monitoring.metrics
-          .getBreakdownTimeseries('current-concurrent-viewers');
+      await client.data.monitoring.metrics.getBreakdownTimeseries(
+          'current-concurrent-viewers',
+          dimension: 'asn',
+          timeframe: ['x'],
+          filters: ['x'],
+          limit: 1,
+          orderBy: 'negative_impact',
+          orderDirection: 'asc');
     });
     test('getHistogramTimeseries', () async {
       await client.data.monitoring.metrics
-          .getHistogramTimeseries('video-startup-time');
+          .getHistogramTimeseries('video-startup-time', filters: ['x']);
     });
     test('getTimeseries', () async {
-      await client.data.monitoring.metrics
-          .getTimeseries('current-concurrent-viewers');
+      await client.data.monitoring.metrics.getTimeseries(
+          'current-concurrent-viewers',
+          filters: ['x'],
+          timestamp: 1);
     });
     test('list', () async {
       await client.data.monitoring.metrics.list();
@@ -163,22 +229,36 @@ void main() {
       await client.data.realTime.listMetrics();
     });
     test('retrieveBreakdown', () async {
-      await client.data.realTime
-          .retrieveBreakdown('current-concurrent-viewers');
+      await client.data.realTime.retrieveBreakdown('current-concurrent-viewers',
+          dimension: 'asn',
+          timestamp: 1,
+          filters: ['x'],
+          orderBy: 'negative_impact',
+          orderDirection: 'asc');
     });
     test('retrieveHistogramTimeseries', () async {
       await client.data.realTime
-          .retrieveHistogramTimeseries('video-startup-time');
+          .retrieveHistogramTimeseries('video-startup-time', filters: ['x']);
     });
     test('retrieveTimeseries', () async {
-      await client.data.realTime
-          .retrieveTimeseries('current-concurrent-viewers');
+      await client.data.realTime.retrieveTimeseries(
+          'current-concurrent-viewers',
+          filters: ['x'],
+          timestamp: 1);
     });
   });
 
   group('data.videoViews', () {
     test('list', () async {
-      await client.data.videoViews.list();
+      await client.data.videoViews.list(
+          limit: 1,
+          page: 1,
+          viewerId: 'x',
+          errorId: 1,
+          orderDirection: 'asc',
+          filters: ['x'],
+          metricFilters: ['x'],
+          timeframe: ['x']);
     });
     test('retrieve', () async {
       await client.data.videoViews.retrieve('x');
@@ -208,7 +288,7 @@ void main() {
       await client.robots.directives.delete('x');
     });
     test('list', () async {
-      await client.robots.directives.list();
+      await client.robots.directives.list(limit: 1, page: 1);
     });
     test('retrieve', () async {
       await client.robots.directives.retrieve('x');
@@ -221,7 +301,7 @@ void main() {
           'x', RunCreateParams.fromJson(<String, Object?>{'asset_id': 'x'}));
     });
     test('list', () async {
-      await client.robots.directives.runs.list('x');
+      await client.robots.directives.runs.list('x', limit: 1, page: 1);
     });
     test('retrieve', () async {
       await client.robots.directives.runs.retrieve('x', 'x');
@@ -233,7 +313,12 @@ void main() {
       await client.robots.jobs.cancel('x');
     });
     test('list', () async {
-      await client.robots.jobs.list();
+      await client.robots.jobs.list(
+          workflow: 'summarize',
+          status: 'pending',
+          assetId: 'x',
+          limit: 1,
+          page: 1);
     });
   });
 
@@ -401,7 +486,7 @@ void main() {
       await client.system.signingKeys.delete('x');
     });
     test('list', () async {
-      await client.system.signingKeys.list();
+      await client.system.signingKeys.list(limit: 1, page: 1);
     });
     test('retrieve', () async {
       await client.system.signingKeys.retrieve('x');
@@ -410,7 +495,8 @@ void main() {
 
   group('system.usageExports', () {
     test('list', () async {
-      await client.system.usageExports.list();
+      await client.system.usageExports
+          .list(limit: 1, page: 1, timeframe: ['x'], downloadUrlTtl: 1);
     });
   });
 
@@ -429,7 +515,7 @@ void main() {
       await client.system.webhooks.delete('x');
     });
     test('list', () async {
-      await client.system.webhooks.list();
+      await client.system.webhooks.list(limit: 1, page: 1);
     });
     test('retrieve', () async {
       await client.system.webhooks.retrieve('x');
@@ -497,7 +583,8 @@ void main() {
           }));
     });
     test('list', () async {
-      await client.video.assets.list();
+      await client.video.assets.list(
+          limit: 1, page: 1, cursor: 'x', liveStreamId: 'x', uploadId: 'x');
     });
     test('retrieve', () async {
       await client.video.assets.retrieve('x');
@@ -535,13 +622,14 @@ void main() {
 
   group('video.deliveryUsage', () {
     test('list', () async {
-      await client.video.deliveryUsage.list();
+      await client.video.deliveryUsage.list(
+          page: 1, limit: 1, assetId: 'x', liveStreamId: 'x', timeframe: ['x']);
     });
   });
 
   group('video.drmConfigurations', () {
     test('list', () async {
-      await client.video.drmConfigurations.list();
+      await client.video.drmConfigurations.list(page: 1, limit: 1);
     });
     test('retrieve', () async {
       await client.video.drmConfigurations.retrieve('x');
@@ -586,7 +674,8 @@ void main() {
       await client.video.liveStreams.enable('x');
     });
     test('list', () async {
-      await client.video.liveStreams.list();
+      await client.video.liveStreams
+          .list(limit: 1, page: 1, streamKey: 'x', status: 'active');
     });
     test('resetStreamKey', () async {
       await client.video.liveStreams.resetStreamKey('x');
@@ -630,31 +719,71 @@ void main() {
 
   group('video.playback', () {
     test('animated', () async {
-      await client.video.playback.animated('x', 'gif');
+      await client.video.playback.animated('x', 'gif',
+          token: 'x', start: 1.0, end: 1.0, width: 1, height: 1, fps: 1);
     });
     test('hls', () async {
-      await client.video.playback.hls('x');
+      await client.video.playback.hls('x',
+          token: 'x',
+          redundantStreams: true,
+          rokuTrickPlay: true,
+          defaultSubtitlesLang: 'x',
+          maxResolution: '270p',
+          minResolution: '270p',
+          renditionOrder: 'desc',
+          programStartTime: 1,
+          programEndTime: 1,
+          assetStartTime: 1.0,
+          assetEndTime: 1.0,
+          excludePdt: true);
     });
     test('staticRendition', () async {
-      await client.video.playback.staticRendition('x', 'capped-1080p.mp4');
+      await client.video.playback
+          .staticRendition('x', 'capped-1080p.mp4', token: 'x');
     });
     test('storyboard', () async {
-      await client.video.playback.storyboard('x', 'jpg');
+      await client.video.playback.storyboard('x', 'jpg',
+          token: 'x',
+          programStartTime: 1,
+          programEndTime: 1,
+          assetStartTime: 1.0,
+          assetEndTime: 1.0);
     });
     test('storyboardMeta', () async {
-      await client.video.playback.storyboardMeta('x');
+      await client.video.playback.storyboardMeta('x',
+          token: 'x',
+          programStartTime: 1,
+          programEndTime: 1,
+          assetStartTime: 1.0,
+          assetEndTime: 1.0,
+          format: 'jpg');
     });
     test('storyboardVtt', () async {
-      await client.video.playback.storyboardVtt('x');
+      await client.video.playback.storyboardVtt('x',
+          token: 'x',
+          programStartTime: 1,
+          programEndTime: 1,
+          assetStartTime: 1.0,
+          assetEndTime: 1.0);
     });
     test('thumbnail', () async {
-      await client.video.playback.thumbnail('x', 'jpg');
+      await client.video.playback.thumbnail('x', 'jpg',
+          token: 'x',
+          time: 1.0,
+          width: 1,
+          height: 1,
+          rotate: 90,
+          fitMode: 'preserve',
+          flipV: true,
+          flipH: true,
+          programTime: 1,
+          latest: true);
     });
     test('track', () async {
-      await client.video.playback.track('x', 'x');
+      await client.video.playback.track('x', 'x', token: 'x');
     });
     test('transcript', () async {
-      await client.video.playback.transcript('x', 'x');
+      await client.video.playback.transcript('x', 'x', token: 'x');
     });
   });
 
@@ -678,7 +807,7 @@ void main() {
       await client.video.playbackRestrictions.delete('x');
     });
     test('list', () async {
-      await client.video.playbackRestrictions.list();
+      await client.video.playbackRestrictions.list(page: 1, limit: 1);
     });
     test('retrieve', () async {
       await client.video.playbackRestrictions.retrieve('x');
@@ -711,7 +840,7 @@ void main() {
       await client.video.transcriptionVocabularies.delete('x');
     });
     test('list', () async {
-      await client.video.transcriptionVocabularies.list();
+      await client.video.transcriptionVocabularies.list(limit: 1, page: 1);
     });
     test('retrieve', () async {
       await client.video.transcriptionVocabularies.retrieve('x');
@@ -734,7 +863,7 @@ void main() {
           UploadCreateParams.fromJson(<String, Object?>{'cors_origin': 'x'}));
     });
     test('list', () async {
-      await client.video.uploads.list();
+      await client.video.uploads.list(limit: 1, page: 1);
     });
     test('retrieve', () async {
       await client.video.uploads.retrieve('x');
