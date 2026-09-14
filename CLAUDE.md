@@ -69,21 +69,20 @@ Three tiers:
   the spec-required fields only. Skipped by tag unless `MUX_MOCK_HOST` is set;
   `--run-skipped` with it empty fails loudly instead of dialling nowhere.
 - **Integration** (`test/integration/`, `--tags integration`) — hits the live
-  Mux API. Self-skips when `MUX_TEST_TOKEN_ID` / `MUX_TEST_TOKEN_SECRET` are
-  unset or empty, so a fresh checkout passes. Never runs on pull requests.
+  Mux API, read-mostly: lists and retrieves what exists, creates one direct
+  upload and cancels it, signs tokens for an existing signed asset and checks
+  Mux accepts them. Needs `MUX_TEST_TOKEN_ID` / `MUX_TEST_TOKEN_SECRET`
+  (`MUX_TEST_SIGNING_KEY_ID` / `MUX_TEST_SIGNING_PRIVATE_KEY` for the JWT
+  test). Runs from `integration.yml` on `main`, nightly and on dispatch —
+  never on pull requests — and that workflow skips its run step while the
+  secret is empty.
 
-Assertions are structural. Never assert on how many assets an environment
-holds, or the suite rots. GitHub Actions substitutes an empty string for an
-undefined variable, so every self-skip checks `isNotEmpty`, not `!= null`.
-
-## CI jobs that are deliberately not here yet
-
-Each of these fails if added before its prerequisite exists (`dart test`
-exits 79 when no test carries the tag), so each lands with the thing it checks.
-
-| Job | Blocked on |
-|---|---|
-| `integration.yml` | `test/integration/` |
+Both tagged tiers are skipped in a plain `dart test`; running one with
+`--run-skipped` and its variables empty fails loudly rather than dialling
+nowhere. GitHub Actions substitutes an empty string for an undefined
+variable, so every emptiness check is `isEmpty`, not `== null`. Assertions
+are structural: never assert on how many assets an environment holds, or the
+suite rots.
 
 ## Conformance with @mux/ts
 

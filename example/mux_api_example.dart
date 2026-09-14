@@ -41,23 +41,13 @@ Future<void> main() async {
     stdout.writeln('Status: ${current.status?.value}');
 
     if (current.status == UploadStatus.assetCreated) {
-      final assetEnvelope = await mux.requestJson(
-        method: 'GET',
-        path: '/video/v1/assets/${current.assetId}',
+      final asset = await mux.video.assets.retrieve(current.assetId!);
+      final signed = asset.playbackIds.firstWhere(
+        (playback) => playback.policy == PlaybackPolicy.signed,
       );
-      final asset = (assetEnvelope as Map<String, Object?>)
-          .requireObject('data', 'Asset');
-      final playbackIds = asset.optObjectList('playback_ids', (json) => json,
-          objectName: 'Asset');
-      final signed = playbackIds.firstWhere(
-        (playback) => playback['policy'] == PlaybackPolicy.signed.value,
-      );
-      final token = mux.jwt.signPlaybackId(
-        signed['id']! as String,
-        expiration: '24h',
-      );
+      final token = mux.jwt.signPlaybackId(signed.id, expiration: '24h');
       stdout.writeln(
-        'Play: https://stream.mux.com/${signed['id']}.m3u8?token=$token',
+        'Play: https://stream.mux.com/${signed.id}.m3u8?token=$token',
       );
     } else {
       await mux.video.uploads.cancel(upload.id);
