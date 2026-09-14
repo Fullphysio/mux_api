@@ -2,6 +2,7 @@ import 'package:mux_api/src/core/client.dart';
 import 'package:mux_api/src/core/crypto_util.dart';
 import 'package:mux_api/src/core/decode_exception.dart';
 import 'package:mux_api/src/core/exceptions.dart';
+import 'package:mux_api/src/generated/generated.dart';
 import 'package:mux_api/src/webhooks/mux_webhook_event.dart';
 import 'package:mux_api/src/webhooks/mux_webhooks.dart';
 import 'package:test/test.dart';
@@ -67,7 +68,7 @@ void main() {
           returnsNormally,
         );
         final event = webhooks.unwrap(body, header, secret: secret, now: now);
-        expect(event, isA<UnknownMuxWebhookEvent>());
+        expect(event, isA<VideoAssetReadyEvent>());
         expect(event.type, unwrap['type']);
         expect(event.id, unwrap['id']);
       });
@@ -89,9 +90,21 @@ void main() {
       expect(event.raw['type'], 'video.asset.ready');
     });
 
-    test('keeps the payload of an unknown type', () {
-      final unknown = event as UnknownMuxWebhookEvent;
-      expect(unknown.data['status'], 'ready');
+    test('decodes the payload into the typed model', () {
+      final typed = event as VideoAssetReadyEvent;
+      expect(typed.data?.id, 'asset_1');
+      expect(typed.data?.status?.value, 'ready');
+      expect(typed.data?.playbackIds.single.policy, PlaybackPolicy.signed);
+    });
+
+    test('an unknown type keeps its payload', () {
+      final body = validBody.replaceFirst(
+          '"video.asset.ready"', '"video.asset.teleported"');
+      final header = 't=1800000000,v1=${_sign(body)}';
+      final unknown = const MuxWebhooks(defaultSecret: _secret)
+          .unwrap(body, header, now: now);
+      expect(unknown, isA<UnknownMuxWebhookEvent>());
+      expect((unknown as UnknownMuxWebhookEvent).data['status'], 'ready');
     });
   });
 

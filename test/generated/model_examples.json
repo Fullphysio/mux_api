@@ -1,0 +1,4665 @@
+{
+  "AbridgedVideoView": [
+    {
+      "country_code": "US",
+      "error_type_id": 1,
+      "id": "JpA81zBfGaGZ85C6aGF3bptyD4CKwpdNgamr",
+      "playback_failure": false,
+      "player_error_code": null,
+      "player_error_message": null,
+      "total_row_count": 4,
+      "video_title": "my-title",
+      "view_end": "2021-01-07T20:46:04Z",
+      "view_start": "2021-01-07T20:34:06Z",
+      "viewer_application_name": "Chrome",
+      "viewer_experience_score": 0.8,
+      "viewer_os_family": "OS X",
+      "watch_time": 1000
+    },
+    {
+      "country_code": "US",
+      "error_type_id": 1,
+      "id": "jPVLR5giYMrLYbHM88Tkn3cM3qCRDk0jL114",
+      "playback_failure": false,
+      "player_error_code": null,
+      "player_error_message": null,
+      "total_row_count": 4,
+      "video_title": "",
+      "view_end": "2021-01-07T20:34:03Z",
+      "view_start": "2021-01-07T20:21:53Z",
+      "viewer_application_name": "Chrome",
+      "viewer_experience_score": 0.8,
+      "viewer_os_family": "OS X",
+      "watch_time": 1000
+    },
+    {
+      "country_code": "US",
+      "error_type_id": 1,
+      "id": "pdLDVKBuPZJJ9YsPVmtmB9FG9gsWBWMmYar4",
+      "playback_failure": true,
+      "player_error_code": "1001",
+      "player_error_message": "this is an error message from the player",
+      "total_row_count": 4,
+      "video_title": "Video Test Title 12.14.20",
+      "view_end": "2021-01-07T15:17:06Z",
+      "view_start": "2021-01-07T15:16:06Z",
+      "viewer_application_name": "Chrome",
+      "viewer_experience_score": 0.8,
+      "viewer_os_family": "OS X",
+      "watch_time": 1000
+    },
+    {
+      "country_code": "US",
+      "error_type_id": 1,
+      "id": "zbZPowWtD3z54jcGMLCJJpF79zCjB03bV7o8",
+      "playback_failure": false,
+      "player_error_code": null,
+      "player_error_message": null,
+      "total_row_count": 4,
+      "video_title": "Video Test Title 12.14.20",
+      "view_end": "2021-01-07T15:15:17Z",
+      "view_start": "2021-01-07T15:15:09Z",
+      "viewer_application_name": "Chrome",
+      "viewer_experience_score": 0.8,
+      "viewer_os_family": "OS X",
+      "watch_time": 1000
+    }
+  ],
+  "ActionOnFlagged": [
+    {
+      "action": "delete_playback_ids"
+    }
+  ],
+  "Annotation": [
+    {
+      "date": "2025-04-23T19:10:00Z",
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "note": "This is one note",
+      "sub_property_id": "123456"
+    },
+    {
+      "date": "2025-04-23T19:20:00Z",
+      "id": "234e4567-e89b-12d3-a456-426614174000",
+      "note": "This is another note",
+      "sub_property_id": null
+    },
+    {
+      "date": "2025-04-23T19:10:00Z",
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "note": "This is a note",
+      "sub_property_id": "123456"
+    },
+    {
+      "date": "2025-04-23T20:00:00Z",
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "note": "This is a note",
+      "sub_property_id": "123456"
+    },
+    {
+      "date": "2025-04-23T20:00:00Z",
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "note": "This is a note",
+      "sub_property_id": "123456"
+    }
+  ],
+  "AnnotationCreateParams": [
+    {
+      "date": 1745438400,
+      "note": "This is a note",
+      "sub_property_id": "123456"
+    }
+  ],
+  "AnnotationUpdateParams": [
+    {
+      "date": 1745438400,
+      "note": "This is a note",
+      "sub_property_id": "123456"
+    }
+  ],
+  "AskQuestionCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "max_free_form_answer_length": 300,
+        "output_steering": {
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          }
+        },
+        "questions": [
+          {
+            "question": "Is this video about glasses?"
+          },
+          {
+            "answer_options": [
+              "glasses",
+              "watches",
+              "shoes",
+              "hats"
+            ],
+            "question": "What is the primary subject?"
+          },
+          {
+            "free_form_reply": true,
+            "question": "Describe the primary subject in one sentence."
+          }
+        ]
+      }
+    }
+  ],
+  "AskQuestionsJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "answers": [
+          {
+            "answer": "no",
+            "confidence": 0.92,
+            "question": "Is this video about glasses?",
+            "reasoning": "No glasses appear on screen and the narration does not mention eyewear.",
+            "skipped": false
+          },
+          {
+            "answer": "watches",
+            "confidence": 0.88,
+            "question": "What is the primary subject?",
+            "reasoning": "Multiple wristwatches are featured prominently throughout the video.",
+            "skipped": false
+          },
+          {
+            "answer": "A close-up showcase of luxury wristwatches arranged on a wooden display.",
+            "confidence": 0.86,
+            "question": "Describe the primary subject in one sentence.",
+            "reasoning": "Visual evidence shows several wristwatches displayed against a wooden backdrop with no other competing subjects.",
+            "skipped": false
+          }
+        ]
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "max_free_form_answer_length": 300,
+        "output_steering": {
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          }
+        },
+        "questions": [
+          {
+            "question": "Is this video about glasses?"
+          },
+          {
+            "answer_options": [
+              "glasses",
+              "watches",
+              "shoes",
+              "hats"
+            ],
+            "question": "What is the primary subject?"
+          },
+          {
+            "free_form_reply": true,
+            "question": "Describe the primary subject in one sentence."
+          }
+        ]
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "ask-questions"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "max_free_form_answer_length": 300,
+        "output_steering": {
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          }
+        },
+        "questions": [
+          {
+            "question": "Is this video about glasses?"
+          },
+          {
+            "answer_options": [
+              "glasses",
+              "watches",
+              "shoes",
+              "hats"
+            ],
+            "question": "What is the primary subject?"
+          },
+          {
+            "free_form_reply": true,
+            "question": "Describe the primary subject in one sentence."
+          }
+        ]
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "ask-questions"
+    }
+  ],
+  "AskQuestionsJobOutputs": [
+    {
+      "answers": [
+        {
+          "answer": "no",
+          "confidence": 0.92,
+          "question": "Is this video about glasses?",
+          "reasoning": "No glasses appear on screen and the narration does not mention eyewear.",
+          "skipped": false
+        },
+        {
+          "answer": "watches",
+          "confidence": 0.88,
+          "question": "What is the primary subject?",
+          "reasoning": "Multiple wristwatches are featured prominently throughout the video.",
+          "skipped": false
+        },
+        {
+          "answer": "A close-up showcase of luxury wristwatches arranged on a wooden display.",
+          "confidence": 0.86,
+          "question": "Describe the primary subject in one sentence.",
+          "reasoning": "Visual evidence shows several wristwatches displayed against a wooden backdrop with no other competing subjects.",
+          "skipped": false
+        }
+      ]
+    }
+  ],
+  "AskQuestionsJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "max_free_form_answer_length": 300,
+      "output_steering": {
+        "scope": {
+          "end_time": 180,
+          "start_time": 30
+        }
+      },
+      "questions": [
+        {
+          "question": "Is this video about glasses?"
+        },
+        {
+          "answer_options": [
+            "glasses",
+            "watches",
+            "shoes",
+            "hats"
+          ],
+          "question": "What is the primary subject?"
+        },
+        {
+          "free_form_reply": true,
+          "question": "Describe the primary subject in one sentence."
+        }
+      ]
+    }
+  ],
+  "Asset": [
+    {
+      "aspect_ratio": "12:5",
+      "created_at": "1609869152",
+      "duration": 734.25,
+      "encoding_tier": "baseline",
+      "id": "8jd7M77xQgf2NzuocJRPYdSdEfY5dLlcRwFARtgQqU4",
+      "master_access": "none",
+      "max_resolution_tier": "1080p",
+      "max_stored_frame_rate": 24,
+      "max_stored_resolution": "HD",
+      "playback_ids": [
+        {
+          "id": "85g23gYz7NmQu02YsY81ihuod6cZMxCp017ZrfglyLCKc",
+          "policy": "public"
+        }
+      ],
+      "progress": {
+        "progress": 100,
+        "state": "completed"
+      },
+      "resolution_tier": "1080p",
+      "status": "ready",
+      "tracks": [
+        {
+          "duration": 734.166667,
+          "id": "HK01Bq7FrEQmIu3QpRiZZ98HQOOZjm6BYyg17eEunlyo",
+          "max_frame_rate": 24,
+          "max_height": 800,
+          "max_width": 1920,
+          "type": "video"
+        },
+        {
+          "duration": 734.143991,
+          "id": "nNKHJqw2G9cE019AoK16CJr3O27gGnbtW4w525hJWqWw",
+          "max_channels": 2,
+          "type": "audio"
+        }
+      ],
+      "video_quality": "basic"
+    },
+    {
+      "aspect_ratio": "16:9",
+      "created_at": "1609868768",
+      "duration": 23.857167,
+      "encoding_tier": "smart",
+      "id": "lJ4bGGsp7ZlPf02nMg015W02iHQLN9XnuuLRBsPS00xqd68",
+      "master_access": "none",
+      "max_resolution_tier": "1080p",
+      "max_stored_frame_rate": 29.97,
+      "max_stored_resolution": "HD",
+      "playback_ids": [
+        {
+          "id": "vAFLI2eKFFicXX00iHBS2vqt5JjJGg5HV6fQ4Xijgt1I",
+          "policy": "public"
+        }
+      ],
+      "progress": {
+        "progress": 100,
+        "state": "completed"
+      },
+      "resolution_tier": "1080p",
+      "status": "ready",
+      "tracks": [
+        {
+          "duration": 23.8238,
+          "id": "RiyQPM31a1SPtfI802bEP2zD02F5FQVNL801FRHeE5t01G4",
+          "max_frame_rate": 29.97,
+          "max_height": 1080,
+          "max_width": 1920,
+          "type": "video"
+        },
+        {
+          "duration": 23.823792,
+          "id": "LvINTciHVoC017knMCH01y9pSi5OrDLCRaBPNDAoNJcmg",
+          "max_channels": 2,
+          "type": "audio"
+        }
+      ],
+      "video_quality": "plus"
+    },
+    {
+      "aspect_ratio": "16:9",
+      "created_at": "1609868768",
+      "duration": 23.857167,
+      "encoding_tier": "baseline",
+      "id": "lJ4bGGsp7ZlPf02nMg015W02iHQLN9XnuuLRBsPS00xqd68",
+      "master_access": "none",
+      "max_resolution_tier": "1080p",
+      "max_stored_frame_rate": 29.97,
+      "max_stored_resolution": "HD",
+      "passthrough": "example",
+      "playback_ids": [
+        {
+          "id": "vAFLI2eKFFicXX00iHBS2vqt5JjJGg5HV6fQ4Xijgt1I",
+          "policy": "public"
+        }
+      ],
+      "progress": {
+        "progress": 100,
+        "state": "completed"
+      },
+      "resolution_tier": "1080p",
+      "status": "ready",
+      "tracks": [
+        {
+          "duration": 23.8238,
+          "id": "RiyQPM31a1SPtfI802bEP2zD02F5FQVNL801FRHeE5t01G4",
+          "max_frame_rate": 29.97,
+          "max_height": 1080,
+          "max_width": 1920,
+          "type": "video"
+        },
+        {
+          "duration": 23.823792,
+          "id": "LvINTciHVoC017knMCH01y9pSi5OrDLCRaBPNDAoNJcmg",
+          "max_channels": 2,
+          "type": "audio"
+        }
+      ],
+      "video_quality": "basic"
+    },
+    {
+      "aspect_ratio": "16:9",
+      "created_at": "1609868768",
+      "duration": 23.857167,
+      "encoding_tier": "baseline",
+      "id": "lJ4bGGsp7ZlPf02nMg015W02iHQLN9XnuuLRBsPS00xqd68",
+      "master_access": "none",
+      "max_resolution_tier": "1080p",
+      "max_stored_frame_rate": 29.97,
+      "max_stored_resolution": "HD",
+      "passthrough": "Example",
+      "playback_ids": [
+        {
+          "id": "vAFLI2eKFFicXX00iHBS2vqt5JjJGg5HV6fQ4Xijgt1I",
+          "policy": "public"
+        }
+      ],
+      "progress": {
+        "progress": 100,
+        "state": "completed"
+      },
+      "resolution_tier": "1080p",
+      "status": "ready",
+      "thumbnail_time": 12.67,
+      "tracks": [
+        {
+          "duration": 23.8238,
+          "id": "RiyQPM31a1SPtfI802bEP2zD02F5FQVNL801FRHeE5t01G4",
+          "max_frame_rate": 29.97,
+          "max_height": 1080,
+          "max_width": 1920,
+          "type": "video"
+        },
+        {
+          "duration": 23.823792,
+          "id": "LvINTciHVoC017knMCH01y9pSi5OrDLCRaBPNDAoNJcmg",
+          "max_channels": 2,
+          "type": "audio"
+        }
+      ],
+      "updated_at": "1609869000",
+      "video_quality": "basic"
+    },
+    {
+      "created_at": "1607452572",
+      "encoding_tier": "baseline",
+      "id": "SqQnqz6s5MBuXGvJaUWdXuXM93J9Q2yv",
+      "master_access": "none",
+      "max_resolution_tier": "1080p",
+      "playback_ids": [
+        {
+          "id": "uNbxnGLKJ00yfbijDO8COxTOyVKT01xpxW",
+          "policy": "public"
+        }
+      ],
+      "progress": {
+        "progress": 0,
+        "state": "ingesting"
+      },
+      "status": "preparing",
+      "video_quality": "basic"
+    },
+    {
+      "aspect_ratio": "16:9",
+      "created_at": "1609868768",
+      "duration": 23.857167,
+      "encoding_tier": "baseline",
+      "id": "lJ4bGGsp7ZlPf02nMg015W02iHQLN9XnuuLRBsPS00xqd68",
+      "master": {
+        "status": "preparing"
+      },
+      "master_access": "temporary",
+      "max_resolution_tier": "1080p",
+      "max_stored_frame_rate": 29.97,
+      "max_stored_resolution": "HD",
+      "playback_ids": [
+        {
+          "id": "Lj02VZDorh9hCV00flNqPli8fmwf6KEppug01w8zDEYVlQ",
+          "policy": "public"
+        }
+      ],
+      "progress": {
+        "progress": 100,
+        "state": "completed"
+      },
+      "resolution_tier": "1080p",
+      "status": "ready",
+      "tracks": [
+        {
+          "duration": 23.8238,
+          "id": "RiyQPM31a1SPtfI802bEP2zD02F5FQVNL801FRHeE5t01G4",
+          "max_frame_rate": 29.97,
+          "max_height": 1080,
+          "max_width": 1920,
+          "type": "video"
+        },
+        {
+          "duration": 23.823792,
+          "id": "LvINTciHVoC017knMCH01y9pSi5OrDLCRaBPNDAoNJcmg",
+          "max_channels": 2,
+          "type": "audio"
+        }
+      ],
+      "video_quality": "basic"
+    },
+    {
+      "aspect_ratio": "16:9",
+      "created_at": "1609868768",
+      "duration": 23.857167,
+      "encoding_tier": "smart",
+      "id": "lJ4bGGsp7ZlPf02nMg015W02iHQLN9XnuuLRBsPS00xqd68",
+      "master_access": "none",
+      "max_resolution_tier": "1080p",
+      "max_stored_frame_rate": 29.97,
+      "max_stored_resolution": "HD",
+      "mp4_support": "capped-1080p",
+      "playback_ids": [
+        {
+          "id": "Lj02VZDorh9hCV00flNqPli8fmwf6KEppug01w8zDEYVlQ",
+          "policy": "public"
+        }
+      ],
+      "progress": {
+        "progress": 100,
+        "state": "completed"
+      },
+      "resolution_tier": "1080p",
+      "static_renditions": {
+        "status": "preparing"
+      },
+      "status": "ready",
+      "tracks": [
+        {
+          "duration": 23.8238,
+          "id": "RiyQPM31a1SPtfI802bEP2zD02F5FQVNL801FRHeE5t01G4",
+          "max_frame_rate": 29.97,
+          "max_height": 1080,
+          "max_width": 1920,
+          "type": "video"
+        },
+        {
+          "duration": 23.823792,
+          "id": "LvINTciHVoC017knMCH01y9pSi5OrDLCRaBPNDAoNJcmg",
+          "max_channels": 2,
+          "type": "audio"
+        }
+      ],
+      "video_quality": "plus"
+    }
+  ],
+  "AssetCreateParams": [
+    {
+      "inputs": [
+        {
+          "url": "https://muxed.s3.amazonaws.com/leds.mp4"
+        }
+      ],
+      "playback_policies": [
+        "public"
+      ],
+      "video_quality": "basic"
+    }
+  ],
+  "AssetCreatePlaybackIdParams": [
+    {
+      "policy": "public"
+    }
+  ],
+  "AssetCreateStaticRenditionParams": [
+    {
+      "resolution": "highest"
+    }
+  ],
+  "AssetCreateTrackParams": [
+    {
+      "closed_captions": true,
+      "language_code": "en-US",
+      "name": "English",
+      "passthrough": "English",
+      "text_type": "subtitles",
+      "type": "text",
+      "url": "https://example.com/myVideo_en.srt"
+    }
+  ],
+  "AssetGenerateShotsParams": [
+    {}
+  ],
+  "AssetGenerateSubtitlesParams": [
+    {
+      "generated_subtitles": [
+        {
+          "language_code": "en",
+          "name": "English (generated)",
+          "passthrough": "English (generated)"
+        }
+      ]
+    }
+  ],
+  "AssetShots": [
+    {
+      "shots_manifest_url": "https://artifacts.mux.com/a/QrgJ00hSt802eYjdclSMdH2vCpHhxBWxgbyLrPFTziJhQ/shots.json?<SIGNATURE>",
+      "status": "completed"
+    },
+    {
+      "status": "pending"
+    }
+  ],
+  "AssetUpdateMasterAccessParams": [
+    {
+      "master_access": "temporary"
+    }
+  ],
+  "AssetUpdateMp4SupportParams": [
+    {
+      "mp4_support": "capped-1080p"
+    }
+  ],
+  "AssetUpdateParams": [
+    {
+      "passthrough": "Example"
+    }
+  ],
+  "AssetUpdateTrackParams": [
+    {
+      "language_code": "en-US",
+      "name": "English"
+    }
+  ],
+  "BreakdownValue": [
+    {
+      "field": "US",
+      "negative_impact": 1,
+      "total_playing_time": 413934,
+      "total_watch_time": 513934,
+      "value": 4,
+      "views": 5
+    }
+  ],
+  "DeliveryReport": [
+    {
+      "asset_duration": 154.366667,
+      "asset_encoding_tier": "baseline",
+      "asset_id": "Ww4v2q2H4MNbHIAM2wApKb3cmrh7eHjGLUjdKohR5wM",
+      "asset_resolution_tier": "1080p",
+      "asset_state": "deleted",
+      "asset_video_quality": "basic",
+      "created_at": "1607939184",
+      "deleted_at": "1607945257",
+      "delivered_seconds": 206.366667,
+      "delivered_seconds_by_resolution": {
+        "tier_1080p": 100,
+        "tier_720p": 100,
+        "tier_audio_only": 6.366667
+      },
+      "live_stream_id": "B65hEUWW01ErVKDDGImKcBquYhwEAkjW6Ic3lPY0299Cc"
+    },
+    {
+      "asset_duration": 98.773667,
+      "asset_encoding_tier": "smart",
+      "asset_id": "Qlb007on1TwN43XLIG027QJlUxm3jd01v5PRi1aXhnyFZY",
+      "asset_resolution_tier": "1080p",
+      "asset_state": "deleted",
+      "asset_video_quality": "plus",
+      "created_at": "1607617107",
+      "deleted_at": "1607935288",
+      "delivered_seconds": 30,
+      "delivered_seconds_by_resolution": {
+        "tier_1080p": 10,
+        "tier_720p": 10,
+        "tier_audio_only": 10
+      }
+    }
+  ],
+  "DimensionValue": [
+    {
+      "total_count": 10000,
+      "value": "FR"
+    },
+    {
+      "total_count": 5000,
+      "value": "ES"
+    },
+    {
+      "total_count": 2000,
+      "value": "PT"
+    },
+    {
+      "total_count": 100,
+      "value": "DE"
+    },
+    {
+      "total_count": 1,
+      "value": "BE"
+    },
+    {
+      "total_count": 2640882,
+      "value": "cdn_a"
+    },
+    {
+      "total_count": 1368812,
+      "value": "cdn_b"
+    },
+    {
+      "total_count": 154541,
+      "value": "cdn_c"
+    }
+  ],
+  "DrmConfiguration": [
+    {
+      "id": "9dbEg8o00uqQzZbzJT6NXdqNA00SdnSo8O"
+    },
+    {
+      "id": "012uTQqPygDYWz3jey8cyOX9n01Bd5SDH1"
+    },
+    {
+      "id": "lJ4bGGsp7ZlPf02nMg015W02iHQLN9XnuuLRBsPS00xqd68"
+    }
+  ],
+  "EditCaptionCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "delete_original_track": true,
+        "replacements": [
+          {
+            "case_sensitive": true,
+            "find": "Mucks",
+            "replace": "Mux"
+          },
+          {
+            "find": "gonna",
+            "replace": "going to"
+          }
+        ],
+        "track_id": "text_track_456def",
+        "upload_to_mux": true
+      }
+    }
+  ],
+  "EditCaptionsJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "temporary_vtt_url": "https://s3.example.com/edited.vtt?sig=abc",
+        "total_replacement_count": 5,
+        "uploaded_track_id": "text_track_789ghi"
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "delete_original_track": true,
+        "replacements": [
+          {
+            "case_sensitive": true,
+            "find": "Mucks",
+            "replace": "Mux"
+          },
+          {
+            "find": "gonna",
+            "replace": "going to"
+          }
+        ],
+        "track_id": "text_track_456def",
+        "upload_to_mux": true
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "edit-captions"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "delete_original_track": true,
+        "replacements": [
+          {
+            "case_sensitive": true,
+            "find": "Mucks",
+            "replace": "Mux"
+          },
+          {
+            "find": "gonna",
+            "replace": "going to"
+          }
+        ],
+        "track_id": "text_track_456def",
+        "upload_to_mux": true
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "edit-captions"
+    }
+  ],
+  "EditCaptionsJobOutputs": [
+    {
+      "temporary_vtt_url": "https://s3.example.com/edited.vtt?sig=abc",
+      "total_replacement_count": 5,
+      "uploaded_track_id": "text_track_789ghi"
+    }
+  ],
+  "EditCaptionsJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "delete_original_track": true,
+      "replacements": [
+        {
+          "case_sensitive": true,
+          "find": "Mucks",
+          "replace": "Mux"
+        },
+        {
+          "find": "gonna",
+          "replace": "going to"
+        }
+      ],
+      "track_id": "text_track_456def",
+      "upload_to_mux": true
+    }
+  ],
+  "FindBestThumbnailCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "max_thumbnails": 3,
+        "output_steering": {
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "scoring_priorities": [
+            "composition",
+            "brand_fit"
+          ],
+          "selection_strategy": "campaign_thumbnail"
+        },
+        "update_asset_thumbnail": true
+      }
+    }
+  ],
+  "FindBestThumbnailsJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "max_thumbnails": 3,
+        "output_steering": {
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "scoring_priorities": [
+            "composition",
+            "brand_fit"
+          ],
+          "selection_strategy": "campaign_thumbnail"
+        },
+        "update_asset_thumbnail": true
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "find-best-thumbnails"
+    }
+  ],
+  "FindBestThumbnailsJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "max_thumbnails": 3,
+      "output_steering": {
+        "scope": {
+          "end_time": 180,
+          "start_time": 30
+        },
+        "scoring_priorities": [
+          "composition",
+          "brand_fit"
+        ],
+        "selection_strategy": "campaign_thumbnail"
+      },
+      "update_asset_thumbnail": true
+    }
+  ],
+  "FindKeyMomentCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "max_moments": 10,
+        "output_steering": {
+          "audience": "Developer advocates",
+          "rubric_priorities": [
+            "clarity_in_isolation",
+            "soundbite_quality"
+          ],
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "selection_strategy": "educational_takeaways",
+          "title_style": "punchy"
+        },
+        "target_duration_ms": {
+          "max": 45000,
+          "min": 15000
+        }
+      }
+    }
+  ],
+  "FindKeyMomentsJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "moments": [
+          {
+            "audible_narrative": "The speaker describes the turning point that reshaped the project direction.",
+            "cues": [
+              {
+                "end_ms": 20000,
+                "start_ms": 15000,
+                "text": "This is the moment everything changed."
+              },
+              {
+                "end_ms": 30000,
+                "start_ms": 20000,
+                "text": "We realized the entire approach was wrong."
+              }
+            ],
+            "end_ms": 45000,
+            "notable_audible_concepts": [
+              "pivotal realization moment",
+              "project direction change"
+            ],
+            "notable_visual_concepts": [
+              {
+                "concept": "whiteboard diagram emphasis",
+                "rationale": "The diagram directly illustrates the pivotal realization being described.",
+                "score": 0.88
+              },
+              {
+                "concept": "speaker emphatic gestures",
+                "rationale": "Body language reinforces the emotional weight of the turning point.",
+                "score": 0.75
+              }
+            ],
+            "overall_score": 0.92,
+            "quotable_segment": {
+              "start_ms": 20000,
+              "text": "We realized the entire approach was wrong."
+            },
+            "start_ms": 15000,
+            "title": "The Pivotal Realization",
+            "visual_narrative": "The speaker gestures emphatically at a whiteboard diagram while the camera zooms in."
+          }
+        ]
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "max_moments": 10,
+        "output_steering": {
+          "audience": "Developer advocates",
+          "rubric_priorities": [
+            "clarity_in_isolation",
+            "soundbite_quality"
+          ],
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "selection_strategy": "educational_takeaways",
+          "title_style": "punchy"
+        },
+        "target_duration_ms": {
+          "max": 45000,
+          "min": 15000
+        }
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "find-key-moments"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "max_moments": 10,
+        "output_steering": {
+          "audience": "Developer advocates",
+          "rubric_priorities": [
+            "clarity_in_isolation",
+            "soundbite_quality"
+          ],
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "selection_strategy": "educational_takeaways",
+          "title_style": "punchy"
+        },
+        "target_duration_ms": {
+          "max": 45000,
+          "min": 15000
+        }
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "find-key-moments"
+    }
+  ],
+  "FindKeyMomentsJobOutputs": [
+    {
+      "moments": [
+        {
+          "audible_narrative": "The speaker describes the turning point that reshaped the project direction.",
+          "cues": [
+            {
+              "end_ms": 20000,
+              "start_ms": 15000,
+              "text": "This is the moment everything changed."
+            },
+            {
+              "end_ms": 30000,
+              "start_ms": 20000,
+              "text": "We realized the entire approach was wrong."
+            }
+          ],
+          "end_ms": 45000,
+          "notable_audible_concepts": [
+            "pivotal realization moment",
+            "project direction change"
+          ],
+          "notable_visual_concepts": [
+            {
+              "concept": "whiteboard diagram emphasis",
+              "rationale": "The diagram directly illustrates the pivotal realization being described.",
+              "score": 0.88
+            },
+            {
+              "concept": "speaker emphatic gestures",
+              "rationale": "Body language reinforces the emotional weight of the turning point.",
+              "score": 0.75
+            }
+          ],
+          "overall_score": 0.92,
+          "quotable_segment": {
+            "start_ms": 20000,
+            "text": "We realized the entire approach was wrong."
+          },
+          "start_ms": 15000,
+          "title": "The Pivotal Realization",
+          "visual_narrative": "The speaker gestures emphatically at a whiteboard diagram while the camera zooms in."
+        }
+      ]
+    }
+  ],
+  "FindKeyMomentsJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "max_moments": 10,
+      "output_steering": {
+        "audience": "Developer advocates",
+        "rubric_priorities": [
+          "clarity_in_isolation",
+          "soundbite_quality"
+        ],
+        "scope": {
+          "end_time": 180,
+          "start_time": 30
+        },
+        "selection_strategy": "educational_takeaways",
+        "title_style": "punchy"
+      },
+      "target_duration_ms": {
+        "max": 45000,
+        "min": 15000
+      }
+    }
+  ],
+  "FindSceneCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "language_code": "en",
+        "min_scene_duration_ms": 15000,
+        "min_scenes": 4,
+        "output_steering": {
+          "narration_detail": "balanced",
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "segmentation_strategy": "editorial_beats",
+          "title_style": "descriptive"
+        }
+      }
+    }
+  ],
+  "FindScenesJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "scenes": [
+          {
+            "audible_narrative": "The host introduces the topic and welcomes the audience.",
+            "cues": [
+              {
+                "end_ms": 5000,
+                "start_ms": 500,
+                "text": "Welcome everyone to today's session."
+              }
+            ],
+            "end_ms": 15000,
+            "notable_audible_concepts": [
+              "session introduction overview",
+              "welcome and context"
+            ],
+            "shot_count": 2,
+            "start_ms": 0,
+            "title": "Opening Remarks",
+            "visual_narrative": "A speaker stands at a podium in front of a large screen."
+          }
+        ]
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "language_code": "en",
+        "min_scene_duration_ms": 15000,
+        "min_scenes": 4,
+        "output_steering": {
+          "narration_detail": "balanced",
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "segmentation_strategy": "editorial_beats",
+          "title_style": "descriptive"
+        }
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "find-scenes"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "language_code": "en",
+        "min_scene_duration_ms": 15000,
+        "min_scenes": 4,
+        "output_steering": {
+          "narration_detail": "balanced",
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "segmentation_strategy": "editorial_beats",
+          "title_style": "descriptive"
+        }
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "find-scenes"
+    }
+  ],
+  "FindScenesJobOutputs": [
+    {
+      "scenes": [
+        {
+          "audible_narrative": "The host introduces the topic and welcomes the audience.",
+          "cues": [
+            {
+              "end_ms": 5000,
+              "start_ms": 500,
+              "text": "Welcome everyone to today's session."
+            }
+          ],
+          "end_ms": 15000,
+          "notable_audible_concepts": [
+            "session introduction overview",
+            "welcome and context"
+          ],
+          "shot_count": 2,
+          "start_ms": 0,
+          "title": "Opening Remarks",
+          "visual_narrative": "A speaker stands at a podium in front of a large screen."
+        }
+      ]
+    }
+  ],
+  "FindScenesJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "language_code": "en",
+      "min_scene_duration_ms": 15000,
+      "min_scenes": 4,
+      "output_steering": {
+        "narration_detail": "balanced",
+        "scope": {
+          "end_time": 180,
+          "start_time": 30
+        },
+        "segmentation_strategy": "editorial_beats",
+        "title_style": "descriptive"
+      }
+    }
+  ],
+  "GenerateChapterCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "output_steering": {
+          "audience": "Developers",
+          "chapter_granularity": "balanced",
+          "chapter_style": "descriptive"
+        }
+      }
+    }
+  ],
+  "GenerateChaptersJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "chapters": [
+          {
+            "start_time": 0,
+            "title": "Introduction"
+          },
+          {
+            "start_time": 45,
+            "title": "Setting Up the Workspace"
+          },
+          {
+            "start_time": 180,
+            "title": "Core Implementation"
+          },
+          {
+            "start_time": 420,
+            "title": "Testing and Debugging"
+          },
+          {
+            "start_time": 600,
+            "title": "Wrap-Up and Next Steps"
+          }
+        ]
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "output_steering": {
+          "audience": "Developers",
+          "chapter_granularity": "balanced",
+          "chapter_style": "descriptive"
+        }
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "generate-chapters"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "output_steering": {
+          "audience": "Developers",
+          "chapter_granularity": "balanced",
+          "chapter_style": "descriptive"
+        }
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "generate-chapters"
+    }
+  ],
+  "GenerateChaptersJobOutputs": [
+    {
+      "chapters": [
+        {
+          "start_time": 0,
+          "title": "Introduction"
+        },
+        {
+          "start_time": 45,
+          "title": "Setting Up the Workspace"
+        },
+        {
+          "start_time": 180,
+          "title": "Core Implementation"
+        },
+        {
+          "start_time": 420,
+          "title": "Testing and Debugging"
+        },
+        {
+          "start_time": 600,
+          "title": "Wrap-Up and Next Steps"
+        }
+      ]
+    }
+  ],
+  "GenerateChaptersJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "output_steering": {
+        "audience": "Developers",
+        "chapter_granularity": "balanced",
+        "chapter_style": "descriptive"
+      }
+    }
+  ],
+  "GenerateEngagementInsightCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc"
+      }
+    }
+  ],
+  "GenerateEngagementInsightsJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "moment_insights": [
+          {
+            "end_ms": 60000,
+            "engagement_score": 0.89,
+            "insight": "Viewers are highly engaged during the product demo, with minimal drop-off.",
+            "start_ms": 30000
+          }
+        ],
+        "overall_insight": {
+          "summary": "Engagement peaks during hands-on demonstrations and drops during introductory segments.",
+          "trends": [
+            "Product demos drive the highest retention",
+            "Viewers skip past the first 15 seconds of intro"
+          ]
+        }
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc"
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "generate-engagement-insights"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc"
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "generate-engagement-insights"
+    }
+  ],
+  "GenerateEngagementInsightsJobOutputs": [
+    {
+      "moment_insights": [
+        {
+          "end_ms": 60000,
+          "engagement_score": 0.89,
+          "insight": "Viewers are highly engaged during the product demo, with minimal drop-off.",
+          "start_ms": 30000
+        }
+      ],
+      "overall_insight": {
+        "summary": "Engagement peaks during hands-on demonstrations and drops during introductory segments.",
+        "trends": [
+          "Product demos drive the highest retention",
+          "Viewers skip past the first 15 seconds of intro"
+        ]
+      }
+    }
+  ],
+  "GenerateEngagementInsightsJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc"
+    }
+  ],
+  "GeneratePremiumCaptionCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "include_speakers": false,
+        "include_words": false,
+        "language_code": "en",
+        "phrases": [
+          "Mux",
+          "API"
+        ],
+        "replace_existing": false,
+        "upload_to_mux": true
+      }
+    }
+  ],
+  "GeneratePremiumCaptionsJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "auto_language_confidence": 0.98,
+        "detected_language": "en",
+        "language_code": "en",
+        "temporary_srt_url": "https://storage.example.com/captions/en/abc123.srt?token=abc",
+        "track_id": "track_en_abc123"
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "include_speakers": false,
+        "include_words": false,
+        "language_code": "en",
+        "phrases": [
+          "Mux",
+          "API"
+        ],
+        "replace_existing": false,
+        "upload_to_mux": true
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "generate-premium-captions"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "include_speakers": false,
+        "include_words": false,
+        "language_code": "en",
+        "phrases": [
+          "Mux",
+          "API"
+        ],
+        "replace_existing": false,
+        "upload_to_mux": true
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "generate-premium-captions"
+    }
+  ],
+  "GeneratePremiumCaptionsJobOutputs": [
+    {
+      "auto_language_confidence": 0.98,
+      "detected_language": "en",
+      "language_code": "en",
+      "temporary_srt_url": "https://storage.example.com/captions/en/abc123.srt?token=abc",
+      "track_id": "track_en_abc123"
+    }
+  ],
+  "GeneratePremiumCaptionsJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "include_speakers": false,
+      "include_words": false,
+      "language_code": "en",
+      "phrases": [
+        "Mux",
+        "API"
+      ],
+      "replace_existing": false,
+      "upload_to_mux": true
+    }
+  ],
+  "GetEngagementHeatmapResponse": [
+    {
+      "data": {
+        "total_views": 1024,
+        "value": [
+          0.42,
+          0.55,
+          0.61,
+          0.58,
+          0.47
+        ]
+      },
+      "timeframe": [
+        1610025789,
+        1610112189
+      ],
+      "total_row_count": 1
+    },
+    {
+      "data": {
+        "total_views": 1024,
+        "value": [
+          0.42,
+          0.55,
+          0.61,
+          0.58,
+          0.47
+        ]
+      },
+      "timeframe": [
+        1610025789,
+        1610112189
+      ],
+      "total_row_count": 1
+    },
+    {
+      "data": {
+        "total_views": 1024,
+        "value": [
+          0.42,
+          0.55,
+          0.61,
+          0.58,
+          0.47
+        ]
+      },
+      "timeframe": [
+        1610025789,
+        1610112189
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "GetEngagementHotspotsResponse": [
+    {
+      "data": {
+        "hotspots": [
+          {
+            "end_ms": 45000,
+            "score": 0.842,
+            "start_ms": 30000
+          },
+          {
+            "end_ms": 138000,
+            "score": 0.713,
+            "start_ms": 120000
+          }
+        ],
+        "total_views": 1024
+      },
+      "timeframe": [
+        1610025789,
+        1610112189
+      ],
+      "total_row_count": 2
+    },
+    {
+      "data": {
+        "hotspots": [
+          {
+            "end_ms": 45000,
+            "score": 0.842,
+            "start_ms": 30000
+          },
+          {
+            "end_ms": 138000,
+            "score": 0.713,
+            "start_ms": 120000
+          }
+        ],
+        "total_views": 1024
+      },
+      "timeframe": [
+        1610025789,
+        1610112189
+      ],
+      "total_row_count": 2
+    },
+    {
+      "data": {
+        "hotspots": [
+          {
+            "end_ms": 45000,
+            "score": 0.842,
+            "start_ms": 30000
+          },
+          {
+            "end_ms": 138000,
+            "score": 0.713,
+            "start_ms": 120000
+          }
+        ],
+        "total_views": 1024
+      },
+      "timeframe": [
+        1610025789,
+        1610112189
+      ],
+      "total_row_count": 2
+    }
+  ],
+  "GetMetricTimeseriesDataResponse": [
+    {
+      "data": [
+        [
+          "2021-01-07T14:00:00Z",
+          "0.8743536882994202",
+          "154240"
+        ],
+        [
+          "2021-01-07T15:00:00Z",
+          "0.8929105055911401",
+          "156056"
+        ]
+      ],
+      "meta": {
+        "aggregation": "view_end"
+      },
+      "timeframe": [
+        1610029711,
+        1610116111
+      ],
+      "total_row_count": 2
+    }
+  ],
+  "GetMonitoringBreakdownResponse": [
+    {
+      "data": [
+        {
+          "concurrent_viewers": 2680,
+          "metric_value": 0.008195679660675846,
+          "negative_impact": 1,
+          "starting_up_viewers": 10,
+          "value": "FR"
+        },
+        {
+          "concurrent_viewers": 36,
+          "metric_value": 0.010317417106767573,
+          "negative_impact": 4,
+          "starting_up_viewers": 1,
+          "value": "ES"
+        },
+        {
+          "concurrent_viewers": 30,
+          "metric_value": 0.06408818534303201,
+          "negative_impact": 2,
+          "starting_up_viewers": 1,
+          "value": "RE"
+        },
+        {
+          "concurrent_viewers": 26,
+          "metric_value": 0.008232510579858339,
+          "negative_impact": 7,
+          "starting_up_viewers": 1,
+          "value": "GB"
+        },
+        {
+          "concurrent_viewers": 10,
+          "metric_value": 0,
+          "negative_impact": 26,
+          "starting_up_viewers": 0,
+          "value": "BE"
+        }
+      ],
+      "timeframe": [
+        1610121421,
+        1610121421
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "GetMonitoringBreakdownTimeseriesResponse": [
+    {
+      "data": [
+        {
+          "date": "2023-05-18T19:36:30Z",
+          "values": [
+            {
+              "concurrent_viewers": 2680,
+              "metric_value": 0.008195679660675846,
+              "starting_up_viewers": 10,
+              "value": "FR"
+            },
+            {
+              "concurrent_viewers": 36,
+              "metric_value": 0.010317417106767573,
+              "starting_up_viewers": 1,
+              "value": "ES"
+            },
+            {
+              "concurrent_viewers": 26,
+              "metric_value": 0.008232510579858339,
+              "starting_up_viewers": 1,
+              "value": "GB"
+            }
+          ]
+        },
+        {
+          "date": "2023-05-18T19:36:35Z",
+          "values": [
+            {
+              "concurrent_viewers": 2690,
+              "metric_value": 0.00724579660675846,
+              "starting_up_viewers": 1,
+              "value": "FR"
+            },
+            {
+              "concurrent_viewers": 35,
+              "metric_value": 0.014317417106767573,
+              "starting_up_viewers": 15,
+              "value": "ES"
+            },
+            {
+              "concurrent_viewers": 24,
+              "metric_value": 0.007232510579851874,
+              "starting_up_viewers": 1,
+              "value": "GB"
+            }
+          ]
+        }
+      ],
+      "timeframe": [
+        1684438590,
+        1684438600
+      ],
+      "total_row_count": 2
+    }
+  ],
+  "GetMonitoringHistogramTimeseriesResponse": [
+    {
+      "data": [
+        {
+          "average": 5298.1612903225805,
+          "bucket_values": [
+            {
+              "count": 3,
+              "percentage": 0.0967741935483871
+            },
+            {
+              "count": 0,
+              "percentage": 0
+            },
+            {
+              "count": 0,
+              "percentage": 0
+            },
+            {
+              "count": 1,
+              "percentage": 0.03225806451612903
+            },
+            {
+              "count": 16,
+              "percentage": 0.5161290322580645
+            },
+            {
+              "count": 7,
+              "percentage": 0.22580645161290322
+            },
+            {
+              "count": 4,
+              "percentage": 0.12903225806451613
+            }
+          ],
+          "max_percentage": 0.5161290322580645,
+          "median": 4463,
+          "p95": 14834,
+          "sum": 31,
+          "timestamp": "2021-01-08T15:30:00Z"
+        },
+        {
+          "average": 3828.4146341463415,
+          "bucket_values": [
+            {
+              "count": 5,
+              "percentage": 0.12195121951219512
+            },
+            {
+              "count": 0,
+              "percentage": 0
+            },
+            {
+              "count": 0,
+              "percentage": 0
+            },
+            {
+              "count": 4,
+              "percentage": 0.0975609756097561
+            },
+            {
+              "count": 18,
+              "percentage": 0.43902439024390244
+            },
+            {
+              "count": 12,
+              "percentage": 0.2926829268292683
+            },
+            {
+              "count": 2,
+              "percentage": 0.04878048780487805
+            }
+          ],
+          "max_percentage": 0.43902439024390244,
+          "median": 2625,
+          "p95": 7378,
+          "sum": 41,
+          "timestamp": "2021-01-08T15:31:00Z"
+        }
+      ],
+      "meta": {
+        "bucket_unit": "milliseconds",
+        "buckets": [
+          {
+            "end": 100,
+            "start": 0
+          },
+          {
+            "end": 500,
+            "start": 100
+          },
+          {
+            "end": 1000,
+            "start": 500
+          },
+          {
+            "end": 2000,
+            "start": 1000
+          },
+          {
+            "end": 5000,
+            "start": 2000
+          },
+          {
+            "end": 10000,
+            "start": 5000
+          },
+          {
+            "end": 15000,
+            "start": 10000
+          }
+        ]
+      },
+      "timeframe": [
+        1610119800,
+        1610121540
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "GetMonitoringTimeseriesResponse": [
+    {
+      "data": [
+        {
+          "concurrent_viewers": 2790,
+          "date": "2021-01-08T15:31:20Z",
+          "value": 2790
+        },
+        {
+          "concurrent_viewers": 2788,
+          "date": "2021-01-08T15:31:25Z",
+          "value": 2788
+        },
+        {
+          "concurrent_viewers": 2791,
+          "date": "2021-01-08T15:31:30Z",
+          "value": 2791
+        },
+        {
+          "concurrent_viewers": 2791,
+          "date": "2021-01-08T15:31:35Z",
+          "value": 2791
+        },
+        {
+          "concurrent_viewers": 2792,
+          "date": "2021-01-08T15:31:40Z",
+          "value": 2792
+        }
+      ],
+      "timeframe": [
+        1610119880,
+        1610121675
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "GetOverallValuesResponse": [
+    {
+      "data": {
+        "total_playing_time": 413934,
+        "total_views": 5,
+        "total_watch_time": 513934,
+        "value": 4
+      },
+      "meta": {
+        "aggregation": "view_end"
+      },
+      "timeframe": [
+        1610029525,
+        1610115925
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "GetRealTimeBreakdownResponse": [
+    {
+      "data": [
+        {
+          "concurrent_viewers": 2680,
+          "metric_value": 0.008195679660675846,
+          "negative_impact": 1,
+          "starting_up_viewers": 10,
+          "value": "FR"
+        },
+        {
+          "concurrent_viewers": 36,
+          "metric_value": 0.010317417106767573,
+          "negative_impact": 4,
+          "starting_up_viewers": 1,
+          "value": "ES"
+        },
+        {
+          "concurrent_viewers": 30,
+          "metric_value": 0.06408818534303201,
+          "negative_impact": 2,
+          "starting_up_viewers": 1,
+          "value": "RE"
+        },
+        {
+          "concurrent_viewers": 26,
+          "metric_value": 0.008232510579858339,
+          "negative_impact": 7,
+          "starting_up_viewers": 1,
+          "value": "GB"
+        },
+        {
+          "concurrent_viewers": 10,
+          "metric_value": 0,
+          "negative_impact": 26,
+          "starting_up_viewers": 0,
+          "value": "BE"
+        }
+      ],
+      "timeframe": [
+        1610121421,
+        1610121421
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "GetRealTimeHistogramTimeseriesResponse": [
+    {
+      "data": [
+        {
+          "average": 5298.1612903225805,
+          "bucket_values": [
+            {
+              "count": 3,
+              "percentage": 0.0967741935483871
+            },
+            {
+              "count": 0,
+              "percentage": 0
+            },
+            {
+              "count": 0,
+              "percentage": 0
+            },
+            {
+              "count": 1,
+              "percentage": 0.03225806451612903
+            },
+            {
+              "count": 16,
+              "percentage": 0.5161290322580645
+            },
+            {
+              "count": 7,
+              "percentage": 0.22580645161290322
+            },
+            {
+              "count": 4,
+              "percentage": 0.12903225806451613
+            }
+          ],
+          "max_percentage": 0.5161290322580645,
+          "median": 4463,
+          "p95": 14834,
+          "sum": 31,
+          "timestamp": "2021-01-08T15:30:00Z"
+        },
+        {
+          "average": 3828.4146341463415,
+          "bucket_values": [
+            {
+              "count": 5,
+              "percentage": 0.12195121951219512
+            },
+            {
+              "count": 0,
+              "percentage": 0
+            },
+            {
+              "count": 0,
+              "percentage": 0
+            },
+            {
+              "count": 4,
+              "percentage": 0.0975609756097561
+            },
+            {
+              "count": 18,
+              "percentage": 0.43902439024390244
+            },
+            {
+              "count": 12,
+              "percentage": 0.2926829268292683
+            },
+            {
+              "count": 2,
+              "percentage": 0.04878048780487805
+            }
+          ],
+          "max_percentage": 0.43902439024390244,
+          "median": 2625,
+          "p95": 7378,
+          "sum": 41,
+          "timestamp": "2021-01-08T15:31:00Z"
+        }
+      ],
+      "meta": {
+        "bucket_unit": "milliseconds",
+        "buckets": [
+          {
+            "end": 100,
+            "start": 0
+          },
+          {
+            "end": 500,
+            "start": 100
+          },
+          {
+            "end": 1000,
+            "start": 500
+          },
+          {
+            "end": 2000,
+            "start": 1000
+          },
+          {
+            "end": 5000,
+            "start": 2000
+          },
+          {
+            "end": 10000,
+            "start": 5000
+          },
+          {
+            "end": 15000,
+            "start": 10000
+          }
+        ]
+      },
+      "timeframe": [
+        1610119800,
+        1610121540
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "GetRealTimeTimeseriesResponse": [
+    {
+      "data": [
+        {
+          "concurrent_viewers": 2790,
+          "date": "2021-01-08T15:31:20Z",
+          "value": 2790
+        },
+        {
+          "concurrent_viewers": 2788,
+          "date": "2021-01-08T15:31:25Z",
+          "value": 2788
+        },
+        {
+          "concurrent_viewers": 2791,
+          "date": "2021-01-08T15:31:30Z",
+          "value": 2791
+        },
+        {
+          "concurrent_viewers": 2791,
+          "date": "2021-01-08T15:31:35Z",
+          "value": 2791
+        },
+        {
+          "concurrent_viewers": 2792,
+          "date": "2021-01-08T15:31:40Z",
+          "value": 2792
+        }
+      ],
+      "timeframe": [
+        1610119880,
+        1610121675
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "Incident": [
+    {
+      "affected_views": 71,
+      "affected_views_per_hour": 29,
+      "affected_views_per_hour_on_open": 75,
+      "breakdowns": [
+        {
+          "id": "abcdef",
+          "name": "error_type_id",
+          "value": "697070"
+        }
+      ],
+      "description": "Something is broken",
+      "error_description": "No seriously, something is really really broken :(",
+      "id": "4u13td",
+      "impact": "*71 views* were affected at a rate of *29 per hour*",
+      "incident_key": "5312a7c0bbb5d8353bd88602f01fe58eb15e9febac8fd2f0d8ce8f1cb138145c",
+      "measured_value": 5.9,
+      "measured_value_on_close": 0.1,
+      "measurement": "error_rate",
+      "notification_rules": [],
+      "notifications": [
+        {
+          "attempted_at": "2021-01-05T09:52:15.119040Z",
+          "id": 103014,
+          "queued_at": "2021-01-05T09:52:14.945157Z"
+        },
+        {
+          "attempted_at": "2021-01-05T11:31:08.244462Z",
+          "id": 102025,
+          "queued_at": "2021-01-05T11:31:08.061924Z"
+        }
+      ],
+      "resolved_at": "2021-01-05T11:31:04.000000Z",
+      "sample_size": 1000,
+      "sample_size_unit": "views",
+      "severity": "alert",
+      "started_at": "2021-01-05T09:04:46.000000Z",
+      "status": "closed",
+      "threshold": 5
+    },
+    {
+      "affected_views": 132,
+      "affected_views_per_hour": 11,
+      "affected_views_per_hour_on_open": 65,
+      "breakdowns": [
+        {
+          "id": "abcdef",
+          "name": "video_title",
+          "value": "Layla the dog video 1337"
+        },
+        {
+          "id": "abcdef",
+          "name": "error_type_id",
+          "value": "697065"
+        }
+      ],
+      "description": "Something else is broken",
+      "error_description": "Detailed error: On no!",
+      "id": "rd9579",
+      "impact": "*132 views* were affected at a rate of *11 per hour*",
+      "incident_key": "fd9add7a85a013d768f4039f9e726133eddb476c2f16b22ebfe56f18f7c03b27",
+      "measured_value": 97,
+      "measured_value_on_close": 1,
+      "measurement": "error_rate",
+      "notification_rules": [],
+      "notifications": [
+        {
+          "attempted_at": "2020-12-31T09:26:19.416919Z",
+          "id": 102198,
+          "queued_at": "2020-12-31T09:26:18.987717Z"
+        },
+        {
+          "attempted_at": "2020-12-31T20:23:57.279325Z",
+          "id": 101269,
+          "queued_at": "2020-12-31T20:23:56.997068Z"
+        }
+      ],
+      "resolved_at": "2020-12-31T20:22:54.000000Z",
+      "sample_size": 100,
+      "sample_size_unit": "views",
+      "severity": "alert",
+      "started_at": "2020-12-31T07:56:22.000000Z",
+      "status": "closed",
+      "threshold": 96
+    },
+    {
+      "affected_views": 71,
+      "affected_views_per_hour": 29,
+      "affected_views_per_hour_on_open": 75,
+      "breakdowns": [
+        {
+          "id": "abcdef",
+          "name": "error_type_id",
+          "value": "697070"
+        }
+      ],
+      "description": "Something is broken",
+      "error_description": "No seriously, something is really really broken :(",
+      "id": "4u13td",
+      "impact": "*71 views* were affected at a rate of *29 per hour*",
+      "incident_key": "5312a7c0bbb5d8353bd88602f01fe58eb15e9febac8fd2f0d8ce8f1cb138145c",
+      "measured_value": 5.9,
+      "measured_value_on_close": 0.1,
+      "measurement": "error_rate",
+      "notification_rules": [],
+      "notifications": [
+        {
+          "attempted_at": "2021-01-05T09:52:15.119040Z",
+          "id": 103014,
+          "queued_at": "2021-01-05T09:52:14.945157Z"
+        },
+        {
+          "attempted_at": "2021-01-05T11:31:08.244462Z",
+          "id": 102025,
+          "queued_at": "2021-01-05T11:31:08.061924Z"
+        }
+      ],
+      "resolved_at": "2021-01-05T11:31:04.000000Z",
+      "sample_size": 1000,
+      "sample_size_unit": "views",
+      "severity": "alert",
+      "started_at": "2021-01-05T09:04:46.000000Z",
+      "status": "closed",
+      "threshold": 5
+    },
+    {
+      "affected_views": 132,
+      "affected_views_per_hour": 11,
+      "affected_views_per_hour_on_open": 65,
+      "breakdowns": [
+        {
+          "id": "abcdef",
+          "name": "video_title",
+          "value": "Layla the dog video 1337"
+        },
+        {
+          "id": "abcdef",
+          "name": "error_type_id",
+          "value": "697065"
+        }
+      ],
+      "description": "Something else is broken",
+      "error_description": "Detailed error: On no!",
+      "id": "rd9579",
+      "impact": "*132 views* were affected at a rate of *11 per hour*",
+      "incident_key": "fd9add7a85a013d768f4039f9e726133eddb476c2f16b22ebfe56f18f7c03b27",
+      "measured_value": 97,
+      "measured_value_on_close": 1,
+      "measurement": "error_rate",
+      "notification_rules": [],
+      "notifications": [
+        {
+          "attempted_at": "2020-12-31T09:26:19.416919Z",
+          "id": 102198,
+          "queued_at": "2020-12-31T09:26:18.987717Z"
+        },
+        {
+          "attempted_at": "2020-12-31T20:23:57.279325Z",
+          "id": 101269,
+          "queued_at": "2020-12-31T20:23:56.997068Z"
+        }
+      ],
+      "resolved_at": "2020-12-31T20:22:54.000000Z",
+      "sample_size": 100,
+      "sample_size_unit": "views",
+      "severity": "alert",
+      "started_at": "2020-12-31T07:56:22.000000Z",
+      "status": "closed",
+      "threshold": 96
+    }
+  ],
+  "IncidentResponse": [
+    {
+      "data": {
+        "affected_views": 2026,
+        "affected_views_per_hour": 84,
+        "affected_views_per_hour_on_open": 12857,
+        "breakdowns": [
+          {
+            "id": "abcdef",
+            "name": "error_type_id",
+            "value": "499680"
+          },
+          {
+            "id": "abcdef",
+            "name": "video_title",
+            "value": "Cute dogs"
+          }
+        ],
+        "description": "This video is erroring a lot",
+        "error_description": "Error Type ID 499680",
+        "id": "g7q2df",
+        "impact": "*2026 views* were affected at a rate of *84 per hour*",
+        "incident_key": "045dfcbefdb68c6003aaf3bf5ed217493772519f28f14d129f95eaff159ea6d6b",
+        "measured_value": 100,
+        "measured_value_on_close": 8,
+        "measurement": "error_rate",
+        "notification_rules": [],
+        "notifications": [
+          {
+            "attempted_at": "2020-05-14T17:23:08.034662Z",
+            "id": 63293,
+            "queued_at": "2020-05-14T17:23:07.944457Z"
+          },
+          {
+            "attempted_at": "2020-05-13T17:22:30.444389Z",
+            "id": 62212,
+            "queued_at": "2020-05-13T17:22:30.354828Z"
+          }
+        ],
+        "resolved_at": "2020-05-14T17:22:30.000000Z",
+        "sample_size": 100,
+        "sample_size_unit": "views",
+        "severity": "alert",
+        "started_at": "2020-05-13T17:21:54.000000Z",
+        "status": "closed",
+        "threshold": 100
+      },
+      "timeframe": [
+        1610036456,
+        1610122856
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "InputInfo": [
+    {
+      "file": {
+        "container_format": "mp4",
+        "tracks": [
+          {
+            "duration": 120,
+            "encoding": "h.264",
+            "frame_rate": 30,
+            "height": 720,
+            "type": "video",
+            "width": 1280
+          },
+          {
+            "duration": 120,
+            "encoding": "aac",
+            "sample_rate": 16000,
+            "sample_size": 24,
+            "type": "audio"
+          }
+        ]
+      },
+      "settings": {
+        "url": "https://muxed.s3.amazonaws.com/leds.mp4"
+      }
+    },
+    {
+      "file": {
+        "container_format": "srt"
+      },
+      "settings": {
+        "url": "https://example.com/myVideo_en.srt"
+      }
+    }
+  ],
+  "KeyMomentQuotableSegment": [
+    {
+      "start_ms": 20000,
+      "text": "We realized the entire approach was wrong."
+    }
+  ],
+  "ListAllMetricValuesResponse": [
+    {
+      "data": [
+        {
+          "ended_views": 5,
+          "name": "totals",
+          "started_views": 6,
+          "total_playing_time": 503934,
+          "unique_viewers": 6,
+          "view_count": 5,
+          "watch_time": 513934
+        },
+        {
+          "items": [
+            {
+              "metric": "unique_viewers",
+              "name": "Unique Viewers",
+              "type": "number",
+              "value": 6
+            },
+            {
+              "metric": "playing_time",
+              "name": "Playing Time",
+              "type": "milliseconds",
+              "value": 503934
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_attempt_count",
+              "name": "Ad Attempts (total)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_attempt_count",
+              "name": "Ad Attempts (average)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_break_count",
+              "name": "Ad Breaks (total)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_break_count",
+              "name": "Ad Breaks (average)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_impression_count",
+              "name": "Ad Impressions (total)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_impression_count",
+              "name": "Ad Impressions (average)",
+              "type": "number",
+              "value": 0
+            }
+          ],
+          "metric": "views",
+          "name": "Views",
+          "type": "number",
+          "value": 6
+        },
+        {
+          "metric": "viewer_experience_score",
+          "name": "Overall Score",
+          "type": "score",
+          "value": 0.7803472280502319
+        },
+        {
+          "items": [
+            {
+              "metric": "playback_failure_percentage",
+              "name": "Playback Failure Percentage",
+              "type": "percentage",
+              "value": 0.2
+            },
+            {
+              "metric": "video_startup_failure_percentage",
+              "name": "Video Startup Failure Percentage",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "metric": "exits_before_video_start",
+              "name": "Exits Before Video Start",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "metric": "view_dropped_percentage",
+              "name": "View Dropped Percentage",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "sum",
+              "metric": "ad_error_count",
+              "name": "Ad Errors (total)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_error_count",
+              "name": "Ad Errors (average)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_error_percentage",
+              "name": "Ad Error Percentage (average)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "sum",
+              "metric": "ad_break_error_count",
+              "name": "Ad Break Errors (total)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_break_error_count",
+              "name": "Ad Break Errors (average)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_break_error_percentage",
+              "name": "Ad Break Error Percentage (average)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_startup_error_percentage",
+              "name": "Ad Startup Error Percentage (average)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "ad_exit_before_start_percentage",
+              "name": "Ad Exit Before Start Percentage (average)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "playback_business_exception_percentage",
+              "name": "Playback Business Exception Percentage (average)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "video_startup_business_exception_percentage",
+              "name": "Video Startup Business Exception Percentage (average)",
+              "type": "percentage",
+              "value": 0
+            }
+          ],
+          "metric": "playback_failure_score",
+          "name": "Playback Failure Score",
+          "type": "score",
+          "value": 0.8
+        },
+        {
+          "items": [
+            {
+              "measurement": "median",
+              "metric": "video_startup_time",
+              "name": "Video Startup Time (median)",
+              "type": "milliseconds",
+              "value": 4
+            },
+            {
+              "measurement": "95th",
+              "metric": "video_startup_time",
+              "name": "Video Startup Time (95th %)",
+              "type": "milliseconds",
+              "value": 9
+            },
+            {
+              "measurement": "median",
+              "metric": "player_startup_time",
+              "name": "Player Startup Time (median)",
+              "type": "milliseconds",
+              "value": 52.5625
+            },
+            {
+              "measurement": "95th",
+              "metric": "player_startup_time",
+              "name": "Player Startup Time (95th %)",
+              "type": "milliseconds",
+              "value": 60.0625
+            },
+            {
+              "measurement": "median",
+              "metric": "page_load_time",
+              "name": "Page Load Time (median)",
+              "type": "milliseconds",
+              "value": 122.37890625
+            },
+            {
+              "measurement": "95th",
+              "metric": "page_load_time",
+              "name": "Page Load Time (95th %)",
+              "type": "milliseconds",
+              "value": 264.0625
+            },
+            {
+              "measurement": "median",
+              "metric": "aggregate_startup_time",
+              "name": "Aggregate Startup Time (median)",
+              "type": "milliseconds",
+              "value": 182.25
+            },
+            {
+              "measurement": "95th",
+              "metric": "aggregate_startup_time",
+              "name": "Aggregate Startup Time (95th %)",
+              "type": "milliseconds",
+              "value": 319.515625
+            },
+            {
+              "metric": "seek_latency",
+              "name": "Seek Latency",
+              "type": "milliseconds",
+              "value": 3042
+            },
+            {
+              "measurement": "median",
+              "metric": "view_content_startup_time",
+              "name": "Content Startup Time (median)",
+              "type": "milliseconds",
+              "value": 1000
+            },
+            {
+              "measurement": "95th",
+              "metric": "view_content_startup_time",
+              "name": "Content Startup Time (95th %)",
+              "type": "milliseconds",
+              "value": 1403
+            },
+            {
+              "measurement": "median",
+              "metric": "ad_preroll_startup_time",
+              "name": "Ad Preroll Startup Time (median)",
+              "type": "milliseconds",
+              "value": 800
+            },
+            {
+              "measurement": "95th",
+              "metric": "ad_preroll_startup_time",
+              "name": "Ad Preroll Startup Time (95th %)",
+              "type": "milliseconds",
+              "value": 1243
+            }
+          ],
+          "metric": "startup_time_score",
+          "name": "Startup Time Score",
+          "type": "score",
+          "value": 0.9991008877754212
+        },
+        {
+          "items": [
+            {
+              "metric": "rebuffer_percentage",
+              "name": "Rebuffer Percentage",
+              "type": "percentage",
+              "value": 0.0005564916895943838
+            },
+            {
+              "metric": "rebuffer_frequency",
+              "name": "Rebuffer Frequency",
+              "type": "per_minute",
+              "value": 0.11674650830651406
+            },
+            {
+              "measurement": "median",
+              "metric": "rebuffer_duration",
+              "name": "Rebuffer Duration (median)",
+              "type": "milliseconds",
+              "value": 0
+            },
+            {
+              "measurement": "95th",
+              "metric": "rebuffer_duration",
+              "name": "Rebuffer Duration (95th %)",
+              "type": "milliseconds",
+              "value": 256
+            },
+            {
+              "measurement": "median",
+              "metric": "rebuffer_count",
+              "name": "Rebuffer Count (median)",
+              "type": "number",
+              "value": 0
+            },
+            {
+              "measurement": "95th",
+              "metric": "rebuffer_count",
+              "name": "Rebuffer Count (95th %)",
+              "type": "number",
+              "value": 1
+            }
+          ],
+          "metric": "rebuffer_score",
+          "name": "Rebuffer Score",
+          "type": "score",
+          "value": 0.9523247838020324
+        },
+        {
+          "items": [
+            {
+              "measurement": "median",
+              "metric": "upscale_percentage",
+              "name": "Upscale Percentage (median)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "95th",
+              "metric": "upscale_percentage",
+              "name": "Upscale Percentage (95th %)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "avg",
+              "metric": "upscale_percentage",
+              "name": "Upscale Percentage (average)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "median",
+              "metric": "downscale_percentage",
+              "name": "Downscale Percentage (median)",
+              "type": "percentage",
+              "value": 0.007
+            },
+            {
+              "measurement": "95th",
+              "metric": "downscale_percentage",
+              "name": "Downscale Percentage (95th %)",
+              "type": "percentage",
+              "value": 0.449
+            },
+            {
+              "measurement": "avg",
+              "metric": "downscale_percentage",
+              "name": "Downscale Percentage (average)",
+              "type": "percentage",
+              "value": 0.11813909473676262
+            },
+            {
+              "measurement": "median",
+              "metric": "max_upscale_percentage",
+              "name": "Max Upscale Percentage (median)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "95th",
+              "metric": "max_upscale_percentage",
+              "name": "Max Upscale Percentage (95th %)",
+              "type": "percentage",
+              "value": 0
+            },
+            {
+              "measurement": "median",
+              "metric": "max_downscale_percentage",
+              "name": "Max Downscale Percentage (median)",
+              "type": "percentage",
+              "value": 0.007
+            },
+            {
+              "measurement": "95th",
+              "metric": "max_downscale_percentage",
+              "name": "Max Downscale Percentage (95th %)",
+              "type": "percentage",
+              "value": 0.449
+            },
+            {
+              "measurement": "median",
+              "metric": "weighted_average_bitrate",
+              "name": "Weighted Average Bitrate (median)",
+              "type": "mbps",
+              "value": 851582.91015625
+            },
+            {
+              "measurement": "95th",
+              "metric": "weighted_average_bitrate",
+              "name": "Weighted Average Bitrate (95th %)",
+              "type": "mbps",
+              "value": 697016.265625
+            },
+            {
+              "measurement": "median",
+              "metric": "live_stream_latency",
+              "name": "Live Stream Latency (median)",
+              "type": "milliseconds",
+              "value": 2195
+            },
+            {
+              "measurement": "95th",
+              "metric": "live_stream_latency",
+              "name": "Live Stream Latency (95th %)",
+              "type": "milliseconds",
+              "value": 3523
+            }
+          ],
+          "metric": "video_quality_score",
+          "name": "Video Quality Score",
+          "type": "score",
+          "value": 1
+        }
+      ],
+      "timeframe": [
+        1610029906,
+        1610116306
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "ListDimensionsResponse": [
+    {
+      "data": {
+        "advanced": [
+          "asn",
+          "audio_codec",
+          "audio_codec_initial",
+          "browser_version",
+          "client_application_name",
+          "client_application_version",
+          "country",
+          "custom_1",
+          "custom_2",
+          "custom_3",
+          "custom_4",
+          "custom_5",
+          "custom_6",
+          "custom_7",
+          "custom_8",
+          "custom_9",
+          "custom_10",
+          "custom_11",
+          "custom_12",
+          "custom_13",
+          "custom_14",
+          "custom_15",
+          "custom_16",
+          "custom_17",
+          "custom_18",
+          "custom_19",
+          "custom_20",
+          "experiment_name",
+          "environment_id",
+          "operating_system_version",
+          "page_type",
+          "page_url",
+          "playback_failure",
+          "playback_business_exception",
+          "player_autoplay",
+          "player_error_code",
+          "player_language",
+          "player_mux_plugin_name",
+          "player_mux_plugin_version",
+          "player_poster",
+          "player_preload",
+          "player_remote_played",
+          "player_software_version",
+          "player_version",
+          "region",
+          "source_hostname",
+          "time_shift_enabled",
+          "used_captions",
+          "used_pip",
+          "video_affiliate",
+          "video_brand",
+          "video_cdn_trace",
+          "video_codec",
+          "video_codec_initial",
+          "video_creator_id",
+          "video_dynamic_range_type",
+          "video_dynamic_range_type_initial",
+          "video_encoding_variant",
+          "video_language",
+          "video_producer",
+          "video_source_bitrate",
+          "video_source_bitrate_initial",
+          "video_source_fps",
+          "video_source_fps_initial",
+          "video_source_height",
+          "video_source_height_initial",
+          "video_source_width",
+          "video_source_width_initial",
+          "video_startup_business_exception",
+          "video_variant_id",
+          "video_variant_name",
+          "view_cdn_edge_pop",
+          "view_cdn_origin",
+          "view_drm_type",
+          "view_dropped",
+          "view_dropped_frame_count",
+          "view_session_id",
+          "viewer_connection_type",
+          "viewer_device_model",
+          "viewer_user_id",
+          "viewer_plan",
+          "viewer_plan_status",
+          "viewer_plan_category",
+          "view_drm_level"
+        ],
+        "basic": [
+          "asset_id",
+          "browser",
+          "cdn",
+          "continent_code",
+          "exit_before_video_start",
+          "live_stream_id",
+          "operating_system",
+          "playback_id",
+          "player_name",
+          "player_software",
+          "source_type",
+          "stream_type",
+          "sub_property_id",
+          "video_content_type",
+          "video_id",
+          "video_series",
+          "video_startup_failure",
+          "video_title",
+          "view_has_ad",
+          "viewer_device_category",
+          "viewer_device_manufacturer",
+          "viewer_device_name"
+        ]
+      },
+      "timeframe": [
+        1610033879,
+        1610120279
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "ListErrorsResponse": [
+    {
+      "data": [
+        {
+          "code": 100,
+          "count": 1,
+          "description": "a description for this error",
+          "id": 1,
+          "last_seen": "2021-01-08T13:42:39Z",
+          "message": "an error message",
+          "notes": "a helpful note",
+          "percentage": 30,
+          "player_error_code": "100"
+        }
+      ],
+      "timeframe": [
+        1610027061,
+        1610113461
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "ListInsightsResponse": [
+    {
+      "data": [
+        {
+          "filter_column": "video_title",
+          "filter_value": "",
+          "metric": 9,
+          "negative_impact_score": -5,
+          "total_playing_time": 341144,
+          "total_views": 1,
+          "total_watch_time": 351144
+        },
+        {
+          "filter_column": "country",
+          "filter_value": "US",
+          "metric": 4,
+          "negative_impact_score": 0,
+          "total_playing_time": 413934,
+          "total_views": 5,
+          "total_watch_time": 513934
+        }
+      ],
+      "meta": {
+        "aggregation": "view_end"
+      },
+      "timeframe": [
+        1610029610,
+        1610116010
+      ],
+      "total_row_count": 18
+    }
+  ],
+  "ListMonitoringDimensionsResponse": [
+    {
+      "data": [
+        {
+          "display_name": "ASN",
+          "name": "asn"
+        },
+        {
+          "display_name": "CDN",
+          "name": "cdn"
+        },
+        {
+          "display_name": "Country",
+          "name": "country"
+        },
+        {
+          "display_name": "Operating system",
+          "name": "operating_system"
+        },
+        {
+          "display_name": "Player name",
+          "name": "player_name"
+        },
+        {
+          "display_name": "Region / State",
+          "name": "region"
+        },
+        {
+          "display_name": "Stream type",
+          "name": "stream_type"
+        },
+        {
+          "display_name": "Sub property ID",
+          "name": "sub_property_id"
+        },
+        {
+          "display_name": "Video series",
+          "name": "video_series"
+        },
+        {
+          "display_name": "Video title",
+          "name": "video_title"
+        },
+        {
+          "display_name": "View has ad",
+          "name": "view_has_ad"
+        }
+      ],
+      "timeframe": [
+        1610034823,
+        1610121223
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "ListMonitoringMetricsResponse": [
+    {
+      "data": [
+        {
+          "display_name": "Current Average Bitrate",
+          "name": "current-average-bitrate"
+        },
+        {
+          "display_name": "Current Concurrent Viewers (CCV)",
+          "name": "current-concurrent-viewers"
+        },
+        {
+          "display_name": "Current Rebuffering Percentage",
+          "name": "current-rebuffering-percentage"
+        },
+        {
+          "display_name": "Exits Before Video Start",
+          "name": "exits-before-video-start"
+        },
+        {
+          "display_name": "Playback Failure Percentage",
+          "name": "playback-failure-percentage"
+        },
+        {
+          "display_name": "Video Startup Failure Percentage",
+          "name": "video-startup-failure-percentage"
+        },
+        {
+          "display_name": "Video Startup Time",
+          "name": "video-startup-time"
+        }
+      ],
+      "timeframe": [
+        1610034858,
+        1610121258
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "ListRealTimeDimensionsResponse": [
+    {
+      "data": [
+        {
+          "display_name": "ASN",
+          "name": "asn"
+        },
+        {
+          "display_name": "CDN",
+          "name": "cdn"
+        },
+        {
+          "display_name": "Country",
+          "name": "country"
+        },
+        {
+          "display_name": "Operating system",
+          "name": "operating_system"
+        },
+        {
+          "display_name": "Player name",
+          "name": "player_name"
+        },
+        {
+          "display_name": "Region / State",
+          "name": "region"
+        },
+        {
+          "display_name": "Stream type",
+          "name": "stream_type"
+        },
+        {
+          "display_name": "Sub property ID",
+          "name": "sub_property_id"
+        },
+        {
+          "display_name": "Video series",
+          "name": "video_series"
+        },
+        {
+          "display_name": "Video title",
+          "name": "video_title"
+        }
+      ],
+      "timeframe": [
+        1610034823,
+        1610121223
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "ListRealTimeMetricsResponse": [
+    {
+      "data": [
+        {
+          "display_name": "Current Average Bitrate",
+          "name": "current-average-bitrate"
+        },
+        {
+          "display_name": "Current Concurrent Viewers (CCV)",
+          "name": "current-concurrent-viewers"
+        },
+        {
+          "display_name": "Current Rebuffering Percentage",
+          "name": "current-rebuffering-percentage"
+        },
+        {
+          "display_name": "Exits Before Video Start",
+          "name": "exits-before-video-start"
+        },
+        {
+          "display_name": "Playback Failure Percentage",
+          "name": "playback-failure-percentage"
+        },
+        {
+          "display_name": "Video Startup Time",
+          "name": "video-startup-time"
+        }
+      ],
+      "timeframe": [
+        1610034858,
+        1610121258
+      ],
+      "total_row_count": 1
+    }
+  ],
+  "ListUsageExportsResponse": [
+    {
+      "data": [
+        {
+          "date": "2026-03-30",
+          "download_url": "https://storage.mux.com/org_abc123/2026-06-09.csv?X-Amz-Expires=3600&X-Amz-Signature=abc",
+          "download_url_expires_at": 1749513600,
+          "file_size": 1048576
+        },
+        {
+          "date": "2026-03-29",
+          "download_url": "https://storage.mux.com/org_abc123/2026-06-08.csv?X-Amz-Expires=3600&X-Amz-Signature=def",
+          "download_url_expires_at": 1749513600,
+          "file_size": 983040
+        }
+      ],
+      "meta": {
+        "limit": 25,
+        "page": 1,
+        "pages": 16,
+        "total": 397
+      }
+    }
+  ],
+  "ListVideoViewExportsResponse": [
+    {
+      "data": [
+        {
+          "export_date": "2021-01-03",
+          "files": [
+            {
+              "path": "https://s3.amazonaws.com/mux-data-exports/1/2021_01_03.csv.gz?...signature...",
+              "type": "csv",
+              "version": 2
+            }
+          ]
+        },
+        {
+          "export_date": "2021-01-02",
+          "files": [
+            {
+              "path": "https://s3.amazonaws.com/mux-data-exports/1/2021_01_02.csv.gz?...signature...",
+              "type": "csv",
+              "version": 2
+            }
+          ]
+        },
+        {
+          "export_date": "2021-01-01",
+          "files": [
+            {
+              "path": "https://s3.amazonaws.com/mux-data-exports/1/2021_01_01.csv.gz?...signature...",
+              "type": "csv",
+              "version": 2
+            }
+          ]
+        }
+      ],
+      "timeframe": [
+        1626296941,
+        1626383341
+      ],
+      "total_row_count": 7
+    }
+  ],
+  "LiveStream": [
+    {
+      "created_at": "1609937654",
+      "id": "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",
+      "latency_mode": "standard",
+      "max_continuous_duration": 43200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "HNRDuwff3K2VjTZZAPuvd2Kx6D01XUQFv02GFBHPUka018",
+          "policy": "public"
+        }
+      ],
+      "reconnect_window": 60,
+      "status": "idle",
+      "stream_key": "831b5bde-cd8a-5bc4-115d-4ba34b19f481"
+    },
+    {
+      "created_at": "1607587513",
+      "id": "B65hEUWW01ErVKDDGImKcBquYhwEAkjW6Ic3lPY0299Cc",
+      "latency_mode": "standard",
+      "max_continuous_duration": 43200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "00zOcribkUmXqXHzBTpflk2771BRTcKATqPjWf7JHpuM",
+          "policy": "public"
+        }
+      ],
+      "recent_asset_ids": [
+        "SZs02xxHgYdkHp00OSCjJiHUHqzVQZNU332XPXRxe341o",
+        "e4J9cwb5tjVxMeeV8201dC00i800ThPKKGT2SEN002dHH2s"
+      ],
+      "reconnect_window": 60,
+      "status": "idle",
+      "stream_key": "d273c65e-1fc8-27dc-e9ef-56144cbceb3a"
+    },
+    {
+      "created_at": "1609937654",
+      "id": "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",
+      "latency_mode": "standard",
+      "max_continuous_duration": 43200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "HNRDuwff3K2VjTZZAPuvd2Kx6D01XUQFv02GFBHPUka018",
+          "policy": "public"
+        }
+      ],
+      "reconnect_window": 60,
+      "status": "idle",
+      "stream_key": "831b5bde-cd8a-5bc4-115d-4ba34b19f481"
+    },
+    {
+      "created_at": "1609937654",
+      "id": "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",
+      "latency_mode": "standard",
+      "max_continuous_duration": 1200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "HNRDuwff3K2VjTZZAPuvd2Kx6D01XUQFv02GFBHPUka018",
+          "policy": "public"
+        }
+      ],
+      "reconnect_window": 30,
+      "status": "idle",
+      "stream_key": "831b5bde-cd8a-5bc4-115d-4ba34b19f481"
+    },
+    {
+      "created_at": "1609937654",
+      "id": "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",
+      "latency_mode": "standard",
+      "max_continuous_duration": 43200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "HNRDuwff3K2VjTZZAPuvd2Kx6D01XUQFv02GFBHPUka018",
+          "policy": "public"
+        }
+      ],
+      "reconnect_window": 60,
+      "status": "idle",
+      "stream_key": "abcdefgh"
+    },
+    {
+      "created_at": "1609937654",
+      "id": "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",
+      "latency_mode": "standard",
+      "max_continuous_duration": 43200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "HNRDuwff3K2VjTZZAPuvd2Kx6D01XUQFv02GFBHPUka018",
+          "policy": "public"
+        },
+        {
+          "id": "4O902oOPU100s7XIQgOeY01U7dHzYlBe26zi3Sq01EJqnxw",
+          "policy": "public"
+        }
+      ],
+      "reconnect_window": 60,
+      "status": "idle",
+      "stream_key": "acaf2ca1-ba9c-5ffe-8c9c-a02bbf0009a6"
+    },
+    {
+      "created_at": "1609937654",
+      "embedded_subtitles": [
+        {
+          "language_channel": "cc1",
+          "language_code": "en",
+          "name": "English CC",
+          "passthrough": "Example"
+        }
+      ],
+      "id": "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",
+      "latency_mode": "standard",
+      "max_continuous_duration": 43200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "HNRDuwff3K2VjTZZAPuvd2Kx6D01XUQFv02GFBHPUka018",
+          "policy": "public"
+        },
+        {
+          "id": "4O902oOPU100s7XIQgOeY01U7dHzYlBe26zi3Sq01EJqnxw",
+          "policy": "public"
+        }
+      ],
+      "reconnect_window": 60,
+      "status": "idle",
+      "stream_key": "acaf2ca1-ba9c-5ffe-8c9c-a02bbf0009a6"
+    },
+    {
+      "created_at": "1609937654",
+      "generated_subtitles": [
+        {
+          "language_code": "en",
+          "name": "English CC (ASR)",
+          "passthrough": "Example"
+        }
+      ],
+      "id": "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",
+      "latency_mode": "standard",
+      "max_continuous_duration": 43200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "HNRDuwff3K2VjTZZAPuvd2Kx6D01XUQFv02GFBHPUka018",
+          "policy": "public"
+        },
+        {
+          "id": "4O902oOPU100s7XIQgOeY01U7dHzYlBe26zi3Sq01EJqnxw",
+          "policy": "public"
+        }
+      ],
+      "reconnect_window": 60,
+      "status": "idle",
+      "stream_key": "acaf2ca1-ba9c-5ffe-8c9c-a02bbf0009a6"
+    },
+    {
+      "created_at": "1609937654",
+      "id": "ZEBrNTpHC02iUah025KM3te6ylM7W4S4silsrFtUkn3Ag",
+      "latency_mode": "standard",
+      "max_continuous_duration": 43200,
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ],
+        "static_renditions": [
+          {
+            "resolution": "audio-only"
+          },
+          {
+            "resolution": "highest"
+          }
+        ]
+      },
+      "playback_ids": [
+        {
+          "id": "HNRDuwff3K2VjTZZAPuvd2Kx6D01XUQFv02GFBHPUka018",
+          "policy": "public"
+        }
+      ],
+      "reconnect_window": 60,
+      "status": "idle",
+      "stream_key": "abcdefgh"
+    }
+  ],
+  "LiveStreamCreateParams": [
+    {
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      },
+      "playback_policies": [
+        "public"
+      ]
+    }
+  ],
+  "LiveStreamCreatePlaybackIdParams": [
+    {
+      "policy": "signed"
+    }
+  ],
+  "LiveStreamCreateSimulcastTargetParams": [
+    {
+      "passthrough": "Example",
+      "stream_key": "abcdefgh",
+      "url": "rtmp://live.example.com/app"
+    }
+  ],
+  "LiveStreamUpdateEmbeddedSubtitlesParams": [
+    {
+      "embedded_subtitles": [
+        {
+          "passthrough": "Example"
+        }
+      ]
+    }
+  ],
+  "LiveStreamUpdateGeneratedSubtitlesParams": [
+    {
+      "generated_subtitles": [
+        {
+          "language_code": "en",
+          "name": "English CC (ASR)",
+          "passthrough": "Example"
+        }
+      ]
+    }
+  ],
+  "LiveStreamUpdateNewAssetSettingsStaticRenditionsParams": [
+    {
+      "static_renditions": [
+        {
+          "resolution": "audio-only"
+        },
+        {
+          "resolution": "highest"
+        }
+      ]
+    }
+  ],
+  "LiveStreamUpdateParams": [
+    {
+      "latency_mode": "standard",
+      "max_continuous_duration": 1200,
+      "reconnect_window": 30
+    }
+  ],
+  "ModerateCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "on_flagged": {
+          "action": "delete_playback_ids"
+        },
+        "output_steering": {
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          }
+        },
+        "thresholds": {
+          "sexual": 0.7,
+          "violence": 0.8
+        }
+      }
+    }
+  ],
+  "ModerateJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "exceeds_threshold": false,
+        "max_scores": {
+          "sexual": 0.03,
+          "violence": 0.15
+        },
+        "thumbnail_scores": [
+          {
+            "sexual": 0.01,
+            "time": 0,
+            "violence": 0.02
+          },
+          {
+            "sexual": 0.03,
+            "time": 30,
+            "violence": 0.15
+          },
+          {
+            "sexual": 0.02,
+            "time": 60,
+            "violence": 0.05
+          }
+        ]
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "on_flagged": {
+          "action": "delete_playback_ids"
+        },
+        "output_steering": {
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          }
+        },
+        "thresholds": {
+          "sexual": 0.7,
+          "violence": 0.8
+        }
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "moderate"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "on_flagged": {
+          "action": "delete_playback_ids"
+        },
+        "output_steering": {
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          }
+        },
+        "thresholds": {
+          "sexual": 0.7,
+          "violence": 0.8
+        }
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "moderate"
+    }
+  ],
+  "ModerateJobOutputs": [
+    {
+      "exceeds_threshold": false,
+      "max_scores": {
+        "sexual": 0.03,
+        "violence": 0.15
+      },
+      "thumbnail_scores": [
+        {
+          "sexual": 0.01,
+          "time": 0,
+          "violence": 0.02
+        },
+        {
+          "sexual": 0.03,
+          "time": 30,
+          "violence": 0.15
+        },
+        {
+          "sexual": 0.02,
+          "time": 60,
+          "violence": 0.05
+        }
+      ]
+    }
+  ],
+  "ModerateJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "on_flagged": {
+        "action": "delete_playback_ids"
+      },
+      "output_steering": {
+        "scope": {
+          "end_time": 180,
+          "start_time": 30
+        }
+      },
+      "thresholds": {
+        "sexual": 0.7,
+        "violence": 0.8
+      }
+    }
+  ],
+  "PlaybackId": [
+    {
+      "id": "vAFLI2eKFFicXX00iHBS2vqt5JjJGg5HV6fQ4Xijgt1I",
+      "policy": "public"
+    },
+    {
+      "id": "4O902oOPU100s7XIQgOeY01U7dHzYlBe26zi3Sq01EJqnxw",
+      "policy": "public"
+    },
+    {
+      "id": "Lj02VZDorh9hCV00flNqPli8fmwf6KEppug01w8zDEYVlQ",
+      "policy": "public"
+    },
+    {
+      "id": "4O902oOPU100s7XIQgOeY01U7dHzYlBe26zi3Sq01EJqnxw",
+      "policy": "public"
+    }
+  ],
+  "PlaybackRestriction": [
+    {
+      "created_at": "1607939184",
+      "id": "9dbEg8o00uqQzZbzJT6NXdqNA00SdnSo8O",
+      "referrer": {
+        "allow_no_referrer": false,
+        "allowed_domains": [
+          "*.example.com"
+        ]
+      },
+      "updated_at": "1607945257",
+      "user_agent": {
+        "allow_high_risk_user_agent": false,
+        "allow_no_user_agent": false
+      }
+    },
+    {
+      "created_at": "1607939188",
+      "id": "012uTQqPygDYWz3jey8cyOX9n01Bd5SDH1",
+      "referrer": {
+        "allow_no_referrer": true,
+        "allowed_domains": [
+          "a.example.com",
+          "b.example.com"
+        ]
+      },
+      "updated_at": "1607945980",
+      "user_agent": {
+        "allow_high_risk_user_agent": false,
+        "allow_no_user_agent": false
+      }
+    },
+    {
+      "created_at": "1607939184",
+      "id": "9dbEg8o00uqQzZbzJT6NXdqNA00SdnSo8O",
+      "referrer": {
+        "allow_no_referrer": false,
+        "allowed_domains": [
+          "*.example.com"
+        ]
+      },
+      "updated_at": "1607945257",
+      "user_agent": {
+        "allow_high_risk_user_agent": false,
+        "allow_no_user_agent": false
+      }
+    },
+    {
+      "created_at": "1607945257",
+      "id": "9dbEg8o00uqQzZbzJT6NXdqNA00SdnSo8O",
+      "referrer": {
+        "allow_no_referrer": true,
+        "allowed_domains": [
+          "*.example.com"
+        ]
+      },
+      "updated_at": "1607945257",
+      "user_agent": {
+        "allow_high_risk_user_agent": false,
+        "allow_no_user_agent": false
+      }
+    },
+    {
+      "created_at": "1607939184",
+      "id": "9dbEg8o00uqQzZbzJT6NXdqNA00SdnSo8O",
+      "referrer": {
+        "allow_no_referrer": true,
+        "allowed_domains": [
+          "*.example.com"
+        ]
+      },
+      "updated_at": "1607945257",
+      "user_agent": {
+        "allow_high_risk_user_agent": false,
+        "allow_no_user_agent": false
+      }
+    },
+    {
+      "created_at": "1607939184",
+      "id": "9dbEg8o00uqQzZbzJT6NXdqNA00SdnSo8O",
+      "referrer": {
+        "allow_no_referrer": true,
+        "allowed_domains": [
+          "*.example.com"
+        ]
+      },
+      "updated_at": "1607945257",
+      "user_agent": {
+        "allow_high_risk_user_agent": false,
+        "allow_no_user_agent": false
+      }
+    }
+  ],
+  "PlaybackRestrictionCreateParams": [
+    {
+      "referrer": {
+        "allow_no_referrer": true,
+        "allowed_domains": [
+          "*.example.com"
+        ]
+      },
+      "user_agent": {
+        "allow_high_risk_user_agent": false,
+        "allow_no_user_agent": false
+      }
+    }
+  ],
+  "PlaybackRestrictionUpdateReferrerParams": [
+    {
+      "allow_no_referrer": true,
+      "allowed_domains": [
+        "*.example.com"
+      ]
+    }
+  ],
+  "PlaybackRestrictionUpdateUserAgentParams": [
+    {
+      "allow_high_risk_user_agent": false,
+      "allow_no_user_agent": false
+    }
+  ],
+  "Resources": [
+    {
+      "assets": [
+        {
+          "_links": {
+            "self": {
+              "href": "https://api.mux.com/video/v1/assets/abc123asset"
+            }
+          },
+          "id": "abc123asset",
+          "meta": {
+            "creator_id": "user123",
+            "external_id": "ext456",
+            "title": "My Video"
+          }
+        }
+      ]
+    }
+  ],
+  "RunDirectiveRequest": [
+    {
+      "asset_id": "abc123def456"
+    }
+  ],
+  "ShotsResourceDeclaration": [
+    {
+      "reference_id": "shots",
+      "source": {
+        "action": "request_shots",
+        "via": "mux_api"
+      },
+      "type": "video.asset.shots"
+    }
+  ],
+  "SigningKey": [
+    {
+      "created_at": "1610108345",
+      "id": "vI5KTQ78ohYriuvWKHY6COtZWXexHGLllxksOdZuya8"
+    },
+    {
+      "created_at": "1608632647",
+      "id": "jc6lJiCLMjyC202EXtRQ644sShzDv6x5tWJrbvUFpvmo"
+    },
+    {
+      "created_at": "1608632647",
+      "id": "jc6lJiCLMjyC202EXtRQ644sShzDv6x5tWJrbvUFpvmo"
+    },
+    {
+      "created_at": "1610108345",
+      "id": "vI5KTQ78ohYriuvWKHY6COtZWXexHGLllxksOdZuya8",
+      "private_key": "abcd123="
+    }
+  ],
+  "SimulcastTarget": [
+    {
+      "id": "02FU00rPq00fC9S6kygrqlxygGMdpW1lk00BkFpCfc2kGregEIr7brt7CQ",
+      "passthrough": "Example",
+      "status": "idle",
+      "stream_key": "abcdefgh",
+      "url": "rtmp://live.example.com/app"
+    },
+    {
+      "id": "le1axfGDc9ETqh6trHNTxGQ9XEhj02fOnX0200aAh24fwlmwzqKCYNJgw",
+      "passthrough": "Example",
+      "status": "idle",
+      "stream_key": "abcdefgh",
+      "url": "rtmp://live.example.com/app"
+    }
+  ],
+  "StaticRendition": [
+    {
+      "ext": "mp4",
+      "id": "lJ4bGGsp7ZlPf02nMg015W02iHQLN9XnuuLRBsPS00xqd68",
+      "name": "highest.mp4",
+      "resolution": "highest",
+      "status": "preparing",
+      "type": "standard"
+    }
+  ],
+  "SummarizeCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "output_steering": {
+          "audience": "Product marketers",
+          "brand_terms": [
+            "Mux",
+            "Robots"
+          ],
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "summary_style": "concise"
+        },
+        "tag_count": 10,
+        "tone": "neutral"
+      }
+    }
+  ],
+  "SummarizeJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "description": "This video walks through the step-by-step process of creating a sustainable backyard garden, covering soil preparation, plant selection, and organic pest control methods.",
+        "tags": [
+          "gardening",
+          "sustainability",
+          "backyard",
+          "organic",
+          "soil preparation",
+          "composting",
+          "pest control",
+          "beginner",
+          "how-to",
+          "plants"
+        ],
+        "title": "How to Build a Sustainable Garden in Your Backyard"
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "output_steering": {
+          "audience": "Product marketers",
+          "brand_terms": [
+            "Mux",
+            "Robots"
+          ],
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "summary_style": "concise"
+        },
+        "tag_count": 10,
+        "tone": "neutral"
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "summarize"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "output_steering": {
+          "audience": "Product marketers",
+          "brand_terms": [
+            "Mux",
+            "Robots"
+          ],
+          "scope": {
+            "end_time": 180,
+            "start_time": 30
+          },
+          "summary_style": "concise"
+        },
+        "tag_count": 10,
+        "tone": "neutral"
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "summarize"
+    }
+  ],
+  "SummarizeJobOutputs": [
+    {
+      "description": "This video walks through the step-by-step process of creating a sustainable backyard garden, covering soil preparation, plant selection, and organic pest control methods.",
+      "tags": [
+        "gardening",
+        "sustainability",
+        "backyard",
+        "organic",
+        "soil preparation",
+        "composting",
+        "pest control",
+        "beginner",
+        "how-to",
+        "plants"
+      ],
+      "title": "How to Build a Sustainable Garden in Your Backyard"
+    }
+  ],
+  "SummarizeJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "output_steering": {
+        "audience": "Product marketers",
+        "brand_terms": [
+          "Mux",
+          "Robots"
+        ],
+        "scope": {
+          "end_time": 180,
+          "start_time": 30
+        },
+        "summary_style": "concise"
+      },
+      "tag_count": 10,
+      "tone": "neutral"
+    }
+  ],
+  "SystemUtilitiesWhoamiData": [
+    {
+      "access_token_name": "Development access token",
+      "environment_id": "envid123",
+      "environment_name": "Development",
+      "environment_type": "development",
+      "organization_id": "orgid123",
+      "organization_name": "Mux",
+      "permissions": [
+        "video:read",
+        "data:read"
+      ]
+    }
+  ],
+  "Track": [
+    {
+      "closed_captions": true,
+      "id": "xBe7u01029ipxBLQhYzZCJ1cke01zCkuUsgnYtH0017nNzbpv2YcsoMDmw",
+      "language_code": "en-US",
+      "name": "English",
+      "passthrough": "passthrough value",
+      "status": "ready",
+      "text_type": "subtitles",
+      "type": "text"
+    },
+    {
+      "closed_captions": true,
+      "id": "xBe7u01029ipxBLQhYzZCJ1cke01zCkuUsgnYtH0017nNzbpv2YcsoMDmw",
+      "language_code": "en-US",
+      "name": "English",
+      "passthrough": "English",
+      "status": "preparing",
+      "text_type": "subtitles",
+      "type": "text"
+    },
+    {
+      "id": "hXhnqUq0054k9SBFB5aczHhj6xMbOTlriTG7gqRn8kikv101lkFUgKNw",
+      "language_code": "en",
+      "name": "English (generated)",
+      "passthrough": "English (generated)",
+      "status": "preparing",
+      "text_type": "subtitles",
+      "type": "text"
+    }
+  ],
+  "TrackResourceDeclaration": [
+    {
+      "kind": "caption",
+      "language": "en",
+      "reference_id": "captions_en",
+      "source": {
+        "via": "external"
+      },
+      "type": "video.asset.track"
+    }
+  ],
+  "TranscriptionVocabulary": [
+    {
+      "created_at": "1609869152",
+      "id": "VDm3npt2eaEDvz9emzun8Q",
+      "name": "Mux API Vocabulary",
+      "phrases": [
+        "Mux",
+        "Live Stream",
+        "Playback ID",
+        "video encoding"
+      ],
+      "updated_at": "1609870000"
+    },
+    {
+      "created_at": "1609869152",
+      "id": "M1lDlzSP102NgukTnyQyLqw",
+      "name": "Video Codecs",
+      "phrases": [
+        "h.264",
+        "HEVC",
+        "AV1"
+      ],
+      "updated_at": "1609870000"
+    },
+    {
+      "created_at": "1609869152",
+      "id": "VDm3npt2eaEDvz9emzun8Q",
+      "name": "Mux API Vocabulary",
+      "phrases": [
+        "Mux",
+        "Live Stream",
+        "Playback ID",
+        "video encoding"
+      ],
+      "updated_at": "1609870000"
+    },
+    {
+      "created_at": "1609869152",
+      "id": "VDm3npt2eaEDvz9emzun8Q",
+      "name": "Mux API Vocabulary",
+      "phrases": [
+        "Mux",
+        "Live Stream",
+        "Playback ID",
+        "video encoding"
+      ],
+      "updated_at": "1609869152"
+    },
+    {
+      "created_at": "1609869152",
+      "id": "VDm3npt2eaEDvz9emzun8Q",
+      "name": "Mux API Vocabulary - Updated",
+      "phrases": [
+        "Mux",
+        "Live Stream",
+        "RTMP",
+        "Stream Key"
+      ],
+      "updated_at": "1609870000"
+    }
+  ],
+  "TranscriptionVocabularyCreateParams": [
+    {
+      "name": "Mux API Vocabulary",
+      "phrases": [
+        "Mux",
+        "Live Stream",
+        "Playback ID",
+        "video encoding"
+      ]
+    }
+  ],
+  "TranscriptionVocabularyUpdateParams": [
+    {
+      "name": "Mux API Vocabulary - Updated",
+      "phrases": [
+        "Mux",
+        "Live Stream",
+        "RTMP",
+        "Stream Key"
+      ]
+    }
+  ],
+  "TranslateAudioCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "to_language_code": "es",
+        "upload_to_mux": true
+      }
+    }
+  ],
+  "TranslateAudioJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "temporary_audio_url": "https://storage.example.com/dubs/es/audio.m4a?token=abc123",
+        "uploaded_track_id": "track_es_abc123"
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "to_language_code": "es",
+        "upload_to_mux": true
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "translate-audio"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "to_language_code": "es",
+        "upload_to_mux": true
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "translate-audio"
+    }
+  ],
+  "TranslateAudioJobOutputs": [
+    {
+      "temporary_audio_url": "https://storage.example.com/dubs/es/audio.m4a?token=abc123",
+      "uploaded_track_id": "track_es_abc123"
+    }
+  ],
+  "TranslateAudioJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "to_language_code": "es",
+      "upload_to_mux": true
+    }
+  ],
+  "TranslateCaptionCreateParams": [
+    {
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "never_translate": [
+          "Mux"
+        ],
+        "to_language_code": "es",
+        "track_id": "track_en_abc123",
+        "upload_to_mux": true
+      }
+    }
+  ],
+  "TranslateCaptionsJob": [
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "outputs": {
+        "never_translate_terms_preserved": true,
+        "temporary_vtt_url": "https://storage.example.com/translations/es/captions.vtt?token=abc123",
+        "uploaded_track_id": "track_es_abc123"
+      },
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "never_translate": [
+          "Mux"
+        ],
+        "to_language_code": "es",
+        "track_id": "track_en_abc123",
+        "upload_to_mux": true
+      },
+      "status": "completed",
+      "units_consumed": 1,
+      "updated_at": 1700000060,
+      "workflow": "translate-captions"
+    },
+    {
+      "created_at": 1700000000,
+      "id": "rjob_example123",
+      "parameters": {
+        "asset_id": "mux_asset_123abc",
+        "never_translate": [
+          "Mux"
+        ],
+        "to_language_code": "es",
+        "track_id": "track_en_abc123",
+        "upload_to_mux": true
+      },
+      "status": "pending",
+      "units_consumed": 0,
+      "updated_at": 1700000060,
+      "workflow": "translate-captions"
+    }
+  ],
+  "TranslateCaptionsJobOutputs": [
+    {
+      "never_translate_terms_preserved": true,
+      "temporary_vtt_url": "https://storage.example.com/translations/es/captions.vtt?token=abc123",
+      "uploaded_track_id": "track_es_abc123"
+    }
+  ],
+  "TranslateCaptionsJobParameters": [
+    {
+      "asset_id": "mux_asset_123abc",
+      "never_translate": [
+        "Mux"
+      ],
+      "to_language_code": "es",
+      "track_id": "track_en_abc123",
+      "upload_to_mux": true
+    }
+  ],
+  "Upload": [
+    {
+      "cors_origin": "https://example.com/",
+      "id": "zd01Pe2bNpYhxbrwYABgFE01twZdtv4M00kts2i02GhbGjc",
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ],
+        "video_quality": "basic"
+      },
+      "status": "waiting",
+      "timeout": 3600,
+      "url": "https://storage.googleapis.com/video-storage-us-east1-uploads/zd01Pe2bNpYhxbrwYABgFE01twZdtv4M00kts2i02GhbGjc?Expires=1610112458&GoogleAccessId=mux-direct-upload%40mux-cloud.iam.gserviceaccount.com&Signature=LCu4PMoKUo%2BJkWQAUwB9WU4bWVVfW3K5bZxSxEptBz3DrjbFxNyGvs0sriyJupZh9Jdb6FxKWFIRbxEetfnAAiesOvSPH%2F1GlIichmGg3YfebfxiX77%2B6ToFF6FMkJucBo284PD90AVLHhKagOea2VsbdO0fh78MAxGH9sEspyQ2uJEfYWjHFqYQ9smJyIuM3CYOmN5HKPgRWy2yUqzV7OTMe%2FivPO4%2FX6XiiN2J4nTmy83252CJUsHIvbiGctfKxcNI6b23UVN4B1tJTVgyxTOZiBQCkMLkD%2FEe5OhoAkvJgkqENRr0q3swO0IChDDWjrh7OTMwqvWGwAoVXEGiHg%3D%3D&upload_id=ABg5-UznTdib1HhOAMjdHhWIYqBbwmSYM6dVKyPe3v33uTeEE8gkN5QzvR3cei6uSZOSrjPn7bdvvDH3nhsrLBq8AjWY2qE4UQ"
+    },
+    {
+      "asset_id": "AnFVqAVXfb7vVL3ypSQDMnJZunnb8nkwe02O00p2gK8P00",
+      "cors_origin": "https://example.com/",
+      "id": "YzoCL01HHOtAVYq4Ds9zekdHJ2XqL9e8ukPWbr01KhtvM",
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ],
+        "video_quality": "basic"
+      },
+      "status": "asset_created",
+      "timeout": 3600
+    },
+    {
+      "cors_origin": "https://example.com/",
+      "id": "AZcWu0201SqVW01LMdmVxE00m3gEWUFZPItvni1sTqF800dQ",
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ],
+        "video_quality": "basic"
+      },
+      "status": "cancelled",
+      "timeout": 10800
+    },
+    {
+      "asset_id": "AnFVqAVXfb7vVL3ypSQDMnJZunnb8nkwe02O00p2gK8P00",
+      "cors_origin": "https://example.com/",
+      "id": "YzoCL01HHOtAVYq4Ds9zekdHJ2XqL9e8ukPWbr01KhtvM",
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ],
+        "video_quality": "basic"
+      },
+      "status": "asset_created",
+      "timeout": 3600
+    },
+    {
+      "cors_origin": "https://example.com/",
+      "id": "zd01Pe2bNpYhxbrwYABgFE01twZdtv4M00kts2i02GhbGjc",
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ],
+        "video_quality": "basic"
+      },
+      "status": "waiting",
+      "timeout": 3600,
+      "url": "https://storage.googleapis.com/video-storage-us-east1-uploads/zd01Pe2bNpYhxbrwYABgFE01twZdtv4M00kts2i02GhbGjc?Expires=1610112458&GoogleAccessId=mux-direct-upload%40mux-cloud.iam.gserviceaccount.com&Signature=LCu4PMoKUo%2BJkWQAUwB9WU4bWVVfW3K5bZxSxEptBz3DrjbFxNyGvs0sriyJupZh9Jdb6FxKWFIRbxEetfnAAiesOvSPH%2F1GlIichmGg3YfebfxiX77%2B6ToFF6FMkJucBo284PD90AVLHhKagOea2VsbdO0fh78MAxGH9sEspyQ2uJEfYWjHFqYQ9smJyIuM3CYOmN5HKPgRWy2yUqzV7OTMe%2FivPO4%2FX6XiiN2J4nTmy83252CJUsHIvbiGctfKxcNI6b23UVN4B1tJTVgyxTOZiBQCkMLkD%2FEe5OhoAkvJgkqENRr0q3swO0IChDDWjrh7OTMwqvWGwAoVXEGiHg%3D%3D&upload_id=ABg5-UznTdib1HhOAMjdHhWIYqBbwmSYM6dVKyPe3v33uTeEE8gkN5QzvR3cei6uSZOSrjPn7bdvvDH3nhsrLBq8AjWY2qE4UQ"
+    },
+    {
+      "cors_origin": "https://example.com/",
+      "id": "zd01Pe2bNpYhxbrwYABgFE01twZdtv4M00kts2i02GhbGjc",
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ],
+        "video_quality": "basic"
+      },
+      "status": "cancelled",
+      "timeout": 3600
+    }
+  ],
+  "UploadCreateParams": [
+    {
+      "cors_origin": "https://example.com/",
+      "new_asset_settings": {
+        "playback_policies": [
+          "public"
+        ]
+      }
+    }
+  ],
+  "VideoPlaybackIdsRetrieveData": [
+    {
+      "id": "a1B2c3D4e5F6g7H8i9",
+      "object": {
+        "id": "123456789012345678",
+        "type": "asset"
+      },
+      "policy": "public"
+    }
+  ],
+  "VideoViewResponse": [
+    {
+      "data": {
+        "ad_attempt_count": null,
+        "ad_break_count": null,
+        "ad_break_error_count": null,
+        "ad_break_error_percentage": null,
+        "ad_error_count": null,
+        "ad_error_percentage": null,
+        "ad_exit_before_start_count": null,
+        "ad_exit_before_start_percentage": null,
+        "ad_impression_count": null,
+        "ad_playback_failure_error_type_id": null,
+        "ad_preroll_startup_time": null,
+        "ad_startup_error_count": null,
+        "ad_startup_error_percentage": null,
+        "asn": 11427,
+        "asn_name": null,
+        "asset_id": "rmp7fvw5lPD01l8PZ2aN74js84XrTWxHy",
+        "audio_codec": null,
+        "audio_codec_initial": null,
+        "buffering_count": null,
+        "buffering_duration": null,
+        "buffering_rate": null,
+        "cdn": null,
+        "city": "Austin",
+        "client_application_name": null,
+        "client_application_version": null,
+        "continent_code": null,
+        "country_code": "US",
+        "country_name": "United States",
+        "custom_1": null,
+        "custom_10": null,
+        "custom_2": null,
+        "custom_3": null,
+        "custom_4": null,
+        "custom_5": null,
+        "custom_6": null,
+        "custom_7": null,
+        "custom_8": null,
+        "custom_9": null,
+        "environment_id": "envid123",
+        "error_type_id": null,
+        "events": [
+          {
+            "details": {},
+            "event_time": 1643216898061,
+            "name": "playerready",
+            "playback_time": 0,
+            "viewer_time": 1643216891851
+          },
+          {
+            "details": {},
+            "event_time": 1643216898101,
+            "name": "viewstart",
+            "playback_time": 0,
+            "viewer_time": 1643216891853
+          }
+        ],
+        "exit_before_video_start": false,
+        "experiment_name": null,
+        "id": "LOpk9M00bMWgOJ3hcTcCHmz1JjxMFRRI",
+        "inserted_at": "2022-01-26T17:08:18Z",
+        "isp": null,
+        "latitude": null,
+        "live_stream_id": null,
+        "live_stream_latency": null,
+        "long_rebuffering": false,
+        "long_resume": false,
+        "longitude": null,
+        "metro": null,
+        "mux_api_version": "v1",
+        "mux_embed": null,
+        "mux_embed_version": null,
+        "mux_viewer_id": "abc123viewerid",
+        "page_load_time": null,
+        "page_type": null,
+        "page_url": null,
+        "platform_description": null,
+        "platform_summary": null,
+        "playback_business_exception_error_type_id": null,
+        "playback_failure": false,
+        "playback_failure_error_type_id": null,
+        "playback_id": null,
+        "playback_score": null,
+        "player_autoplay": false,
+        "player_error_code": "1001",
+        "player_error_context": "error context",
+        "player_error_message": "error from player",
+        "player_height": null,
+        "player_instance_id": null,
+        "player_language": null,
+        "player_load_time": null,
+        "player_mux_plugin_name": "apple-mux",
+        "player_mux_plugin_version": null,
+        "player_name": null,
+        "player_poster": null,
+        "player_preload": false,
+        "player_remote_played": null,
+        "player_software": null,
+        "player_software_version": null,
+        "player_source_domain": null,
+        "player_source_duration": null,
+        "player_source_height": null,
+        "player_source_host_name": "stream.mux.com",
+        "player_source_stream_type": null,
+        "player_source_type": null,
+        "player_source_url": "https://stream.mux.com/ax9qwyTIaUDLdmhesYDKir5kfE4Ve215.m3u8",
+        "player_source_width": null,
+        "player_startup_time": null,
+        "player_version": null,
+        "player_view_count": null,
+        "player_width": null,
+        "preroll_ad_asset_hostname": null,
+        "preroll_ad_tag_hostname": null,
+        "preroll_played": null,
+        "preroll_requested": null,
+        "property_id": 1234,
+        "quality_score": null,
+        "rebuffer_percentage": null,
+        "rebuffering_score": null,
+        "region": null,
+        "rendition_change_count": null,
+        "rendition_downshift_count": null,
+        "rendition_upshift_count": null,
+        "requests_for_first_preroll": null,
+        "session_id": "b97d7b4a-8de7-4b18-8984-1f9ec3d3b5bc",
+        "short_time": "2022-01-26T17:08:18Z",
+        "startup_score": null,
+        "sub_property_id": null,
+        "time_shift_enabled": false,
+        "time_to_first_frame": null,
+        "updated_at": "2022-01-26T17:56:12Z",
+        "used_captions": false,
+        "used_fullscreen": false,
+        "used_pip": false,
+        "video_affiliate": null,
+        "video_brand": null,
+        "video_cdn_trace": [],
+        "video_codec": null,
+        "video_codec_initial": null,
+        "video_content_type": null,
+        "video_creator_id": null,
+        "video_duration": null,
+        "video_dynamic_range_type": null,
+        "video_dynamic_range_type_initial": null,
+        "video_encoding_variant": null,
+        "video_id": "rmp7fvw5lPD01l8PZ2aN74js84XrTWxHy",
+        "video_language": null,
+        "video_producer": null,
+        "video_series": null,
+        "video_source_bitrate": null,
+        "video_source_bitrate_initial": null,
+        "video_source_fps": null,
+        "video_source_fps_initial": null,
+        "video_source_height": null,
+        "video_source_height_initial": null,
+        "video_source_width": null,
+        "video_source_width_initial": null,
+        "video_startup_business_exception_error_type_id": null,
+        "video_startup_failure": false,
+        "video_startup_preroll_load_time": null,
+        "video_startup_preroll_request_time": null,
+        "video_stream_type": null,
+        "video_title": null,
+        "video_variant_id": null,
+        "video_variant_name": null,
+        "view_average_request_latency": null,
+        "view_average_request_throughput": null,
+        "view_cdn_edge_pop": null,
+        "view_cdn_origin": null,
+        "view_content_startup_time": null,
+        "view_drm_level": null,
+        "view_drm_type": null,
+        "view_dropped": false,
+        "view_dropped_frame_count": null,
+        "view_end": "2022-01-26T17:56:12Z",
+        "view_error_id": null,
+        "view_has_ad": false,
+        "view_id": "8d00a0ca-8456-4e55-9ff8-dc501814a6b1",
+        "view_max_downscale_percentage": "0.32222223",
+        "view_max_playhead_position": "41126",
+        "view_max_request_latency": null,
+        "view_max_upscale_percentage": "0",
+        "view_playing_time": "58134",
+        "view_seek_count": null,
+        "view_seek_duration": null,
+        "view_session_id": null,
+        "view_start": "2022-01-26T17:08:18Z",
+        "view_total_content_playback_time": 37521,
+        "view_total_downscaling": null,
+        "view_total_upscaling": null,
+        "viewer_application_engine": null,
+        "viewer_application_name": null,
+        "viewer_application_version": null,
+        "viewer_connection_type": null,
+        "viewer_device_category": null,
+        "viewer_device_manufacturer": null,
+        "viewer_device_model": "iPhone10,4",
+        "viewer_device_name": null,
+        "viewer_experience_score": null,
+        "viewer_os_architecture": null,
+        "viewer_os_family": null,
+        "viewer_os_version": "15.1",
+        "viewer_plan": null,
+        "viewer_plan_category": null,
+        "viewer_plan_status": null,
+        "viewer_user_agent": null,
+        "viewer_user_id": null,
+        "watch_time": null,
+        "watched": true,
+        "weighted_average_bitrate": 697078
+      },
+      "timeframe": [
+        1643133378,
+        1643219778
+      ],
+      "total_row_count": null
+    }
+  ],
+  "Webhook": [
+    {
+      "address": "https://example.com/webhook2",
+      "created_at": "2026-07-21T17:05:32.000000Z",
+      "enabled": false,
+      "id": "fjk04c"
+    },
+    {
+      "address": "https://example.com/webhook",
+      "created_at": "2026-07-15T12:00:00.000000Z",
+      "enabled": true,
+      "id": "abc12d"
+    }
+  ],
+  "WebhookCreateParams": [
+    {
+      "address": "https://example.com/webhook"
+    }
+  ],
+  "WebhookResponse": [
+    {
+      "data": {
+        "address": "https://example.com/webhook",
+        "created_at": "2026-07-15T12:00:00.000000Z",
+        "enabled": true,
+        "id": "abc12d"
+      }
+    },
+    {
+      "data": {
+        "address": "https://example.com/new-webhook",
+        "created_at": "2026-07-15T12:00:00.000000Z",
+        "enabled": false,
+        "id": "abc12d"
+      }
+    },
+    {
+      "data": {
+        "address": "https://example.com/webhook",
+        "created_at": "2026-07-15T12:00:00.000000Z",
+        "enabled": true,
+        "id": "abc12d",
+        "signing_secret": "9d0hnvbtpk3rfqe0m8s2a71cu5j6l4gd"
+      }
+    }
+  ],
+  "WebhookUpdateParams": [
+    {
+      "address": "https://example.com/new-webhook",
+      "enabled": false
+    }
+  ]
+}

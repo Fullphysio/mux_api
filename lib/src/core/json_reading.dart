@@ -129,6 +129,26 @@ extension MuxJsonReading on Map<String, Object?> {
     return result;
   }
 
+  /// Reads [key] as an array of doubles, widening ints like [optDouble] and
+  /// dropping anything else. Returns an empty list if [key] is absent.
+  List<double> optDoubleList(String key) {
+    final value = this[key];
+    if (value is! List<Object?>) {
+      return <double>[];
+    }
+    return value
+        .whereType<num>()
+        .map((n) => n.toDouble())
+        .toList(growable: false);
+  }
+
+  /// Reads [key] as an array of booleans, dropping anything else. Returns an
+  /// empty list if [key] is absent.
+  List<bool> optBoolList(String key) =>
+      optList<Object?>(key, (element) => element)
+          .whereType<bool>()
+          .toList(growable: false);
+
   /// Reads [key] as a free-form JSON object of strings, the shape of Mux's
   /// `passthrough`-style and header maps.
   ///

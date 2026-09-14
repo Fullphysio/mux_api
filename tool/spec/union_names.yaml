@@ -1,0 +1,9 @@
+# Names for discriminated unions the specification declares inline, with no
+# named schema of the same structure to alias to. The key is the discriminator
+# property plus the sorted variant schemas; the generator fails when it meets
+# an inline union missing from this list, so every name here is a deliberate
+# choice rather than an accident of iteration order.
+inlineUnions:
+  - name: DirectiveResource
+    discriminator: type
+    variants: [ShotsResourceDeclaration, TrackResourceDeclaration]

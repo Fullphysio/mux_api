@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 
+import '../generated/generated.dart';
 import '../jwt/mux_jwt.dart';
-import '../resources/video.dart';
 import '../webhooks/mux_webhooks.dart';
 import 'transport.dart';
 
@@ -69,8 +69,17 @@ final class MuxClient {
 
   final MuxTransport _transport;
 
-  /// Mux Video resources: `client.video.uploads`, …
+  /// Mux Video resources: `client.video.assets`, `client.video.uploads`, …
   late final MuxVideo video = MuxVideo(this);
+
+  /// Mux Data resources: `client.data.metrics`, `client.data.videoViews`, …
+  late final MuxData data = MuxData(this);
+
+  /// System resources: `client.system.signingKeys`, `client.system.webhooks`, …
+  late final MuxSystem system = MuxSystem(this);
+
+  /// Mux Robots (AI jobs and directives) resources.
+  late final MuxRobots robots = MuxRobots(this);
 
   /// Signs playback, DRM-licence and viewer-count tokens with
   /// [jwtSigningKeyId] / [jwtPrivateKey] unless a call overrides them.

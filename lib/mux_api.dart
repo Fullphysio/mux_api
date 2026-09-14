@@ -40,11 +40,7 @@ export 'src/core/page.dart'
         MuxPageWithTimeframe,
         MuxPageWithTotal;
 export 'src/core/transport.dart' show MuxHost;
-export 'src/resources/asset_options.dart'
-    show AssetOptions, MasterAccess, PlaybackPolicy, VideoQuality;
-export 'src/resources/video.dart' show MuxVideo;
-export 'src/resources/video_uploads.dart'
-    show Upload, UploadCreateParams, UploadError, UploadStatus, VideoUploads;
+export 'src/generated/generated.dart';
 export 'src/jwt/mux_jwt.dart'
     show
         MuxJwt,
@@ -55,13 +51,7 @@ export 'src/jwt/mux_jwt.dart'
         signMuxPlaybackId,
         signMuxPlaybackIdTokens,
         signMuxViewerCounts;
-export 'src/webhooks/mux_webhook_event.dart'
-    show
-        MuxWebhookAttempt,
-        MuxWebhookEnvironment,
-        MuxWebhookEvent,
-        MuxWebhookObject,
-        UnknownMuxWebhookEvent;
+export 'src/webhooks/mux_webhook_event.dart';
 export 'src/webhooks/mux_webhooks.dart'
     show
         MuxWebhooks,

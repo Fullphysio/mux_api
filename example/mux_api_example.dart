@@ -30,7 +30,7 @@ Future<void> main() async {
         corsOrigin: '*',
         newAssetSettings: AssetOptions(
           playbackPolicies: [PlaybackPolicy.signed],
-          videoQuality: VideoQuality.plus,
+          videoQuality: AssetVideoQuality.plus,
         ),
         timeout: 3600,
       ),
