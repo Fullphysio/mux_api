@@ -1,5 +1,8 @@
 # mux_api
 
+[![CI](https://github.com/Fullphysio/mux_api/actions/workflows/ci.yml/badge.svg)](https://github.com/Fullphysio/mux_api/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/Fullphysio/mux_api/badge.svg?branch=main)](https://coveralls.io/github/Fullphysio/mux_api?branch=main)
+
 A pure Dart client for the [Mux](https://www.mux.com) API. Runs on Dart
 servers, CLIs and Flutter apps — there is no Flutter dependency, and no code
 generation step for you.

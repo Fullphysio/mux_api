@@ -128,6 +128,14 @@ jobs:
           dart pub global run coverage:format_coverage
           --lcov --in=coverage --out=coverage/lcov.info
           --report-on=lib --ignore-files='lib/src/generated/**' --check-ignore
+      # The workflow's built-in token is enough for a public repository; no
+      # Coveralls secret is stored anywhere.
+      - name: Report coverage to Coveralls
+        uses: coverallsapp/github-action@8d6379e14d29928660c4ba802d8e85393440b329
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: coverage/lcov.info
+          format: lcov
       # Enforced inline rather than via a third-party action: one fewer
       # supply-chain dependency, and the threshold is readable right here.
       - name: Enforce minimum line coverage
