@@ -34,6 +34,58 @@ jobs:
         if: always() && steps.install.outcome == 'success'
         run: dart pub publish --dry-run
 
+  codegen:
+    name: Generated code is current
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d
+        with:
+          sdk: stable
+      - run: dart pub get
+      # Regenerates into a temporary directory and diffs against the committed
+      # output, so a spec bump or generator change can never land half-applied.
+      - name: Check for drift
+        run: dart run tool/generate.dart --check
+
+  mock:
+    name: Mock server
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d
+        with:
+          sdk: stable
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+      - run: dart pub get
+      # Steady is the spec-validating mock server Stainless tests @mux/ts
+      # against. It rejects any request that does not validate against
+      # tool/spec/mux-openapi.json, so this exercises every generated
+      # operation end to end without a Mux account.
+      - name: Start the mock server
+        run: |
+          tool/mock/run_steady.sh > steady.log 2>&1 &
+          for _ in $(seq 1 90); do
+            if curl -sf http://127.0.0.1:4010/_x-steady/health > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          echo 'Steady did not become healthy within 90 s'
+          cat steady.log
+          exit 1
+      - name: Run mock-server tests
+        env:
+          MUX_MOCK_HOST: 127.0.0.1:4010
+        run: dart test --tags mock --run-skipped
+      - name: Mock server log
+        if: failure()
+        run: cat steady.log
+
   test:
     name: Test (Dart ${{ matrix.sdk }})
     needs: analyze
