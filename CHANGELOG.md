@@ -1,3 +1,8 @@
+## 1.0.0
+
+- First stable release. The public API is now covered by semantic versioning.
+- Add CONTRIBUTING.md, a pub badge and a token-secret warning to the README.
+
 ## 0.1.0
 
 - Initial release: the hand-written runtime ported from `@mux/ts` 15.1.0
