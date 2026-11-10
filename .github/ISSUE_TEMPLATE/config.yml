@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Mux API reference
+    url: https://docs.mux.com/api-reference
+    about: What the Mux API accepts and returns. Questions about Mux itself go to Mux support.
